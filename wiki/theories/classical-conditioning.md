@@ -16,21 +16,33 @@ related_constructs: ["[[fear-conditioning]]", "[[stimulus-generalization]]", "[[
 ## 1. 核心模型架構 (Core Model)
 
 ```mermaid
-graph LR
-    subgraph PRE ["1. 制約前 (Pre-conditioning)"]
-        US1["非制約刺激 US<br>例：鋼條巨響"] --> UR1["非制約反應 UR<br>驚嚇、哭泣"]
-        CS1["制約刺激 CS<br>例：白鼠"] --> NR1["無關或探索反應"]
+graph TD
+    subgraph S1 ["【階段 1】制約前 (Pre-conditioning)"]
+        direction LR
+        US1["非制約刺激 (US)<br>例：鋼條敲擊巨響"] --> UR1["非制約反應 (UR)<br>自然驚嚇、嚎啕大哭"]
+        CS1["中性制約刺激 (CS)<br>例：小白鼠"] --> NR1["中性探索反應<br>好奇伸手觸摸、無恐懼"]
     end
 
-    subgraph COND ["2. 制約配對 (Conditioning Phase)"]
-        CS2["CS: 白鼠"] --> PAIR(("配對呈現"))
-        US2["US: 鋼條巨響"] --> PAIR
-        PAIR --> UR2["UR: 驚嚇反應"]
+    S1 ==>|"經過多次時間伴隨配對（累積 7 次聯合刺激）"| S2
+
+    subgraph S2 ["【階段 2】制約配對 (Conditioning Phase)"]
+        direction LR
+        CS2["制約刺激 (CS)<br>伸手觸碰白鼠"] --> PAIR(("時間緊密伴隨配對"))
+        US2["非制約刺激 (US)<br>身後鐵鎚敲擊鋼條"] --> PAIR
+        PAIR --> UR2["非制約驚嚇反應 (UR)<br>跳動倒地、劇烈嗚咽"]
     end
 
-    subgraph POST ["3. 制約後 (Post-conditioning)"]
-        CS3["CS: 白鼠"] --> CR["制約反應 CR<br>逃避、崩潰大哭"]
+    S2 ==>|"神經聯結固化：中性刺激轉化為威脅信號"| S3
+
+    subgraph S3 ["【階段 3】制約後 (Post-conditioning)"]
+        direction LR
+        CS3["制約刺激 (CS)<br>單獨呈現白鼠"] --> CR["制約恐懼反應 (CR)<br>立刻崩潰大哭、四肢爬離"]
+        CS3 -.->|"刺激類化 (Generalization)"| GEN["外觀特徵相似物<br>兔子 / 狗 / 毛皮大衣 / 面具"]
+        GEN --> CR
     end
+
+    classDef stage fill:#faf5f3,stroke:#c27685,stroke-width:1.5px;
+    class S1,S2,S3 stage;
 ```
 
 ---

@@ -499,6 +499,10 @@ def build_html_page(note, current_html_path):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for mathematical notation rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
@@ -524,6 +528,16 @@ def build_html_page(note, current_html_path):
             fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
             fontSize: '15px'
           }}
+        }});
+      }}
+      if (window.renderMathInElement) {{
+        renderMathInElement(document.body, {{
+          delimiters: [
+            {{left: '$$', right: '$$', display: true}},
+            {{left: '$', right: '$', display: false}}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
         }});
       }}
     }});

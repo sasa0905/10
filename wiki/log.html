@@ -7,6 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for mathematical notation rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
@@ -32,6 +36,16 @@
             fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
             fontSize: '15px'
           }
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
         });
       }
     });
@@ -783,6 +797,13 @@
 <li>於編譯器中追加自動語法正規化濾波器，預防任何非標準箭頭破壞圖形渲染。</li>
 <li>在 Mermaid 初始化中配置 <code>flowchart: { useMaxWidth: false }</code>，並在 CSS 中宣告 <code>.mermaid-diagram svg { max-width: none !important; }</code>，徹底解除向量圖縮放壓縮，保證文字維持 15px+ 原生清晰度，並提供流暢橫向捲軸與提示卡。</li>
 <li>為 5 大流派（行為黑盒子、精神分析冰山、認知訊息流、人本動機階層、神經情緒迴路）與 5 篇奠基論文全面補充標準高清晰流程圖解。</li>
+</ul>
+<h2>[2026-11-19] layout | 古典制約模型重構為由上往下 1-3 流程並導入 KaTeX 數學排版</h2>
+<ul>
+<li><strong>操作類型</strong>：模型架構垂直重構與數學排版引擎升級 (Model Restructuring & KaTeX Integration)</li>
+<li><strong>完成項目</strong>：</li>
+<li>古典制約理論（<code>theories/classical-conditioning.md</code> 及 <code>sources/watson-rayner-1920-conditioned-fear.md</code>）核心架構由橫向左右排列全面重構為由上而下（Top-Down, <code>graph TD</code>）的階段 1 $\rightarrow$ 階段 2 $\rightarrow$ 階段 3 嚴格循序流程圖，清楚呈現制約前、配對刺激與制約後（含刺激類化）之時序演變。</li>
+<li>全站 33 篇靜態 HTML 及簡報頁面全面導入 KaTeX 數學渲染引擎與 Auto-Render 模組，完整呈現 $N = 1$、$7 \pm 2$、$4 \pm 1$、$\mu = 2.6\text{ bits}$、$\sigma = 0.6\text{ bits}$ 等數學與統計符號。</li>
 </ul>
       </article>
     </main>

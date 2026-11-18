@@ -113,6 +113,13 @@
   - 在 Mermaid 初始化中配置 `flowchart: { useMaxWidth: false }`，並在 CSS 中宣告 `.mermaid-diagram svg { max-width: none !important; }`，徹底解除向量圖縮放壓縮，保證文字維持 15px+ 原生清晰度，並提供流暢橫向捲軸與提示卡。
   - 為 5 大流派（行為黑盒子、精神分析冰山、認知訊息流、人本動機階層、神經情緒迴路）與 5 篇奠基論文全面補充標準高清晰流程圖解。
 
+## [2026-11-19] layout | 古典制約模型重構為由上往下 1-3 流程並導入 KaTeX 數學排版
+- **操作類型**：模型架構垂直重構與數學排版引擎升級 (Model Restructuring & KaTeX Integration)
+- **完成項目**：
+  - 古典制約理論（`theories/classical-conditioning.md` 及 `sources/watson-rayner-1920-conditioned-fear.md`）核心架構由橫向左右排列全面重構為由上而下（Top-Down, `graph TD`）的階段 1 $\rightarrow$ 階段 2 $\rightarrow$ 階段 3 嚴格循序流程圖，清楚呈現制約前、配對刺激與制約後（含刺激類化）之時序演變。
+  - 全站 33 篇靜態 HTML 及簡報頁面全面導入 KaTeX 數學渲染引擎與 Auto-Render 模組，完整呈現 $N = 1$、$7 \pm 2$、$4 \pm 1$、$\mu = 2.6\text{ bits}$、$\sigma = 0.6\text{ bits}$ 等數學與統計符號。
+
+
 
 
 
