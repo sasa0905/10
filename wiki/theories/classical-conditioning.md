@@ -17,19 +17,19 @@ related_constructs: ["[[fear-conditioning]]", "[[stimulus-generalization]]", "[[
 
 ```mermaid
 graph LR
-    subgraph 制約前 [1. 制約前 (Pre-conditioning)]
-        US1[非制約刺激 US<br>例：鋼條巨響] --> UR1[非制約反應 UR<br>驚嚇、哭泣]
-        CS1[制約刺激 CS<br>例：白鼠] --> NR1[無關或探索反應]
+    subgraph PRE ["1. 制約前 (Pre-conditioning)"]
+        US1["非制約刺激 US<br>例：鋼條巨響"] --> UR1["非制約反應 UR<br>驚嚇、哭泣"]
+        CS1["制約刺激 CS<br>例：白鼠"] --> NR1["無關或探索反應"]
     end
 
-    subgraph 制約中 [2. 制約配對 (Conditioning Phase)]
-        CS2[CS: 白鼠] --> PAIR((配對呈現))
-        US2[US: 鋼條巨響] --> PAIR
-        PAIR --> UR2[UR: 驚嚇反應]
+    subgraph COND ["2. 制約配對 (Conditioning Phase)"]
+        CS2["CS: 白鼠"] --> PAIR(("配對呈現"))
+        US2["US: 鋼條巨響"] --> PAIR
+        PAIR --> UR2["UR: 驚嚇反應"]
     end
 
-    subgraph 制約後 [3. 制約後 (Post-conditioning)]
-        CS3[CS: 白鼠] --> CR[制約反應 CR<br>逃避、崩潰大哭]
+    subgraph POST ["3. 制約後 (Post-conditioning)"]
+        CS3["CS: 白鼠"] --> CR["制約反應 CR<br>逃避、崩潰大哭"]
     end
 ```
 

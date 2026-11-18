@@ -16,15 +16,21 @@
           startOnLoad: true,
           theme: 'neutral',
           securityLevel: 'loose',
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          },
           themeVariables: {
             primaryColor: '#faf2f4',
             primaryBorderColor: '#c27685',
-            primaryTextColor: '#332d30',
+            primaryTextColor: '#2e292d',
             lineColor: '#8c4b57',
             secondaryColor: '#f7ebeb',
-            tertiaryColor: '#faf7f5',
-            fontFamily: "'Zen Maru Gothic', sans-serif",
-            fontSize: '13px'
+            tertiaryColor: '#ffffff',
+            fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
+            fontSize: '15px'
           }
         });
       }
@@ -230,7 +236,7 @@
     .wiki-main {
       flex: 1;
       padding: 36px 48px;
-      max-width: 980px;
+      max-width: 1060px;
       background-color: var(--bg-cream);
     }
     .breadcrumb {
@@ -390,20 +396,53 @@
       background: #ffffff;
       border: 1px solid var(--border-warm);
       border-radius: 14px;
-      padding: 20px 16px;
-      margin: 24px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 22px 20px 20px 20px;
+      margin: 26px 0;
       overflow-x: auto;
+      overflow-y: hidden;
+      text-align: center;
       box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+    .mermaid-caption {
+      font-size: 12.5px;
+      color: var(--rose-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .mermaid-diagram svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto;
+      display: inline-block;
+      margin: 0 auto;
     }
     .mermaid-diagram pre.mermaid {
       background: transparent;
       border: none;
       margin: 0;
       padding: 0;
-      font-family: inherit;
+      font-family: 'Zen Maru Gothic', 'Noto Serif TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      display: inline-block;
+      text-align: left;
+    }
+    .mermaid-diagram::-webkit-scrollbar {
+      height: 8px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-thumb {
+      background-color: #edd5da;
+      border-radius: 4px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-track {
+      background-color: #faf7f5;
     }
     .code-container {
       margin: 20px 0;
@@ -625,6 +664,11 @@
 <p>行為主義（Behaviorism）興起於 20 世紀初期，由 John B. Watson 於 1913 年發表《行為主義者眼中的心理學》（Psychology as the Behaviorist Views It）確立體系。該學派強力挑戰當時盛行的內省主義與歐洲精神分析，主張心理學應成為一門如物理、化學般嚴謹的純客觀實驗自然科學。</p></div></div>
 <hr>
 <h2>1. 核心理論支柱 (Theoretical Pillars)</h2>
+<div class="mermaid-diagram"><div class="mermaid-caption"><span>📊</span> 核心機制圖解（完整向量呈現 • 高清晰字體 • 可左右滑動查看全貌）</div><pre class="mermaid">
+graph LR
+    ENV["外在客觀刺激 (Stimulus)<br>環境物理輸入、聲音、白鼠"] --> BLACKBOX["【黑盒子 Black Box】<br>內在心智歷程無法客觀觀測<br>(科學心理學不作主觀臆測)"]
+    BLACKBOX --> RESP["外顯可測反應 (Response)<br>行為動作、恐懼哭泣、逃避爬離"]
+</pre></div>
 <p>1. <strong>古典制約 (Classical Conditioning)</strong>：</p>
 <ul>
 <li>源自 Ivan Pavlov 的唾液反射實驗，後由 <a href="../sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="Watson & Rayner (1920)">Watson & Rayner (1920)</a> 引入人類情緒與恐懼形成的研究中。</li>

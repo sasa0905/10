@@ -19,6 +19,15 @@ core_assumptions: [
 
 ## 1. 核心理論支柱 (Theoretical Pillars)
 
+```mermaid
+graph LR
+    THAL["感覺丘腦 (Thalamus)"] == "低路徑: 粗糙速死 (&lt;20ms)" ==> LA["側杏仁核 (LA)<br>突觸 LTP 核心"]
+    THAL -->|"高路徑: 意識精細分析"| CORTEX["大腦皮質 (Cortex)"]
+    CORTEX --> LA
+    LA ==> CE["中央核 (CE)"]
+    CE ==> DEFENSE["自主神經 / 僵直行為 (Freezing)"]
+```
+
 1. **情緒迴路解剖學 (Emotion Circuits)**：
    * 突破傳統模糊的「邊緣系統」假設，精確解析以杏仁核為核心的威脅偵測與防衛系統（[[dual-route-emotion-theory|情緒雙路徑理論]]）。
 2. **學習與記憶的分子機制**：

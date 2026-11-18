@@ -20,6 +20,16 @@ core_assumptions: [
 
 ## 1. 核心理論支柱 (Theoretical Pillars)
 
+```mermaid
+graph TD
+    subgraph ICEBERG ["水面上下：心智冰山模型"]
+        C["水面之上：意識 (Conscious)<br>當前清醒知覺、理性思維"]
+        P["水面交界：前意識 (Preconscious)<br>隨時可提取的記憶庫"]
+        U["水面深處：潛意識 (Unconscious)<br>被壓抑的創傷、原始慾望、衝突核心"]
+    end
+    U -.->|壓抑突破| SYMPTOM["神經症症狀 / 夢境象徵 / 口誤"]
+```
+
 1. **意識三層次與心理結構**：
    * 意識（Conscious）、前意識（Preconscious）、潛意識（Unconscious）。
    * 本我（Id，遵循享樂原則）、自我（Ego，遵循現實原則）、超我（Superego，遵循道德原則）。

@@ -101,15 +101,18 @@
   - 保留春櫻豆沙系日系明朝體、Zen Maru Gothic、Washi 質感與四大高亮引言盒排版。
   - 支援直接部署至 GitHub Pages 即開即看。
 
-## [2026-11-19] fix | 修復 Mermaid 圖解渲染與作者文獻鏈接反灰問題
-- **操作類型**：渲染相容性修復與鏈接解析升級 (Renderer Fix & Link Resolving)
+## [2026-11-19] fix | 全面修復流程圖語法錯誤與解除 SVG 壓縮（確保高清晰字體）
+- **操作類型**：視覺渲染深度修復 (High-DPI Diagram Fix & Anti-Compression)
 - **問題根因**：
-  1. Markdown 轉 HTML 編譯器未處理 Fenced Code Blocks，導致 7 處 Mermaid 圖表代碼被當作普通段落渲染，流程圖與圖解無法顯現。
-  2. 未解析的 `[[wikilinks]]` 原先採用了 `text-decoration: line-through; color: #a89fa4` 刪除線樣式，且文獻縮寫與別名未登錄，致使所有作者文獻（如 Watson & Rayner 1920、Freud 1910）均顯示為帶斜線的反灰刪除文字。
+  1. 部分 Mermaid 流程圖語法存在箭頭標籤格式錯誤（如 `==>|text|` 非標準箭頭語法、未轉義 `<20 ms` 與子圖括號未引號包裹），導致 Mermaid 解析報錯而無法顯示圖形。
+  2. 預設 Mermaid 將 SVG 強制壓縮至欄位寬度（`max-width: 100%`），致使寬圖中文字被整體縮放至 7~8px，文字嚴重擁擠擠壓。
+  3. 需求階層、五大論文摘要（如 Watson 1920、Freud 1910、Miller 1956）與各學派頁面先前缺少實質向量圖解。
 - **修復項目**：
-  - 導入 Mermaid 10 向量圖渲染引擎，完整支援 7 份理論、構念與文獻模型圖解及 ASCII 代碼塊。
-  - 徹底移除 `line-through` 刪除線樣式，全面重構全域雙向關聯字典，智慧對照五大奠基論文縮寫、學者名稱與正文別名。
-  - 在論文摘要頁增加獨立完整的 APA 7th 官方文獻出處專屬卡片與作者溫潤標籤。
+  - 修正所有 Mermaid 圖表之箭頭語法（全面採用標準 `== "text" ==>`）、轉義 `<` 字符並重構 ID 與引號。
+  - 於編譯器中追加自動語法正規化濾波器，預防任何非標準箭頭破壞圖形渲染。
+  - 在 Mermaid 初始化中配置 `flowchart: { useMaxWidth: false }`，並在 CSS 中宣告 `.mermaid-diagram svg { max-width: none !important; }`，徹底解除向量圖縮放壓縮，保證文字維持 15px+ 原生清晰度，並提供流暢橫向捲軸與提示卡。
+  - 為 5 大流派（行為黑盒子、精神分析冰山、認知訊息流、人本動機階層、神經情緒迴路）與 5 篇奠基論文全面補充標準高清晰流程圖解。
+
 
 
 

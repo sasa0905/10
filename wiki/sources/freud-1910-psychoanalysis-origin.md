@@ -38,6 +38,14 @@ raw_file: "../raw/freud-1910.md"
 
 ## 2. 臨床方法與技術演進 (Methodology & Clinical Practice)
 
+```mermaid
+graph LR
+    TRAUMA["創傷回憶 / 禁忌慾望"] -->|痛苦衝突| DEFENSE["自我啟動壓抑 (Repression)"]
+    DEFENSE -->|驅逐出意識| UNCON["潛意識蓄積 (Unconscious)"]
+    UNCON -->|心理能量身體化| SYMPTOM["癔症轉換症狀 (Conversion)<br>肢體痲痺 / 幻覺 / 失語"]
+    SYMPTOM -->|自由聯想 + 移情剖析| CURE["談話療法 (Talking Cure)<br>情緒宣洩 (Catharsis) 與症狀消解"]
+```
+
 ### 2.1 從催眠到宣洩（Breuer 的 Anna O. 案例）
 * 由 Joseph Breuer (1880–1882) 治療 21 歲女病患 Anna O.（右側癱瘓、失語、拒水厭惡）。
 * 在催眠狀態下讓病患重新回憶創傷場景（如看見討厭的女管家讓小狗從水杯喝水而壓抑憤怒），並將積累的情緒藉由語言宣洩（Ab-reaction），症狀即永久消失。Anna O. 戲稱此為「談話療法（Talking Cure）」或「掃煙囪（Chimney Sweeping）」。

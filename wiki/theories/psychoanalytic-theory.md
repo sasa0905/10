@@ -17,22 +17,22 @@ related_constructs: ["[[unconscious]]", "[[repression]]", "[[transference]]", "[
 
 ```mermaid
 graph TD
-    subgraph 冰山心智模型 [心智的三層結構]
-        CONSCIOUS[意識 Conscious<br>當前知覺到的感受與思維]
-        PRECONSCIOUS[前意識 Preconscious<br>稍加提醒即可提取的記憶]
-        UNCONSCIOUS[潛意識 Unconscious<br>被壓抑的創傷、原始慾望與衝動]
+    subgraph ICEBERG ["心智的三層結構 (The Mind)"]
+        CONSCIOUS["意識 Conscious<br>當前知覺到的感受與思維"]
+        PRECONSCIOUS["前意識 Preconscious<br>稍加提醒即可提取的記憶"]
+        UNCONSCIOUS["潛意識 Unconscious<br>被壓抑的創傷、原始慾望與衝動"]
     end
 
-    subgraph 人格動力互動 [人格三結構]
-        ID[本我 Id<br>享樂原則 / 原始本能驅力]
-        EGO[自我 Ego<br>現實原則 / 調解者 / 防衛機制]
-        SUPEREGO[超我 Superego<br>道德原則 / 內化的社會規範]
+    subgraph DYNAMICS ["人格動力互動 (Personality)"]
+        ID["本我 Id<br>享樂原則 / 原始本能驅力"]
+        EGO["自我 Ego<br>現實原則 / 調解者 / 防衛機制"]
+        SUPEREGO["超我 Superego<br>道德原則 / 內化的社會規範"]
     end
 
     ID -->|本能慾望湧現| EGO
     SUPEREGO -->|道德批判與罪惡感| EGO
     EGO -->|啟動壓抑機制 Repression| UNCONSCIOUS
-    UNCONSCIOUS -.->|壓抑失敗 / 戴上面具突破| SYMPTOM[神經症症狀 / 夢境 / 口誤]
+    UNCONSCIOUS -.->|壓抑失敗 / 戴上面具突破| SYMPTOM["神經症症狀 / 夢境 / 口誤"]
 ```
 
 ---

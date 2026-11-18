@@ -37,6 +37,19 @@ raw_file: "../raw/miller-1956.md"
 
 ## 2. 實證數據與核心分析 (Empirical Data)
 
+```mermaid
+graph TD
+    subgraph S1 ["1. 絕對判斷：通道容量 (Channel Capacity)"]
+        IN1["單維刺激 (音高/音量/味覺)"] --> CAP1["單維極限約 2.6 bits<br>(僅能精準辨識約 6.5 種等級)"]
+        IN_MULTI["多維刺激複合 (音高+音量+位置)"] --> CAP_MULTI["容量擴增但具邊際遞減效應"]
+    end
+
+    subgraph S2 ["2. 立即記憶：組塊容量 (Memory Span & Chunks)"]
+        BITS["資訊位元數量 (Bits)"] -->|非記憶瓶頸| CHUNKS["組塊常數限制: 7 ± 2 個 Chunks"]
+        RECODE["主動重新編碼 (Recoding)"] -->|結合長時記憶語意網絡| COMBO["將多個 Bits 打包成 1 個 Chunk<br>倍數擴增心智處理總量"]
+    end
+```
+
 ### 2.1 單維刺激的絕對判斷通道容量
 Miller 統整了多項經典心理物理學實驗數據：
 * **音高 (Pitch)**（Pollack）：極限約為 **$2.5\text{ bits}$**（約 6 個無法混淆的音高）。

@@ -16,15 +16,21 @@
           startOnLoad: true,
           theme: 'neutral',
           securityLevel: 'loose',
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          },
           themeVariables: {
             primaryColor: '#faf2f4',
             primaryBorderColor: '#c27685',
-            primaryTextColor: '#332d30',
+            primaryTextColor: '#2e292d',
             lineColor: '#8c4b57',
             secondaryColor: '#f7ebeb',
-            tertiaryColor: '#faf7f5',
-            fontFamily: "'Zen Maru Gothic', sans-serif",
-            fontSize: '13px'
+            tertiaryColor: '#ffffff',
+            fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
+            fontSize: '15px'
           }
         });
       }
@@ -230,7 +236,7 @@
     .wiki-main {
       flex: 1;
       padding: 36px 48px;
-      max-width: 980px;
+      max-width: 1060px;
       background-color: var(--bg-cream);
     }
     .breadcrumb {
@@ -390,20 +396,53 @@
       background: #ffffff;
       border: 1px solid var(--border-warm);
       border-radius: 14px;
-      padding: 20px 16px;
-      margin: 24px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 22px 20px 20px 20px;
+      margin: 26px 0;
       overflow-x: auto;
+      overflow-y: hidden;
+      text-align: center;
       box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+    .mermaid-caption {
+      font-size: 12.5px;
+      color: var(--rose-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .mermaid-diagram svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto;
+      display: inline-block;
+      margin: 0 auto;
     }
     .mermaid-diagram pre.mermaid {
       background: transparent;
       border: none;
       margin: 0;
       padding: 0;
-      font-family: inherit;
+      font-family: 'Zen Maru Gothic', 'Noto Serif TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      display: inline-block;
+      text-align: left;
+    }
+    .mermaid-diagram::-webkit-scrollbar {
+      height: 8px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-thumb {
+      background-color: #edd5da;
+      border-radius: 4px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-track {
+      background-color: #faf7f5;
     }
     .code-container {
       margin: 20px 0;
@@ -649,26 +688,26 @@
 </ul>
 <hr>
 <h2>2. 恐懼神經解剖學迴路 (Neuroanatomy of Conditioned Fear)</h2>
-<div class="mermaid-diagram"><pre class="mermaid">
+<div class="mermaid-diagram"><div class="mermaid-caption"><span>📊</span> 核心機制圖解（完整向量呈現 • 高清晰字體 • 可左右滑動查看全貌）</div><pre class="mermaid">
 graph TD
-    STIM[威脅刺激: 聲音 CS / 敲擊 US] --> THAL[聽覺丘腦<br>MGm / PIN]
+    STIM["威脅刺激: 聲音 CS / 敲擊 US"] --> THAL["聽覺丘腦<br>MGm / PIN"]
     
     %% Dual Route
-    THAL ==>|"低路徑 (Low Road)<br>延遲 < 20 ms / 快速粗糙"| LA[側杏仁核 Lateral Amygdala<br>CS-US 匯聚與突觸可塑性 LTP 核心]
-    THAL -->|"高路徑 (High Road)<br>皮質精細分析"| CORTEX[大腦聽覺皮質 TE3]
+    THAL == "【低路徑 Low Road】&lt;br&gt;延遲 &lt; 20 ms / 快速粗糙" ==> LA["側杏仁核 Lateral Amygdala&lt;br&gt;CS-US 匯聚與突觸可塑性 LTP 核心"]
+    THAL -->|"【高路徑 High Road】&lt;br&gt;皮質精細分析"| CORTEX["大腦聽覺皮質 TE3"]
     CORTEX --> LA
     
     %% Context
-    HIPP[海馬迴 Hippocampus<br>CA1 / 下腳] -->|"情境 Context CS"| B_AB[基底與副基底核 B / AB]
-    B_AB --> CE[中央杏仁核 Central Amygdala<br>總輸出控制中樞]
+    HIPP["海馬迴 Hippocampus&lt;br&gt;CA1 / 下腳"] -->|"情境 Context CS"| B_AB["基底與副基底核 B / AB"]
+    B_AB --> CE["中央杏仁核 Central Amygdala&lt;br&gt;總輸出控制中樞"]
     
     %% Intra-amygdala
     LA ==> CE
     
     %% Outputs
-    CE ==> PAG[導水管周圍灰質 PAG<br>僵直行為 Freezing / 痛覺抑制]
-    CE ==> LH[外側下視丘 LH<br>自主神經血壓與心跳]
-    CE ==> BNST[終紋床核 BNST<br>壓力荷爾蒙 HPA 軸分泌]
+    CE ==> PAG["導水管周圍灰質 PAG&lt;br&gt;僵直行為 Freezing / 痛覺抑制"]
+    CE ==> LH["外側下視丘 LH&lt;br&gt;自主神經血壓與心跳"]
+    CE ==> BNST["終紋床核 BNST&lt;br&gt;壓力荷爾蒙 HPA 軸分泌"]
 
     classDef fast fill:#ffebee,stroke:#d32f2f,stroke-width:2px;
     classDef main fill:#fff8e1,stroke:#ffa000,stroke-width:2px;

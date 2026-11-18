@@ -42,24 +42,24 @@ raw_file: "../raw/ledoux-2000.md"
 
 ```mermaid
 graph TD
-    STIM[威脅刺激: 聲音 CS / 敲擊 US] --> THAL[聽覺丘腦<br>MGm / PIN]
+    STIM["威脅刺激: 聲音 CS / 敲擊 US"] --> THAL["聽覺丘腦<br>MGm / PIN"]
     
     %% Dual Route
-    THAL ==>|"低路徑 (Low Road)<br>延遲 < 20 ms / 快速粗糙"| LA[側杏仁核 Lateral Amygdala<br>CS-US 匯聚與突觸可塑性 LTP 核心]
-    THAL -->|"高路徑 (High Road)<br>皮質精細分析"| CORTEX[大腦聽覺皮質 TE3]
+    THAL == "【低路徑 Low Road】&lt;br&gt;延遲 &lt; 20 ms / 快速粗糙" ==> LA["側杏仁核 Lateral Amygdala&lt;br&gt;CS-US 匯聚與突觸可塑性 LTP 核心"]
+    THAL -->|"【高路徑 High Road】&lt;br&gt;皮質精細分析"| CORTEX["大腦聽覺皮質 TE3"]
     CORTEX --> LA
     
     %% Context
-    HIPP[海馬迴 Hippocampus<br>CA1 / 下腳] -->|"情境 Context CS"| B_AB[基底與副基底核 B / AB]
-    B_AB --> CE[中央杏仁核 Central Amygdala<br>總輸出控制中樞]
+    HIPP["海馬迴 Hippocampus&lt;br&gt;CA1 / 下腳"] -->|"情境 Context CS"| B_AB["基底與副基底核 B / AB"]
+    B_AB --> CE["中央杏仁核 Central Amygdala&lt;br&gt;總輸出控制中樞"]
     
     %% Intra-amygdala
     LA ==> CE
     
     %% Outputs
-    CE ==> PAG[導水管周圍灰質 PAG<br>僵直行為 Freezing / 痛覺抑制]
-    CE ==> LH[外側下視丘 LH<br>自主神經血壓與心跳]
-    CE ==> BNST[終紋床核 BNST<br>壓力荷爾蒙 HPA 軸分泌]
+    CE ==> PAG["導水管周圍灰質 PAG&lt;br&gt;僵直行為 Freezing / 痛覺抑制"]
+    CE ==> LH["外側下視丘 LH&lt;br&gt;自主神經血壓與心跳"]
+    CE ==> BNST["終紋床核 BNST&lt;br&gt;壓力荷爾蒙 HPA 軸分泌"]
 
     classDef fast fill:#ffebee,stroke:#d32f2f,stroke-width:2px;
     classDef main fill:#fff8e1,stroke:#ffa000,stroke-width:2px;

@@ -16,15 +16,21 @@
           startOnLoad: true,
           theme: 'neutral',
           securityLevel: 'loose',
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          },
           themeVariables: {
             primaryColor: '#faf2f4',
             primaryBorderColor: '#c27685',
-            primaryTextColor: '#332d30',
+            primaryTextColor: '#2e292d',
             lineColor: '#8c4b57',
             secondaryColor: '#f7ebeb',
-            tertiaryColor: '#faf7f5',
-            fontFamily: "'Zen Maru Gothic', sans-serif",
-            fontSize: '13px'
+            tertiaryColor: '#ffffff',
+            fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
+            fontSize: '15px'
           }
         });
       }
@@ -230,7 +236,7 @@
     .wiki-main {
       flex: 1;
       padding: 36px 48px;
-      max-width: 980px;
+      max-width: 1060px;
       background-color: var(--bg-cream);
     }
     .breadcrumb {
@@ -390,20 +396,53 @@
       background: #ffffff;
       border: 1px solid var(--border-warm);
       border-radius: 14px;
-      padding: 20px 16px;
-      margin: 24px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 22px 20px 20px 20px;
+      margin: 26px 0;
       overflow-x: auto;
+      overflow-y: hidden;
+      text-align: center;
       box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+    .mermaid-caption {
+      font-size: 12.5px;
+      color: var(--rose-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .mermaid-diagram svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto;
+      display: inline-block;
+      margin: 0 auto;
     }
     .mermaid-diagram pre.mermaid {
       background: transparent;
       border: none;
       margin: 0;
       padding: 0;
-      font-family: inherit;
+      font-family: 'Zen Maru Gothic', 'Noto Serif TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      display: inline-block;
+      text-align: left;
+    }
+    .mermaid-diagram::-webkit-scrollbar {
+      height: 8px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-thumb {
+      background-color: #edd5da;
+      border-radius: 4px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-track {
+      background-color: #faf7f5;
     }
     .code-container {
       margin: 20px 0;
@@ -626,7 +665,7 @@
 <hr>
 <h2>1. 經典實證：小阿爾伯特的情緒轉移 (Watson & Rayner, 1920)</h2>
 <p>在 <a href="../sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="Watson & Rayner (1920)">Watson & Rayner (1920)</a> 實驗中，研究者在 Albert 身上建立了對「白鼠」的恐懼制約後，以一系列全新刺激測試其「轉移（Transfer）」反應：</p>
-<div class="mermaid-diagram"><pre class="mermaid">
+<div class="mermaid-diagram"><div class="mermaid-caption"><span>📊</span> 核心機制圖解（完整向量呈現 • 高清晰字體 • 可左右滑動查看全貌）</div><pre class="mermaid">
 graph TD
     CS["原制約刺激 (CS)<br>白鼠 (White Rat)"] -->|"引發制約恐懼 (CR)"| FEAR["劇烈哭泣、逃避爬離"]
     
@@ -637,12 +676,12 @@ graph TD
     CS -.->|"白色纖維質地"| S5["棉花 (Cotton Wool)"]
     CS -.->|"無毛/無生命幾何物體"| S6["木製積木 (Blocks)"]
 
-    S1 ==>|"強烈類化"| FEAR
-    S2 ==>|"中度類化 (吠叫時加劇)"| FEAR
-    S3 ==>|"強烈類化 (哭泣甩頭)"| FEAR
-    S4 ==>|"強烈類化 (未觸碰即大哭)"| FEAR
+    S1 == "強烈類化 (哭泣爬離)" ==> FEAR
+    S2 == "中度類化 (吠叫時加劇)" ==> FEAR
+    S3 == "強烈類化 (哭泣甩頭)" ==> FEAR
+    S4 == "強烈類化 (未觸碰即大哭)" ==> FEAR
     S5 -->|"輕度排斥 (踢開但未哭)"| FEAR
-    S6 -->|"無類化 (愉快玩耍)"| NO_FEAR["無恐懼反應"]
+    S6 -->|"無類化 (正常玩耍)"| NO_FEAR["無恐懼反應"]
 
     classDef fear fill:#ffebee,stroke:#c62828,stroke-width:2px;
     classDef safe fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;

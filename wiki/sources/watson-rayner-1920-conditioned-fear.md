@@ -37,6 +37,25 @@ Watson 與 Morgan 先前提出假說：成人在面對環境刺激時所展現�
 
 ## 2. 研究方法與數據 (Methodology & Empirical Data)
 
+```mermaid
+graph TD
+    subgraph P1 ["階段一：前測基準 (9 個月)"]
+        S_NEUTRAL["多種刺激呈現: 白鼠 / 兔子 / 狗 / 面具"] -->|伸手探索| R_SAFE["無先天恐懼反應"]
+        S_LOUD["鋼條敲擊巨響 (US)"] -->|聽覺驚嚇反射| R_FEAR["劇烈哭泣跳動 (UR)"]
+    end
+
+    subgraph P2 ["階段二：恐懼制約 (11 個月)"]
+        CS["白鼠觸碰 (CS)"] --> PAIR(("7 次聯合刺激配對"))
+        US["身後敲擊巨響 (US)"] --> PAIR
+        PAIR --> CR["制約完成: 單獨見白鼠即大哭爬離 (CR)"]
+    end
+
+    subgraph P3 ["階段三：刺激類化與持久性"]
+        CR -->|特徵轉移| TRANS["毛皮特徵類化: 兔子 / 狗 / 海豹皮衣 / 聖誕面具"]
+        TRANS -->|時間考驗| RET["相隔 31 天後重測: 恐懼情緒依然頑強存在"]
+    end
+```
+
 ### 2.1 被試特徵 (Participant)
 * **被試**：Albert B.，9 個月大健康男嬰，自幼在 Harriet Lane 殘疾兒童之家由擔任乳母的母親撫養。
 * **入選理由**：發育健全良好（9 個月體重達 21 磅），性格沉穩（stolid and unemotional），極少哭泣，研究者認為對其進行實驗「造成的傷害相對微小」。

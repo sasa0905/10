@@ -19,6 +19,14 @@ core_assumptions: [
 
 ## 1. 核心理論支柱 (Theoretical Pillars)
 
+```mermaid
+graph LR
+    INPUT["外部輸入 (Input)<br>物理訊號 / 刺激"] --> BUFFER["感官暫存 (Sensory)<br>高容量 / 極短暫"]
+    BUFFER --> STM["短期/工作記憶 (STM)<br>容量瓶頸: 7 ± 2 Chunks"]
+    STM -->|主動組塊編碼| LTM["長時記憶 (LTM)<br>無限容量語意網絡"]
+    LTM -.->|由上而下提取脈絡| STM
+```
+
 1. **人類訊息處理模型 (Information-Processing Model)**：
    * 將心智類比為計算機硬體與軟體，研究資訊如何由感官輸入、短時暫存、編碼轉化並進入長時記憶。
 2. **容量限制與瓶頸理論 (Capacity Limitations)**：

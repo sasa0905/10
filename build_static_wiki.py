@@ -249,7 +249,10 @@ def convert_markdown_to_html(md_text, current_html_path):
                 in_code_block = False
                 code_content = "\n".join(code_lines)
                 if code_lang == "mermaid":
-                    out.append(f'<div class="mermaid-diagram"><pre class="mermaid">\n{code_content}\n</pre></div>')
+                    clean_code = code_content.strip()
+                    # Automatically fix invalid thick arrow syntax ==>|text| into == "text" ==>
+                    clean_code = re.sub(r'==>\|"?(.*?)"?\|', r'== "\1" ==>', clean_code)
+                    out.append(f'<div class="mermaid-diagram"><div class="mermaid-caption"><span>📊</span> 核心機制圖解（完整向量呈現 • 高清晰字體 • 可左右滑動查看全貌）</div><pre class="mermaid">\n{clean_code}\n</pre></div>')
                 else:
                     escaped_code = html.escape(code_content)
                     out.append(f'<div class="code-container"><pre class="code-block"><code>{escaped_code}</code></pre></div>')
@@ -505,15 +508,21 @@ def build_html_page(note, current_html_path):
           startOnLoad: true,
           theme: 'neutral',
           securityLevel: 'loose',
+          flowchart: {{
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          }},
           themeVariables: {{
             primaryColor: '#faf2f4',
             primaryBorderColor: '#c27685',
-            primaryTextColor: '#332d30',
+            primaryTextColor: '#2e292d',
             lineColor: '#8c4b57',
             secondaryColor: '#f7ebeb',
-            tertiaryColor: '#faf7f5',
-            fontFamily: "'Zen Maru Gothic', sans-serif",
-            fontSize: '13px'
+            tertiaryColor: '#ffffff',
+            fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
+            fontSize: '15px'
           }}
         }});
       }}
@@ -719,7 +728,7 @@ def build_html_page(note, current_html_path):
     .wiki-main {{
       flex: 1;
       padding: 36px 48px;
-      max-width: 980px;
+      max-width: 1060px;
       background-color: var(--bg-cream);
     }}
     .breadcrumb {{
@@ -879,20 +888,53 @@ def build_html_page(note, current_html_path):
       background: #ffffff;
       border: 1px solid var(--border-warm);
       border-radius: 14px;
-      padding: 20px 16px;
-      margin: 24px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 22px 20px 20px 20px;
+      margin: 26px 0;
       overflow-x: auto;
+      overflow-y: hidden;
+      text-align: center;
       box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+      -webkit-overflow-scrolling: touch;
+    }}
+    .mermaid-caption {{
+      font-size: 12.5px;
+      color: var(--rose-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      letter-spacing: 0.04em;
+    }}
+    .mermaid-diagram svg {{
+      max-width: none !important;
+      width: auto !important;
+      height: auto;
+      display: inline-block;
+      margin: 0 auto;
     }}
     .mermaid-diagram pre.mermaid {{
       background: transparent;
       border: none;
       margin: 0;
       padding: 0;
-      font-family: inherit;
+      font-family: 'Zen Maru Gothic', 'Noto Serif TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      display: inline-block;
+      text-align: left;
+    }}
+    .mermaid-diagram::-webkit-scrollbar {{
+      height: 8px;
+    }}
+    .mermaid-diagram::-webkit-scrollbar-thumb {{
+      background-color: #edd5da;
+      border-radius: 4px;
+    }}
+    .mermaid-diagram::-webkit-scrollbar-track {{
+      background-color: #faf7f5;
     }}
     .code-container {{
       margin: 20px 0;

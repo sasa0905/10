@@ -19,6 +19,11 @@ core_assumptions: [
 
 ## 1. 核心理論支柱 (Theoretical Pillars)
 
+```mermaid
+graph BT
+    DEFICIT["匱乏性動機 (D-Needs)<br>生理 / 安全 / 愛與歸屬 / 尊嚴"] --> GROWTH["成長性動機 (B-Needs)<br>自我實現 (Self-Actualization)<br>發揮個人全部真善美潛能"]
+```
+
 1. **需求階層與相對優勢 (Hierarchy of Needs)**：
    * [[hierarchy-of-needs|需求階層理論]]：從底層生理、安全、愛、自尊，逐層晉級至頂層的 [[self-actualization|自我實現]]。
 2. **自我實現傾向 (Actualizing Tendency)**：

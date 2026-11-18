@@ -18,17 +18,17 @@ related_sources: ["[[ledoux-2000-emotion-circuits]]"]
 
 ```mermaid
 graph TD
-    THAL[感覺丘腦 Sensory Thalamus<br>MGm / PIN]
+    THAL["感覺丘腦 Sensory Thalamus<br>MGm / PIN"]
     
     %% Low Road
-    THAL ==>|"【低路徑 Low Road】<br>皮質下直達 / 粗糙極速 (<20 ms)"| LA[側杏仁核 Lateral Amygdala]
+    THAL == "【低路徑 Low Road】&lt;br&gt;皮質下直達 / 粗糙極速 (&lt;20 ms)" ==> LA["側杏仁核 Lateral Amygdala"]
     
     %% High Road
-    THAL -->|"【高路徑 High Road】<br>多突觸轉折 / 精細意識分析 (>30-40 ms)"| CORTEX[大腦感覺皮質 Sensory Cortex<br>TE1 / TE3]
+    THAL -->|"【高路徑 High Road】<br>多突觸轉折 / 精細意識分析 (>30-40 ms)"| CORTEX["大腦感覺皮質 Sensory Cortex<br>TE1 / TE3"]
     CORTEX -->|精細特徵辨識與情境評估| LA
 
-    LA ==> CE[中央杏仁核 Central Amygdala]
-    CE ==> DEFENSE[防衛反應: 僵直 Freezing、心跳加速、血壓暴增]
+    LA ==> CE["中央杏仁核 Central Amygdala"]
+    CE ==> DEFENSE["防衛反應: 僵直 Freezing、心跳加速、血壓暴增"]
 
     classDef fast fill:#ffebee,stroke:#c62828,stroke-width:2px;
     classDef slow fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;

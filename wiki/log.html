@@ -16,15 +16,21 @@
           startOnLoad: true,
           theme: 'neutral',
           securityLevel: 'loose',
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          },
           themeVariables: {
             primaryColor: '#faf2f4',
             primaryBorderColor: '#c27685',
-            primaryTextColor: '#332d30',
+            primaryTextColor: '#2e292d',
             lineColor: '#8c4b57',
             secondaryColor: '#f7ebeb',
-            tertiaryColor: '#faf7f5',
-            fontFamily: "'Zen Maru Gothic', sans-serif",
-            fontSize: '13px'
+            tertiaryColor: '#ffffff',
+            fontFamily: "'Zen Maru Gothic', 'Noto Serif TC', sans-serif",
+            fontSize: '15px'
           }
         });
       }
@@ -230,7 +236,7 @@
     .wiki-main {
       flex: 1;
       padding: 36px 48px;
-      max-width: 980px;
+      max-width: 1060px;
       background-color: var(--bg-cream);
     }
     .breadcrumb {
@@ -390,20 +396,53 @@
       background: #ffffff;
       border: 1px solid var(--border-warm);
       border-radius: 14px;
-      padding: 20px 16px;
-      margin: 24px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 22px 20px 20px 20px;
+      margin: 26px 0;
       overflow-x: auto;
+      overflow-y: hidden;
+      text-align: center;
       box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+    .mermaid-caption {
+      font-size: 12.5px;
+      color: var(--rose-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .mermaid-diagram svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto;
+      display: inline-block;
+      margin: 0 auto;
     }
     .mermaid-diagram pre.mermaid {
       background: transparent;
       border: none;
       margin: 0;
       padding: 0;
-      font-family: inherit;
+      font-family: 'Zen Maru Gothic', 'Noto Serif TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      display: inline-block;
+      text-align: left;
+    }
+    .mermaid-diagram::-webkit-scrollbar {
+      height: 8px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-thumb {
+      background-color: #edd5da;
+      border-radius: 4px;
+    }
+    .mermaid-diagram::-webkit-scrollbar-track {
+      background-color: #faf7f5;
     }
     .code-container {
       margin: 20px 0;
@@ -730,18 +769,20 @@
 <li>保留春櫻豆沙系日系明朝體、Zen Maru Gothic、Washi 質感與四大高亮引言盒排版。</li>
 <li>支援直接部署至 GitHub Pages 即開即看。</li>
 </ul>
-<h2>[2026-11-19] fix | 修復 Mermaid 圖解渲染與作者文獻鏈接反灰問題</h2>
+<h2>[2026-11-19] fix | 全面修復流程圖語法錯誤與解除 SVG 壓縮（確保高清晰字體）</h2>
 <ul>
-<li><strong>操作類型</strong>：渲染相容性修復與鏈接解析升級 (Renderer Fix & Link Resolving)</li>
+<li><strong>操作類型</strong>：視覺渲染深度修復 (High-DPI Diagram Fix & Anti-Compression)</li>
 <li><strong>問題根因</strong>：</li>
 </ul>
-<p>1. Markdown 轉 HTML 編譯器未處理 Fenced Code Blocks，導致 7 處 Mermaid 圖表代碼被當作普通段落渲染，流程圖與圖解無法顯現。</p>
-<p>2. 未解析的 <code><span class="wiki-link-unresolved" title="參照項目">wikilinks</span></code> 原先採用了 <code>text-decoration: line-through; color: #a89fa4</code> 刪除線樣式，且文獻縮寫與別名未登錄，致使所有作者文獻（如 Watson & Rayner 1920、Freud 1910）均顯示為帶斜線的反灰刪除文字。</p>
+<p>1. 部分 Mermaid 流程圖語法存在箭頭標籤格式錯誤（如 <code>==>|text|</code> 非標準箭頭語法、未轉義 <code><20 ms</code> 與子圖括號未引號包裹），導致 Mermaid 解析報錯而無法顯示圖形。</p>
+<p>2. 預設 Mermaid 將 SVG 強制壓縮至欄位寬度（<code>max-width: 100%</code>），致使寬圖中文字被整體縮放至 7~8px，文字嚴重擁擠擠壓。</p>
+<p>3. 需求階層、五大論文摘要（如 Watson 1920、Freud 1910、Miller 1956）與各學派頁面先前缺少實質向量圖解。</p>
 <ul>
 <li><strong>修復項目</strong>：</li>
-<li>導入 Mermaid 10 向量圖渲染引擎，完整支援 7 份理論、構念與文獻模型圖解及 ASCII 代碼塊。</li>
-<li>徹底移除 <code>line-through</code> 刪除線樣式，全面重構全域雙向關聯字典，智慧對照五大奠基論文縮寫、學者名稱與正文別名。</li>
-<li>在論文摘要頁增加獨立完整的 APA 7th 官方文獻出處專屬卡片與作者溫潤標籤。</li>
+<li>修正所有 Mermaid 圖表之箭頭語法（全面採用標準 <code>== "text" ==></code>）、轉義 <code><</code> 字符並重構 ID 與引號。</li>
+<li>於編譯器中追加自動語法正規化濾波器，預防任何非標準箭頭破壞圖形渲染。</li>
+<li>在 Mermaid 初始化中配置 <code>flowchart: { useMaxWidth: false }</code>，並在 CSS 中宣告 <code>.mermaid-diagram svg { max-width: none !important; }</code>，徹底解除向量圖縮放壓縮，保證文字維持 15px+ 原生清晰度，並提供流暢橫向捲軸與提示卡。</li>
+<li>為 5 大流派（行為黑盒子、精神分析冰山、認知訊息流、人本動機階層、神經情緒迴路）與 5 篇奠基論文全面補充標準高清晰流程圖解。</li>
 </ul>
       </article>
     </main>

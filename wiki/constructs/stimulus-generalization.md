@@ -28,12 +28,12 @@ graph TD
     CS -.->|"白色纖維質地"| S5["棉花 (Cotton Wool)"]
     CS -.->|"無毛/無生命幾何物體"| S6["木製積木 (Blocks)"]
 
-    S1 ==>|"強烈類化"| FEAR
-    S2 ==>|"中度類化 (吠叫時加劇)"| FEAR
-    S3 ==>|"強烈類化 (哭泣甩頭)"| FEAR
-    S4 ==>|"強烈類化 (未觸碰即大哭)"| FEAR
+    S1 == "強烈類化 (哭泣爬離)" ==> FEAR
+    S2 == "中度類化 (吠叫時加劇)" ==> FEAR
+    S3 == "強烈類化 (哭泣甩頭)" ==> FEAR
+    S4 == "強烈類化 (未觸碰即大哭)" ==> FEAR
     S5 -->|"輕度排斥 (踢開但未哭)"| FEAR
-    S6 -->|"無類化 (愉快玩耍)"| NO_FEAR["無恐懼反應"]
+    S6 -->|"無類化 (正常玩耍)"| NO_FEAR["無恐懼反應"]
 
     classDef fear fill:#ffebee,stroke:#c62828,stroke-width:2px;
     classDef safe fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;

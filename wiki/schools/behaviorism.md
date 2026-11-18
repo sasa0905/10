@@ -19,6 +19,12 @@ core_assumptions: [
 
 ## 1. 核心理論支柱 (Theoretical Pillars)
 
+```mermaid
+graph LR
+    ENV["外在客觀刺激 (Stimulus)<br>環境物理輸入、聲音、白鼠"] --> BLACKBOX["【黑盒子 Black Box】<br>內在心智歷程無法客觀觀測<br>(科學心理學不作主觀臆測)"]
+    BLACKBOX --> RESP["外顯可測反應 (Response)<br>行為動作、恐懼哭泣、逃避爬離"]
+```
+
 1. **古典制約 (Classical Conditioning)**：
    * 源自 Ivan Pavlov 的唾液反射實驗，後由 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 引入人類情緒與恐懼形成的研究中。
 2. **操作制約 (Operant Conditioning)**：
