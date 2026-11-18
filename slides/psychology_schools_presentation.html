@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心理學五大流派全景解析 — 重點複習圖文講義</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #faf7f5;
+      --card-white: #ffffff;
+      --border-warm: #ebdcd5;
+      --border-rose: #edd5da;
+      --text-main: #332d30;
+      --text-sub: #786f73;
+      --sakura-pink: #f7ebeb;
+      --rose-deep: #8c4b57;
+      --rose-accent: #c27685;
+      --washi-tape: rgba(243, 226, 229, 0.75);
+    }
+    body {
+      font-family: 'Shippori Mincho', 'Noto Serif TC', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      user-select: none;
+      font-size: 15px;
+    }
+    .font-sans-soft {
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: translateY(6px);
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .washi-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 4px 20px -2px rgba(160, 130, 135, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+      border-radius: 18px;
+    }
+    .washi-tape-tag {
+      background: var(--washi-tape);
+      border: 1px dashed rgba(194, 118, 133, 0.5);
+      color: var(--rose-deep);
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .table-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: #e3d5d1;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased">
+
+  <!-- Top Header -->
+  <header class="border-b border-[#ebdcd5] bg-[#faf7f5]/90 backdrop-blur px-8 py-3.5 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#e8c7cd] to-[#f7ebeb] border border-[#e5b9c1] flex items-center justify-center text-[#8c4b57] text-base font-serif font-bold shadow-sm">
+        栞
+      </div>
+      <div>
+        <h1 class="text-base font-bold tracking-wider text-[#332d30] font-serif">心理學五大流派全景解析</h1>
+      </div>
+    </div>
+
+    <!-- Progress Indicator & Controls -->
+    <div class="flex items-center gap-4">
+      <div class="text-sm font-sans-soft text-[#7a7074] bg-[#f4ece7] px-4 py-1.5 rounded-full border border-[#ebdcd5] tracking-widest">
+        第 <span id="current-slide" class="text-[#c27685] font-bold">1</span> / <span id="total-slides" class="text-[#8c7f84]">9</span> 頁
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button onclick="prevSlide()" class="p-2 rounded-full hover:bg-[#ede3de] text-[#7a7074] hover:text-[#332d30] transition disabled:opacity-30 disabled:pointer-events-none" id="prev-btn" title="前一頁 (←)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button onclick="nextSlide()" class="p-2 rounded-full hover:bg-[#ede3de] text-[#7a7074] hover:text-[#332d30] transition disabled:opacity-30 disabled:pointer-events-none" id="next-btn" title="下一頁 (→ / 空白鍵)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <button onclick="toggleFullscreen()" class="p-2 rounded-full hover:bg-[#ede3de] text-[#7a7074] hover:text-[#332d30] transition ml-1" title="全螢幕切換">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide Viewport -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-6 flex items-center justify-center">
+
+    <!-- SLIDE 1: Cover -->
+    <section class="slide active flex-col items-center text-center justify-center py-8 w-full" data-index="1">
+      <div class="washi-tape-tag px-5 py-2 rounded-full text-sm mb-6 tracking-widest font-sans-soft font-bold">
+        🌸 核心概念與實證文獻 • 重點精華講義
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-wider text-[#2e292d] max-w-4xl leading-tight">
+        現代心理學 <span class="text-[#c27685]">五大流派全景解析</span>
+      </h1>
+
+      <!-- 5 School Overview Cards with Guaranteed SVG Icons -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-12 w-full max-w-5xl">
+
+        <!-- 1. 精神分析學派 -->
+        <div class="washi-card p-4 text-left hover:border-[#dfb8be] transition hover:-translate-y-0.5 duration-200">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#b56576] font-sans-soft bg-[#fbf0f2] px-2.5 py-0.5 rounded-full border border-[#f5dade]">1910</span>
+            <div class="w-7 h-7 rounded-lg bg-[#fbf0f2] border border-[#f5dade] flex items-center justify-center" title="意識與潛意識冰山">
+              <!-- Iceberg SVG Icon for Psychoanalysis -->
+              <svg class="w-4 h-4 text-[#b56576]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 13h20" stroke-dasharray="2 2"></path>
+                <path d="M8 13l4-8 4 8"></path>
+                <path d="M6.5 13l3 8 2.5-3 2.5 3 3-8"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="font-bold text-[#332d30] text-base mt-2.5">精神分析學派</div>
+          <p class="text-xs text-[#786f73] mt-1 font-sans-soft leading-normal">
+            潛意識 • 壓抑 • 移情<br><span class="text-[#b56576] font-semibold">Freud (1910)</span>
+          </p>
+        </div>
+
+        <!-- 2. 古典行為主義 -->
+        <div class="washi-card p-4 text-left hover:border-[#dfb8be] transition hover:-translate-y-0.5 duration-200">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#597864] font-sans-soft bg-[#f5f8f5] px-2.5 py-0.5 rounded-full border border-[#e1ece3]">1920</span>
+            <div class="w-7 h-7 rounded-lg bg-[#f5f8f5] border border-[#e1ece3] flex items-center justify-center" title="制約反射">
+              <!-- Conditioning Bell SVG Icon -->
+              <svg class="w-4 h-4 text-[#597864]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="font-bold text-[#332d30] text-base mt-2.5">古典行為主義</div>
+          <p class="text-xs text-[#786f73] mt-1 font-sans-soft leading-normal">
+            刺激反應 • 恐懼制約<br><span class="text-[#597864] font-semibold">Watson (1920)</span>
+          </p>
+        </div>
+
+        <!-- 3. 人本主義學派 -->
+        <div class="washi-card p-4 text-left hover:border-[#dfb8be] transition hover:-translate-y-0.5 duration-200">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#4e7482] font-sans-soft bg-[#edf5f8] px-2.5 py-0.5 rounded-full border border-[#d6e9f0]">1943</span>
+            <div class="w-7 h-7 rounded-lg bg-[#edf5f8] border border-[#d6e9f0] flex items-center justify-center" title="需求金字塔">
+              <!-- Pyramid SVG Icon -->
+              <svg class="w-4 h-4 text-[#4e7482]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 22h20L12 2z"></path>
+                <path d="M7 14h10"></path>
+                <path d="M9.5 9h5"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="font-bold text-[#332d30] text-base mt-2.5">人本主義學派</div>
+          <p class="text-xs text-[#786f73] mt-1 font-sans-soft leading-normal">
+            需求階層 • 自我實現<br><span class="text-[#4e7482] font-semibold">Maslow (1943)</span>
+          </p>
+        </div>
+
+        <!-- 4. 認知心理學派 -->
+        <div class="washi-card p-4 text-left hover:border-[#dfb8be] transition hover:-translate-y-0.5 duration-200">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#645c88] font-sans-soft bg-[#f2eff8] px-2.5 py-0.5 rounded-full border border-[#dfd8ed]">1956</span>
+            <div class="w-7 h-7 rounded-lg bg-[#f2eff8] border border-[#dfd8ed] flex items-center justify-center" title="心智計算與處理槽">
+              <!-- CPU/Memory Processing SVG Icon -->
+              <svg class="w-4 h-4 text-[#645c88]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="font-bold text-[#332d30] text-base mt-2.5">認知心理學派</div>
+          <p class="text-xs text-[#786f73] mt-1 font-sans-soft leading-normal">
+            訊息處理 • 神奇 7±2<br><span class="text-[#645c88] font-semibold">Miller (1956)</span>
+          </p>
+        </div>
+
+        <!-- 5. 神經生物學派 -->
+        <div class="washi-card p-4 text-left hover:border-[#dfb8be] transition hover:-translate-y-0.5 duration-200">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#964757] font-sans-soft bg-[#fdf2f4] px-2.5 py-0.5 rounded-full border border-[#f5d0d6]">2000</span>
+            <div class="w-7 h-7 rounded-lg bg-[#fdf2f4] border border-[#f5d0d6] flex items-center justify-center" title="突觸神經放電">
+              <!-- Neural Impulse / Lightning SVG Icon -->
+              <svg class="w-4 h-4 text-[#964757]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="font-bold text-[#332d30] text-base mt-2.5">神經生物學派</div>
+          <p class="text-xs text-[#786f73] mt-1 font-sans-soft leading-normal">
+            杏仁核 • 雙路徑 • LTP<br><span class="text-[#964757] font-semibold">LeDoux (2000)</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-sm text-[#8c7f84] font-sans-soft tracking-wider">
+        請按鍵盤 <kbd class="px-2.5 py-1 rounded bg-[#f0e6e1] border border-[#ded0c8] text-[#554b50] font-mono text-xs font-bold">Space</kbd> 或點擊右上角按鈕開始複習
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Behaviorism (Illustrated) -->
+    <section class="slide flex-col w-full" data-index="2">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 01</span>
+        <span class="text-sm text-[#597864] font-sans-soft font-bold">古典行為主義 (Behaviorism)</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">刺激-反應模型與小阿爾伯特實驗</h2>
+
+      <!-- Visual Diagram: S-R & Conditioning Flow -->
+      <div class="washi-card p-4 mt-3 bg-gradient-to-r from-[#ffffff] to-[#faf5f3]">
+        <div class="text-xs md:text-sm font-bold text-[#597864] font-sans-soft mb-2.5 flex items-center gap-2">
+          <span>📊</span> 【核心圖解】古典制約與刺激類化機制（Watson & Rayner, 1920）
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5 text-center font-sans-soft">
+          <div class="p-3 rounded-xl bg-[#f5f8f5] border border-[#e1ece3]">
+            <div class="text-xs text-[#597864] font-bold">1. 前測 (9 個月)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">中性刺激 (CS)</div>
+            <div class="text-xs text-[#786f73] mt-0.5">白鼠、兔子、狗、面具</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#597864] inline-block font-semibold border border-[#d6e5d9]">無恐懼（伸手觸摸）</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#fdf5f6] border border-[#f5dade]">
+            <div class="text-xs text-[#b55d6e] font-bold">2. 配對刺激 (7 次)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">CS + 鋼條巨響 (US)</div>
+            <div class="text-xs text-[#786f73] mt-0.5">伸手摸白鼠瞬間敲擊鋼條</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#b55d6e] inline-block font-semibold border border-[#f0cdd3]">誘發非制約驚嚇 (UR)</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#fbf0f2] border border-[#ebd0d6]">
+            <div class="text-xs text-[#b55d6e] font-bold">3. 制約完成 (CR)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">單獨呈現白鼠</div>
+            <div class="text-xs text-[#786f73] mt-0.5">白鼠成為恐懼引發源</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-[#b55d6e] text-white inline-block font-semibold">崩潰大哭、急速逃爬</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#faf5f0] border border-[#f0ded3]">
+            <div class="text-xs text-[#966b47] font-bold">4. 刺激類化 (Transfer)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">外觀相似物擴散</div>
+            <div class="text-xs text-[#786f73] mt-0.5">兔子、海豹皮衣、聖誕面具</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#966b47] inline-block font-semibold border border-[#edd7c8]">持久長達 31 天以上</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3.5">
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#597864] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📌</span> 必考核心主張
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>客觀實證</strong>：心理學只研究「外顯可觀察行為」，徹底屏棄內省。</li>
+            <li>• <strong>環境決定論</strong>：所有複雜情緒是由基本情緒制約聯結衍生。</li>
+            <li>• <strong>黑盒子</strong>：無視內部心智中介，專注環境刺激（S）與反應（R）。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#597864] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>🔍</span> 經典數據速記
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>樣本</strong>：$N = 1$（Albert B.，11 個月大男嬰）。</li>
+            <li>• <strong>次數</strong>：累積僅 <strong>7 次 CS-US 配對</strong> 即建立完全恐懼。</li>
+            <li>• <strong>特徵選擇性</strong>：對木塊無恐懼（正常玩耍），證實非全域焦慮。</li>
+            <li>• <strong>自發補償</strong>：恐懼時自發「吸吮拇指」能有效阻斷負向情緒。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#b55d6e] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>⚠️</span> 批判與爭端點
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>倫理危機</strong>：未經去制約（Extinction）即放任出院。</li>
+            <li>• <strong>複製失敗</strong>：Bregman (1934) 對 15 名嬰兒重複無生命物體配對均失敗。</li>
+            <li>• <strong>身分爭議</strong>：Albert 疑似患有先天腦積水早夭（Douglas Merritte）。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Psychoanalysis (Illustrated) -->
+    <section class="slide flex-col w-full" data-index="3">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 02</span>
+        <span class="text-sm text-[#a85a6a] font-sans-soft font-bold">精神分析學派 (Psychoanalysis)</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">冰山心智結構與心理動力學</h2>
+
+      <!-- Visual Diagram: Iceberg Model -->
+      <div class="washi-card p-4 mt-3 bg-gradient-to-r from-[#ffffff] to-[#faf5f3]">
+        <div class="text-xs md:text-sm font-bold text-[#a85a6a] font-sans-soft mb-2.5 flex items-center gap-2">
+          <span>📊</span> 【核心圖解】佛洛伊德冰山模型與人格動力結構
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-sans-soft">
+          <div class="p-3.5 rounded-xl bg-[#fdf5f6] border border-[#f5dade]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#b55d6e] font-bold">水面之上 (10%)</span>
+              <span class="text-sm">👁️</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">意識 (Conscious)</div>
+            <p class="text-xs md:text-sm text-[#665c60] mt-1.5 leading-relaxed">
+              當前能夠直接覺察的知覺與思維。受現實原則指導的<strong>自我 (Ego)</strong> 在此協調外在現實。
+            </p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#faf5f0] border border-[#f0ded3]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#966b47] font-bold">水面交界</span>
+              <span class="text-sm">⚖️</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">前意識 (Preconscious)</div>
+            <p class="text-xs md:text-sm text-[#665c60] mt-1.5 leading-relaxed">
+              平時未注意、但稍加提示與回憶即可提取至意識的記憶與知識。<strong>超我 (Superego)</strong> 道德審判所在。
+            </p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#f5f0f3] border border-[#eddbe3]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#8c4b57] font-bold">深海潛沉 (90%)</span>
+              <span class="text-sm">🌊</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">潛意識 (Unconscious)</div>
+            <p class="text-xs md:text-sm text-[#665c60] mt-1.5 leading-relaxed">
+              <strong>本我 (Id)</strong> 原始本能驅力（性/生本能、破壞慾）與遭壓抑的創傷記憶。症狀與夢境的真正策源地。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3.5">
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#a85a6a] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📌</span> 核心動力機制
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>壓抑 (Repression)</strong>：自我防衛核心；將痛苦不相容的願望逐出意識。</li>
+            <li>• <strong>阻抗 (Resistance)</strong>：維持壓抑的力量，在治療中極力抗拒真相浮現。</li>
+            <li>• <strong>身體化 (Conversion)</strong>：情緒能量無法宣洩時，轉換為肢體癱瘓等症狀。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#a85a6a] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📄</span> 奠基文獻臨床成果
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>Anna O. 案例</strong>：確立「談話療法 (Talking Cure)」與情緒宣洩（Catharsis）。</li>
+            <li>• <strong>夢的工作 (Dream-work)</strong>：顯意 vs 隱意，透過「凝縮」與「置換」偽裝。</li>
+            <li>• <strong>移情 (Transference)</strong>：病患將童年早期對父母的情感投射於治療師。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#b55d6e] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>⚠️</span> 批判與爭端點
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>恐懼症論戰</strong>：Watson 指責佛洛伊德將恐懼全數歸因於性壓抑是荒謬幻想。</li>
+            <li>• <strong>可證偽性危機</strong>：Popper 抨擊任何臨床反例均被用防衛機制自圓其說。</li>
+            <li>• <strong>當代價值</strong>：催生無意識認知、童年依附及心理治療關係的現代研究。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Cognitive Psychology (Illustrated) -->
+    <section class="slide flex-col w-full" data-index="4">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 03</span>
+        <span class="text-sm text-[#645c88] font-sans-soft font-bold">認知心理學派 (Cognitive Psychology)</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">人類訊息處理架構與神奇數字 7±2</h2>
+
+      <!-- Visual Diagram: Information Processing -->
+      <div class="washi-card p-4 mt-3 bg-gradient-to-r from-[#ffffff] to-[#f8f6fc]">
+        <div class="text-xs md:text-sm font-bold text-[#645c88] font-sans-soft mb-2.5 flex items-center gap-2">
+          <span>📊</span> 【核心圖解】人類資訊通訊模型與記憶組塊化（Miller, 1956）
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5 text-center font-sans-soft">
+          <div class="p-3 rounded-xl bg-[#f7f5fa] border border-[#e8e4f0]">
+            <div class="text-xs text-[#645c88] font-bold">1. 感官輸入 (Input)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">環境物理刺激</div>
+            <div class="text-xs text-[#786f73] mt-0.5">音高、光線、文字、符號</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#645c88] inline-block font-semibold border border-[#dcd6e8]">瞬間感覺登錄</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#f2eff8] border border-[#dfd8ed]">
+            <div class="text-xs text-[#645c88] font-bold">2. 通道容量限制</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">單維絕對判斷</div>
+            <div class="text-xs text-[#786f73] mt-0.5">均值 2.6 bits (~6.5 類別)</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#645c88] inline-block font-semibold border border-[#d6cbdf]">瓶頸：不能無限細分</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#eae4f4] border border-[#d3c8e5]">
+            <div class="text-xs text-[#645c88] font-bold">3. 短期/立即記憶</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">固定槽位限制</div>
+            <div class="text-xs text-[#786f73] mt-0.5">限制在於 Chunks 非 Bits</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-[#645c88] text-white inline-block font-semibold">容量常數：7±2 組塊</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#e3daf0] border border-[#c6b6dc]">
+            <div class="text-xs text-[#4b436c] font-bold">4. 重新編碼 (Recoding)</div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1">組塊化 (Chunking)</div>
+            <div class="text-xs text-[#786f73] mt-0.5">利用語言或概念打包資訊</div>
+            <div class="mt-1.5 text-xs px-2.5 py-0.5 rounded bg-white text-[#4b436c] inline-block font-semibold border border-[#beadd4]">記憶量暴增至 40 項目</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3.5">
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#645c88] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📌</span> 核心理論貢獻
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>認知革命先鋒</strong>：打破黑盒子，證實內部心智計算與表徵的存在。</li>
+            <li>• <strong>Bits vs Chunks</strong>：絕對判斷受限於位元量；立即記憶受限於組塊數。</li>
+            <li>• <strong>語言即代碼</strong>：人類透過語言進行高級重新編碼以克服生理瓶頸。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#645c88] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>🔍</span> 經典數據速記
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>單維通道容量</strong>：音高 2.5 bits、響度 2.3 bits、味道 1.9 bits。</li>
+            <li>• <strong>多維拓展</strong>：二維位置 4.6 bits；6 維聲音 7.2 bits（約 150 類）。</li>
+            <li>• <strong>重編碼實驗</strong>：Smith (1954) 3:1 重編碼使二進位記憶由 9 提升至 40。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#b55d6e] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>⚠️</span> 現代修正與演進
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>Cowan (2001) 爭端</strong>：排除語音複誦後，純工作記憶核心容量僅為 <strong>4±1 個組塊</strong>。</li>
+            <li>• <strong>動態工作記憶</strong>：Baddeley 提出中央執行部、語音迴路與視覺空間板。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Humanistic Psychology (Illustrated) -->
+    <section class="slide flex-col w-full" data-index="5">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 04</span>
+        <span class="text-sm text-[#4e7482] font-sans-soft font-bold">人本主義學派 (Humanistic Psychology)</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">需求階層金字塔與自我實現</h2>
+
+      <!-- Visual Diagram: Pyramid Structure -->
+      <div class="washi-card p-4 mt-3 bg-gradient-to-r from-[#ffffff] to-[#f4f8fa]">
+        <div class="text-xs md:text-sm font-bold text-[#4e7482] font-sans-soft mb-2.5 flex items-center gap-2">
+          <span>📊</span> 【核心圖解】馬斯洛需求階層金字塔與相對優勢性（Maslow, 1943）
+        </div>
+        <div class="space-y-2 font-sans-soft">
+          <!-- Level 5 -->
+          <div class="p-2.5 rounded-xl bg-[#e3eff4] border border-[#c5e0eb] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-[#4e7482] text-white font-bold text-xs">層級 5 • 成長需求</span>
+              <span class="font-bold text-[#2e292d] text-sm md:text-base">自我實現需求 (Self-Actualization)</span>
+            </div>
+            <span class="text-xs md:text-sm text-[#4e7482] font-medium">發揮全部個人潛能與創造力（平均滿足約 10%）</span>
+          </div>
+          <!-- Level 4 -->
+          <div class="p-2.5 rounded-xl bg-[#edf5f8] border border-[#d6e9f0] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-[#6791a0] text-white font-bold text-xs">層級 4 • 匱乏需求</span>
+              <span class="font-bold text-[#2e292d] text-sm md:text-base">自尊需求 (Esteem: 勝任感、聲譽與尊重)</span>
+            </div>
+            <span class="text-xs md:text-sm text-[#6791a0] font-medium">追求實質勝任力與社會認可（平均滿足約 40%）</span>
+          </div>
+          <!-- Level 3 -->
+          <div class="p-2.5 rounded-xl bg-[#f4f9fb] border border-[#e1f0f5] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-[#85abb8] text-white font-bold text-xs">層級 3 • 匱乏需求</span>
+              <span class="font-bold text-[#2e292d] text-sm md:text-base">愛與歸屬需求 (Love & Belongingness)</span>
+            </div>
+            <span class="text-xs md:text-sm text-[#7196a3] font-medium">友情、愛情、家庭與群體接納（平均滿足約 50%）</span>
+          </div>
+          <!-- Level 2 -->
+          <div class="p-2.5 rounded-xl bg-[#faf5f0] border border-[#ebdcd5] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-[#a88267] text-white font-bold text-xs">層級 2 • 匱乏需求</span>
+              <span class="font-bold text-[#2e292d] text-sm md:text-base">安全需求 (Safety: 秩序、法律與保護)</span>
+            </div>
+            <span class="text-xs md:text-sm text-[#a88267] font-medium">避免混亂、不可預測與恐懼威脅（平均滿足約 70%）</span>
+          </div>
+          <!-- Level 1 -->
+          <div class="p-2.5 rounded-xl bg-[#f8f4f2] border border-[#ebd8d0] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-[#8c6750] text-white font-bold text-xs">層級 1 • 匱乏需求</span>
+              <span class="font-bold text-[#2e292d] text-sm md:text-base">生理需求 (Physiological: 食物、水、睡眠)</span>
+            </div>
+            <span class="text-xs md:text-sm text-[#8c6750] font-medium">維持體內恆定機制（最優先優勢，平均滿足約 85%）</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3.5">
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#4e7482] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📌</span> 相對優勢性 (Prepotency)
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>漸進並存</strong>：不是低階 100% 滿足才產生高階，各階層以不同滿足比例並存。</li>
+            <li>• <strong>已滿足不具驅力</strong>：一旦生理安全滿足，即失去動機主導力。</li>
+            <li>• <strong>多重決定</strong>：多數人類日常行為同時服務多種基本需求。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#4e7482] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>🔍</span> 階層反轉與例外
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>天賦創作者</strong>：極度匱乏下依然以創作自我實現為先。</li>
+            <li>• <strong>理想殉道者</strong>：為高階社會價值或信仰甘願犧牲生存。</li>
+            <li>• <strong>早期滿足耐受力</strong>：童年被充分關愛的孩子具備極高挫折耐受力。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#b55d6e] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>⚠️</span> 跨文化與實證挑戰
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>文化偏誤</strong>：集體主義文化中，群體歸屬常優先於個人自尊與實現。</li>
+            <li>• <strong>不易客觀測量</strong>：自我實現難以標準化量化，缺乏嚴密預註冊實證。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Neuroscience (Illustrated) -->
+    <section class="slide flex-col w-full" data-index="6">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 05</span>
+        <span class="text-sm text-[#964757] font-sans-soft font-bold">神經科學與生物心理學 (Neuroscience)</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">大腦情緒迴路與雙路徑神經機制</h2>
+
+      <!-- Visual Diagram: Dual Route & Amygdala -->
+      <div class="washi-card p-4 mt-3 bg-gradient-to-r from-[#ffffff] to-[#fcf5f6]">
+        <div class="text-xs md:text-sm font-bold text-[#964757] font-sans-soft mb-2.5 flex items-center gap-2">
+          <span>📊</span> 【核心圖解】恐懼情緒雙路徑神經傳導與輸出迴路（LeDoux, 2000）
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-sans-soft">
+          <!-- Low Road -->
+          <div class="p-3.5 rounded-xl bg-[#fdf2f4] border border-[#f5d0d6]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#b55d6e] font-bold">皮質下極速通道</span>
+              <span class="text-sm">⚡</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">低路徑 (Low Road)</div>
+            <div class="text-xs md:text-sm text-[#786f73] mt-1 font-mono font-medium">丘腦 (MGm) $\rightarrow$ 側杏仁核 (LA)</div>
+            <div class="mt-1.5 text-xs text-[#b55d6e] font-semibold bg-white/70 px-2 py-0.5 rounded border border-[#f5d0d6] inline-block">延遲 &lt; 20 ms • 粗糙快速 • 無意識避險</div>
+          </div>
+          <!-- High Road -->
+          <div class="p-3.5 rounded-xl bg-[#f6f2f8] border border-[#e4daf0]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#645c88] font-bold">皮質精細意識分析</span>
+              <span class="text-sm">🧠</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">高路徑 (High Road)</div>
+            <div class="text-xs md:text-sm text-[#786f73] mt-1 font-mono font-medium">丘腦 $\rightarrow$ 感覺皮質 $\rightarrow$ 側杏仁核 (LA)</div>
+            <div class="mt-1.5 text-xs text-[#645c88] font-semibold bg-white/70 px-2 py-0.5 rounded border border-[#e4daf0] inline-block">延遲較長 • 精細辨識 • 修正虛警反應</div>
+          </div>
+          <!-- Output -->
+          <div class="p-3.5 rounded-xl bg-[#f2f7f4] border border-[#d6e8dc]">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-[#467856] font-bold">中央核輸出中樞 (CE)</span>
+              <span class="text-sm">🎯</span>
+            </div>
+            <div class="font-bold text-[#332d30] text-sm md:text-base mt-1.5">防衛行為控制</div>
+            <div class="text-xs md:text-sm text-[#554c50] mt-1 font-mono leading-relaxed">• PAG $\rightarrow$ 身體僵直 (Freezing)<br>• LH $\rightarrow$ 血壓與心跳加速<br>• BNST $\rightarrow$ 壓力荷爾蒙 (HPA 軸)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3.5">
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#964757] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>📌</span> 核心神經生理發現
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>感覺介面 (LA)</strong>：側杏仁核是 CS 與 US 匯聚並產生突觸塑性的核心。</li>
+            <li>• <strong>突觸可塑性 (LTP)</strong>：恐懼制約直接誘發側杏仁核 LTP，依賴鈣離子湧入。</li>
+            <li>• <strong>蛋白質合成</strong>：注射 Anisomycin 精確阻斷長期記憶鞏固。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#964757] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>🔍</span> 雙重解離重要證據
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>Bechara et al. (1995)</strong>：
+              <br>- 杏仁核損毀：喪失情緒制約反應，但記得實驗程序。
+              <br>- 海馬迴損毀：完整情緒制約反應，但遺忘實驗程序。
+            </li>
+            <li>• <strong>前額葉 (mPFC) 抑制</strong>：mPFC 損傷導致恐懼無法消退（PTSD 模型）。</li>
+          </ul>
+        </div>
+
+        <div class="washi-card p-4 space-y-2">
+          <h3 class="text-[#b55d6e] font-bold text-sm md:text-base flex items-center gap-2 font-sans-soft">
+            <span>⚖️</span> 核心爭端：儲存地 vs 調節器
+          </h3>
+          <ul class="text-xs md:text-sm text-[#554c50] space-y-2 font-sans-soft leading-relaxed">
+            <li>• <strong>McGaugh</strong>：杏仁核只是記憶調節器，記憶存於皮質。</li>
+            <li>• <strong>LeDoux 反駁</strong>：訓練前去活化杏仁核，學習完全無法發生，證實其本身即是記憶儲存中樞。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Comparison Matrix -->
+    <section class="slide flex-col w-full" data-index="7">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 06</span>
+        <span class="text-sm text-[#8c7f84] font-sans-soft font-bold">五大學派跨維度對照總表</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">考前高頻複習對照矩陣</h2>
+
+      <div class="mt-4 washi-card overflow-hidden p-1">
+        <div class="table-container overflow-x-auto">
+          <table class="w-full text-left">
+            <thead class="bg-[#f7ebeb] text-[#553b42] text-xs md:text-sm font-sans-soft font-bold border-b border-[#ebdcd5]">
+              <tr>
+                <th class="p-3.5">心理學流派</th>
+                <th class="p-3.5">代表學者與年代</th>
+                <th class="p-3.5">核心人性與心智觀</th>
+                <th class="p-3.5">經典奠基論文</th>
+                <th class="p-3.5">主要方法與研究工具</th>
+                <th class="p-3.5">重大理論爭端 / 局限</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#ebdcd5] text-[#554c50] font-sans-soft text-xs md:text-sm leading-relaxed">
+              <tr class="hover:bg-[#faf4f2] transition">
+                <td class="p-3.5 font-bold text-[#a85a6a] font-serif text-sm md:text-base">精神分析</td>
+                <td class="p-3.5 font-mono">Freud (1910)</td>
+                <td class="p-3.5">潛意識決定論、性本能與壓抑衝突</td>
+                <td class="p-3.5 font-serif font-medium">Freud (1910) 精神分析五講</td>
+                <td class="p-3.5">自由聯想、夢的解析、移情治療</td>
+                <td class="p-3.5 text-[#b55d6e]">缺乏可證偽性、回溯性臨床偏誤</td>
+              </tr>
+              <tr class="hover:bg-[#faf4f2] transition">
+                <td class="p-3.5 font-bold text-[#597864] font-serif text-sm md:text-base">行為主義</td>
+                <td class="p-3.5 font-mono">Watson (1920)</td>
+                <td class="p-3.5">環境決定論、S-R 連結、心智黑盒子</td>
+                <td class="p-3.5 font-serif font-medium">Watson & Rayner (1920) 小阿爾伯特</td>
+                <td class="p-3.5">動物/嬰兒客觀行為觀察、古典制約</td>
+                <td class="p-3.5 text-[#b55d6e]">N=1 難以複製、嚴重倫理爭議</td>
+              </tr>
+              <tr class="hover:bg-[#faf4f2] transition">
+                <td class="p-3.5 font-bold text-[#4e7482] font-serif text-sm md:text-base">人本主義</td>
+                <td class="p-3.5 font-mono">Maslow (1943)</td>
+                <td class="p-3.5">人性本善、自我實現、全人有機體</td>
+                <td class="p-3.5 font-serif font-medium">Maslow (1943) 人類動機理論</td>
+                <td class="p-3.5">臨床整體觀察、健康人格典範分析</td>
+                <td class="p-3.5 text-[#b55d6e]">操作型定義不易量化、西方文化偏誤</td>
+              </tr>
+              <tr class="hover:bg-[#faf4f2] transition">
+                <td class="p-3.5 font-bold text-[#645c88] font-serif text-sm md:text-base">認知學派</td>
+                <td class="p-3.5 font-mono">Miller (1956)</td>
+                <td class="p-3.5">主動計算系統、訊息處理、容量瓶頸</td>
+                <td class="p-3.5 font-serif font-medium">Miller (1956) 神奇的數字 7±2</td>
+                <td class="p-3.5">心理物理學、資訊理論、反應時間實驗</td>
+                <td class="p-3.5 text-[#b55d6e]">Cowan 修正純工作記憶容量為 4±1</td>
+              </tr>
+              <tr class="hover:bg-[#faf4f2] transition">
+                <td class="p-3.5 font-bold text-[#964757] font-serif text-sm md:text-base">神經科學</td>
+                <td class="p-3.5 font-mono">LeDoux (2000)</td>
+                <td class="p-3.5">突觸可塑性、大腦迴路、演化防衛系統</td>
+                <td class="p-3.5 font-serif font-medium">LeDoux (2000) 情緒迴路</td>
+                <td class="p-3.5">動物單元放電、腦區損毀、分子 LTP、fMRI</td>
+                <td class="p-3.5 text-[#b55d6e]">杏仁核儲存中樞 vs 調節器論戰</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Controversies -->
+    <section class="slide flex-col w-full" data-index="8">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span class="washi-tape-tag px-3 py-0.5 rounded text-xs font-bold">重點複習 07</span>
+        <span class="text-sm text-[#8c7f84] font-sans-soft font-bold">三大經典論戰考點辨析</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d]">學術交鋒與現代整合裁決</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <div class="washi-card p-4 space-y-2.5">
+          <div class="text-xs md:text-sm font-bold text-[#b55d6e] font-sans-soft flex items-center gap-1.5">
+            <span>⚔️</span> 論戰 1 • 病因之爭
+          </div>
+          <h3 class="text-base md:text-lg font-bold text-[#2e292d]">行為主義 vs 精神分析</h3>
+          <div class="p-3 rounded-xl bg-[#faf5f3] border border-[#ebdcd5] text-xs md:text-sm text-[#554c50] space-y-1.5 font-sans-soft leading-relaxed">
+            • <strong>Freud</strong>：恐懼源於性本能壓抑與伊底帕斯情結投射。<br>
+            • <strong>Watson</strong>：恐懼純粹是後天環境刺激（S-R）制約與類化。<br>
+            • <strong>現代裁決</strong>：行為去制約成功破除「症狀置換」；恐懼為獨立演化神經迴路。
+          </div>
+        </div>
+
+        <div class="washi-card p-4 space-y-2.5">
+          <div class="text-xs md:text-sm font-bold text-[#645c88] font-sans-soft flex items-center gap-1.5">
+            <span>⚔️</span> 論戰 2 • 容量之爭
+          </div>
+          <h3 class="text-base md:text-lg font-bold text-[#2e292d]">短期記憶容量：7±2 vs 4±1</h3>
+          <div class="p-3 rounded-xl bg-[#faf5f3] border border-[#ebdcd5] text-xs md:text-sm text-[#554c50] space-y-1.5 font-sans-soft leading-relaxed">
+            • <strong>Miller (1956)</strong>：神奇數字 $7\pm 2$ 個組塊。<br>
+            • <strong>Cowan (2001)</strong>：指出 7 混雜了「語音複誦」與長時知識；純工作記憶焦點容量僅為 <strong>4 個組塊</strong>。<br>
+            • <strong>現代共識</strong>：有策略時為 7，純核心焦點為 4。
+          </div>
+        </div>
+
+        <div class="washi-card p-4 space-y-2.5">
+          <div class="text-xs md:text-sm font-bold text-[#597864] font-sans-soft flex items-center gap-1.5">
+            <span>⚔️</span> 論戰 3 • 儲存之爭
+          </div>
+          <h3 class="text-base md:text-lg font-bold text-[#2e292d]">杏仁核：儲存中樞 vs 調節器</h3>
+          <div class="p-3 rounded-xl bg-[#faf5f3] border border-[#ebdcd5] text-xs md:text-sm text-[#554c50] space-y-1.5 font-sans-soft leading-relaxed">
+            • <strong>McGaugh</strong>：杏仁核僅調節海馬迴與皮質，本身不存記憶。<br>
+            • <strong>LeDoux</strong>：訓練前去活化杏仁核完全阻斷制約，證明側杏仁核（LA）即是突觸儲存中樞。<br>
+            • <strong>現代共識</strong>：兼具直接突觸儲存與向外調節雙重功能。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Conclusion -->
+    <section class="slide flex-col items-center text-center justify-center py-6 w-full" data-index="9">
+      <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#f4d5db] to-[#fcecee] border border-[#e5b9c1] flex items-center justify-center text-[#8c4b57] text-2xl font-serif mb-3.5 shadow-sm">
+        結
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#2e292d] tracking-wide">五大學派重點複習完畢</h2>
+      <p class="text-[#786f73] max-w-2xl mt-2.5 text-sm md:text-base leading-relaxed font-sans-soft">
+        本份講義之所有概念已完整沉澱於您的知識庫中，支援隨時在 Obsidian 中透過雙向連結深層回溯原始文獻。
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3.5 mt-8 w-full max-w-4xl">
+        <div class="p-3 rounded-xl washi-card text-center font-sans-soft">
+          <span class="text-[#b56576] font-bold text-sm md:text-base block mb-0.5">精神分析</span>
+          <span class="text-xs md:text-sm text-[#786f73]">潛意識動力</span>
+        </div>
+        <div class="p-3 rounded-xl washi-card text-center font-sans-soft">
+          <span class="text-[#597864] font-bold text-sm md:text-base block mb-0.5">古典行為主義</span>
+          <span class="text-xs md:text-sm text-[#786f73]">S-R 制約反射</span>
+        </div>
+        <div class="p-3 rounded-xl washi-card text-center font-sans-soft">
+          <span class="text-[#4e7482] font-bold text-sm md:text-base block mb-0.5">人本主義</span>
+          <span class="text-xs md:text-sm text-[#786f73]">自我實現金字塔</span>
+        </div>
+        <div class="p-3 rounded-xl washi-card text-center font-sans-soft">
+          <span class="text-[#645c88] font-bold text-sm md:text-base block mb-0.5">認知學派</span>
+          <span class="text-xs md:text-sm text-[#786f73]">訊息處理與組塊</span>
+        </div>
+        <div class="p-3 rounded-xl washi-card text-center font-sans-soft">
+          <span class="text-[#964757] font-bold text-sm md:text-base block mb-0.5">神經科學</span>
+          <span class="text-xs md:text-sm text-[#786f73]">杏仁核雙路徑</span>
+        </div>
+      </div>
+
+      <div class="mt-10 text-sm text-[#8c7f84] font-sans-soft tracking-wider">
+        祝複習順利！可於 Obsidian 中點選 <code class="text-[#c27685] font-mono font-bold">index.md</code> 或按 <code class="text-[#c27685] font-mono font-bold">Ctrl + G</code> 漫遊知識圖譜
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Progress Bar -->
+  <footer class="border-t border-[#ebdcd5] bg-[#faf7f5]/80 px-8 py-3.5 flex items-center justify-between text-sm text-[#8c7f84] font-sans-soft">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#c27685]"></span>
+      <span class="font-medium">心理學五大流派重點複習講義</span>
+    </div>
+    <div class="flex items-center gap-2.5">
+      <span>翻頁提示：</span>
+      <kbd class="px-2 py-0.5 rounded bg-[#f0e6e1] border border-[#ded0c8] text-[#554b50] font-mono text-xs">←</kbd>
+      <kbd class="px-2 py-0.5 rounded bg-[#f0e6e1] border border-[#ded0c8] text-[#554b50] font-mono text-xs">→</kbd>
+      <kbd class="px-2 py-0.5 rounded bg-[#f0e6e1] border border-[#ded0c8] text-[#554b50] font-mono text-xs">Space</kbd>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const currentSlideEl = document.getElementById('current-slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        if (idx + 1 === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      currentSlideEl.textContent = currentSlide;
+      prevBtn.disabled = currentSlide === 1;
+      nextBtn.disabled = currentSlide === totalSlides;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    updateSlide();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Obsidian workspace states
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+wiki/.obsidian/workspace.json
+wiki/.obsidian/workspace-mobile.json
+
+# OS metadata
+Thumbs.db
+.DS_Store
