@@ -101,6 +101,17 @@
   - 保留春櫻豆沙系日系明朝體、Zen Maru Gothic、Washi 質感與四大高亮引言盒排版。
   - 支援直接部署至 GitHub Pages 即開即看。
 
+## [2026-11-19] fix | 修復 Mermaid 圖解渲染與作者文獻鏈接反灰問題
+- **操作類型**：渲染相容性修復與鏈接解析升級 (Renderer Fix & Link Resolving)
+- **問題根因**：
+  1. Markdown 轉 HTML 編譯器未處理 Fenced Code Blocks，導致 7 處 Mermaid 圖表代碼被當作普通段落渲染，流程圖與圖解無法顯現。
+  2. 未解析的 `[[wikilinks]]` 原先採用了 `text-decoration: line-through; color: #a89fa4` 刪除線樣式，且文獻縮寫與別名未登錄，致使所有作者文獻（如 Watson & Rayner 1920、Freud 1910）均顯示為帶斜線的反灰刪除文字。
+- **修復項目**：
+  - 導入 Mermaid 10 向量圖渲染引擎，完整支援 7 份理論、構念與文獻模型圖解及 ASCII 代碼塊。
+  - 徹底移除 `line-through` 刪除線樣式，全面重構全域雙向關聯字典，智慧對照五大奠基論文縮寫、學者名稱與正文別名。
+  - 在論文摘要頁增加獨立完整的 APA 7th 官方文獻出處專屬卡片與作者溫潤標籤。
+
+
 
 
 

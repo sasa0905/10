@@ -7,6 +7,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Mermaid.js for beautiful interactive diagram rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          securityLevel: 'loose',
+          themeVariables: {
+            primaryColor: '#faf2f4',
+            primaryBorderColor: '#c27685',
+            primaryTextColor: '#332d30',
+            lineColor: '#8c4b57',
+            secondaryColor: '#f7ebeb',
+            tertiaryColor: '#faf7f5',
+            fontFamily: "'Zen Maru Gothic', sans-serif",
+            fontSize: '13px'
+          }
+        });
+      }
+    });
+  </script>
   <style>
     /* Pure Vanilla CSS - Zero Framework Dependencies */
     :root {
@@ -100,29 +123,32 @@
       border: 1px solid var(--border-warm);
     }
     .btn-rose {
-      background-color: var(--rose-light);
-      color: var(--rose-deep);
+      background-color: var(--rose-deep);
+      color: #ffffff;
+      border-color: var(--rose-deep);
     }
     .btn-rose:hover {
-      background-color: #f0dde0;
+      background-color: var(--rose-accent);
     }
     .btn-white {
       background-color: #ffffff;
-      color: #554a4f;
+      color: var(--text-main);
     }
     .btn-white:hover {
-      background-color: #f7f2ef;
+      background-color: #faf5f2;
+      border-color: var(--rose-accent);
     }
 
-    /* Main Dual Layout */
+    /* Layout Dual Column */
     .wiki-container {
-      max-width: 1360px;
-      width: 100%;
-      margin: 0 auto;
       display: flex;
       flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
     }
-    /* Sidebar */
+
+    /* Left Sidebar */
     .wiki-sidebar {
       width: 290px;
       background-color: var(--bg-sidebar);
@@ -130,10 +156,10 @@
       padding: 18px 14px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      max-height: calc(100vh - 59px);
+      gap: 12px;
+      height: calc(100vh - 61px);
       position: sticky;
-      top: 59px;
+      top: 61px;
       overflow-y: auto;
     }
     .nav-search {
@@ -178,57 +204,59 @@
     .nav-item {
       padding: 5px 10px;
       border-radius: 8px;
-      font-size: 12px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      color: #52474c;
+      font-size: 13px;
       text-decoration: none;
+      color: var(--text-main);
+      display: block;
+      transition: all 0.15s ease;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: all 0.15s ease;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
     .nav-item:hover {
       background-color: #ede2dd;
       color: var(--rose-deep);
     }
     .nav-item-active {
-      background-color: var(--card-white);
-      color: var(--rose-deep);
+      background-color: #ffffff !important;
+      color: var(--rose-deep) !important;
       font-weight: 700;
-      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
       border-left: 3px solid var(--rose-accent);
     }
 
-    /* Main Reading Content */
+    /* Main Content Area */
     .wiki-main {
       flex: 1;
-      background-color: var(--card-white);
       padding: 36px 48px;
-      max-width: 960px;
-      min-width: 0;
+      max-width: 980px;
+      background-color: var(--bg-cream);
     }
     .breadcrumb {
       font-size: 12px;
-      color: var(--text-sub);
       font-family: 'Zen Maru Gothic', sans-serif;
-      margin-bottom: 20px;
+      color: var(--text-sub);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .breadcrumb a {
-      color: inherit;
+      color: var(--text-sub);
       text-decoration: none;
     }
     .breadcrumb a:hover {
       color: var(--rose-accent);
     }
+    
+    /* Meta Card */
     .meta-card {
       background-color: #faf5f2;
       border: 1px solid var(--border-warm);
       border-radius: 12px;
       padding: 10px 14px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -237,57 +265,114 @@
       font-size: 12px;
     }
     .badge {
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 6px;
-      font-size: 11px;
+      font-size: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
-    .badge-gray { background: #eee7e4; color: #5a5055; }
-    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
+    .badge-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      border: 1px solid #ebd4d8;
+    }
+    .badge-gray {
+      background-color: #ffffff;
+      color: var(--text-sub);
+      border: 1px solid var(--border-warm);
+    }
+    .badge-warm {
+      background-color: #f7edea;
+      color: #634335;
+      border: 1px solid #ecd5cd;
+    }
+    .badge-green {
+      background-color: #eaf4ed;
+      color: #275632;
+      border: 1px solid #c7e2ce;
+    }
 
-    /* Markdown Styling */
+    /* APA Citation Card */
+    .apa-card {
+      background-color: #ffffff;
+      border: 1px solid #ecd5cd;
+      border-left: 4px solid var(--rose-accent);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.04);
+    }
+    .apa-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .apa-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .apa-tip {
+      font-size: 11px;
+      color: #a89fa4;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .apa-text {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13.5px;
+      color: #382e32;
+      line-height: 1.6;
+    }
+
+    /* Typography in Articles */
     .content h1 {
       font-size: 28px;
       font-weight: 800;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border-warm);
-      padding-bottom: 10px;
-      color: #2e292d;
+      color: #262123;
+      margin-bottom: 18px;
+      letter-spacing: 0.03em;
     }
     .content h2 {
       font-size: 20px;
       font-weight: 700;
-      margin-top: 28px;
+      color: #2e292d;
+      margin-top: 30px;
       margin-bottom: 12px;
-      color: #40363a;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 6px;
     }
     .content h3 {
       font-size: 16px;
       font-weight: 700;
+      color: #423b3f;
       margin-top: 20px;
       margin-bottom: 8px;
-      color: #55484d;
     }
     .content p {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 15px;
-      line-height: 1.85;
       margin-bottom: 14px;
-      color: #40383b;
+      font-size: 15px;
+      color: #383134;
+      line-height: 1.8;
     }
     .content ul {
-      padding-left: 24px;
       margin-bottom: 16px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #483f43;
+      padding-left: 20px;
     }
     .content li {
       margin-bottom: 6px;
+      font-size: 14.5px;
+      color: #383134;
+      line-height: 1.7;
     }
     .content hr {
-      border: 0;
+      border: none;
       border-top: 1px dashed var(--border-warm);
       margin: 28px 0;
     }
@@ -295,14 +380,56 @@
       font-family: ui-monospace, Consolas, monospace;
       background-color: #f2e9e6;
       color: var(--rose-deep);
-      padding: 2px 6px;
-      border-radius: 5px;
+      padding: 2px 5px;
+      border-radius: 4px;
       font-size: 13px;
     }
 
-    /* Clickable Wiki Links */
+    /* Diagrams & Code Blocks */
+    .mermaid-diagram {
+      background: #ffffff;
+      border: 1px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 20px 16px;
+      margin: 24px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+    }
+    .mermaid-diagram pre.mermaid {
+      background: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+    }
+    .code-container {
+      margin: 20px 0;
+    }
+    .code-block {
+      background-color: #f7f1ee;
+      color: #382e32;
+      border: 1px solid var(--border-warm);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .code-block code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    /* Wikilinks */
     a.wiki-link {
-      color: var(--rose-accent);
+      color: var(--rose-deep);
       font-weight: 600;
       text-decoration: none;
       border-bottom: 1px dashed var(--rose-accent);
@@ -316,9 +443,19 @@
       border-radius: 4px;
       padding: 2px 4px;
     }
+    /* UNRESOLVED ITEMS: Clean, soft tag with NO line-through or dead gray! */
     .wiki-link-unresolved {
-      color: #a89fa4;
-      text-decoration: line-through;
+      color: #5d5357;
+      background-color: #f6efec;
+      border: 1px solid #ebdcd5;
+      border-radius: 5px;
+      padding: 1px 7px;
+      font-size: 13px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      text-decoration: none;
     }
 
     /* Callout Boxes */
@@ -344,14 +481,15 @@
     .table-container {
       overflow-x: auto;
       margin: 20px 0;
+      border-radius: 10px;
       border: 1px solid var(--border-warm);
-      border-radius: 12px;
+      background-color: #ffffff;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 13px;
+      font-size: 13.5px;
       text-align: left;
     }
     th {
@@ -375,7 +513,7 @@
 
     @media (max-width: 860px) {
       .wiki-container { flex-direction: column; }
-      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; height: auto; }
       .wiki-main { padding: 24px 20px; }
     }
   </style>
@@ -479,29 +617,29 @@
 
       <div class="meta-card"><span class="badge badge-rose font-bold">["小阿爾伯特實驗典範", "嬰兒恐懼制約典範"]</span></div>
 
+      
+
       <article class="content">
         <h1>小阿爾伯特實驗典範 (Little Albert Paradigm)</h1>
 <div class="callout callout-info"><div class="callout-title">💡 理論與構念精準定義</div><div class="callout-body"><p>典範定義</p>
 <p>小阿爾伯特實驗典範是由 John B. Watson 與 Rosalie Rayner 於 1920 年設計的經典實驗程序，旨在檢驗能否在原本無恐懼傾向的嬰兒身上，透過古典制約（配對嫌惡性聽覺巨響）人為引發對特定動物的恐懼反應，並量測此情緒反應的類化梯度與時間持久性。</p></div></div>
 <hr>
 <h2>1. 實驗標準四階段程序 (Standard Procedure)</h2>
-<p><code></code>`text</p>
-<p>[階段一：前測基準期] (Baseline Phase, 9 個月大)</p>
-<p>└── 呈現多種潛在刺激物（白鼠、兔、狗、猴、棉花、面具），確認個體無先天恐懼反應。</p>
-<p>└── 測試聽覺刺激（以鐵鎚敲擊長 4 英尺鋼條），確立非制約刺激 (US) 能誘發驚嚇反應 (UR)。</p>
-<p>↓</p>
-<p>[階段二：制約配對期] (Conditioning Phase, 11 個月 3 天 ~ 10 天)</p>
-<p>└── 呈現象徵目標物（白鼠 CS）。</p>
-<p>└── 當被試伸手觸摸物體時，於其身後突然敲擊鋼條 (US)。</p>
-<p>└── 試次間隔：通常連續實施 1~3 次後暫停數天，累計約 7 次聯合刺激。</p>
-<p>↓</p>
-<p>[階段三：類化轉移測試] (Generalization Test, 11 個月 15 天)</p>
-<p>└── 引入外觀相似的測試刺激（不同動物、毛皮大衣、面具）與對照無關刺激（木塊）。</p>
-<p>└── 記錄被試的逃避肢體動作、哭泣反應與反應延遲時間。</p>
-<p>↓</p>
-<p>[階段四：時間持久性檢測] (Retention Test, 1 歲 21 天)</p>
-<p>└── 間隔約 1 個月無刺激暴露後，重新呈現上述刺激，評估反應衰減程度。</p>
-<p><code></code>`</p>
+<div class="code-container"><pre class="code-block"><code>[階段一：前測基準期] (Baseline Phase, 9 個月大)
+   └── 呈現多種潛在刺激物（白鼠、兔、狗、猴、棉花、面具），確認個體無先天恐懼反應。
+   └── 測試聽覺刺激（以鐵鎚敲擊長 4 英尺鋼條），確立非制約刺激 (US) 能誘發驚嚇反應 (UR)。
+          ↓
+[階段二：制約配對期] (Conditioning Phase, 11 個月 3 天 ~ 10 天)
+   └── 呈現象徵目標物（白鼠 CS）。
+   └── 當被試伸手觸摸物體時，於其身後突然敲擊鋼條 (US)。
+   └── 試次間隔：通常連續實施 1~3 次後暫停數天，累計約 7 次聯合刺激。
+          ↓
+[階段三：類化轉移測試] (Generalization Test, 11 個月 15 天)
+   └── 引入外觀相似的測試刺激（不同動物、毛皮大衣、面具）與對照無關刺激（木塊）。
+   └── 記錄被試的逃避肢體動作、哭泣反應與反應延遲時間。
+          ↓
+[階段四：時間持久性檢測] (Retention Test, 1 歲 21 天)
+   └── 間隔約 1 個月無刺激暴露後，重新呈現上述刺激，評估反應衰減程度。</code></pre></div>
 <hr>
 <h2>2. 方法學爭議與倫理危機 (Methodological & Ethical Crisis)</h2>
 <div class="callout callout-warning"><div class="callout-title">⚠️ 方法學評價與研究限制</div><div class="callout-body"><p>現代心理學倫理的反面教材</p>

@@ -7,6 +7,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Mermaid.js for beautiful interactive diagram rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          securityLevel: 'loose',
+          themeVariables: {
+            primaryColor: '#faf2f4',
+            primaryBorderColor: '#c27685',
+            primaryTextColor: '#332d30',
+            lineColor: '#8c4b57',
+            secondaryColor: '#f7ebeb',
+            tertiaryColor: '#faf7f5',
+            fontFamily: "'Zen Maru Gothic', sans-serif",
+            fontSize: '13px'
+          }
+        });
+      }
+    });
+  </script>
   <style>
     /* Pure Vanilla CSS - Zero Framework Dependencies */
     :root {
@@ -100,29 +123,32 @@
       border: 1px solid var(--border-warm);
     }
     .btn-rose {
-      background-color: var(--rose-light);
-      color: var(--rose-deep);
+      background-color: var(--rose-deep);
+      color: #ffffff;
+      border-color: var(--rose-deep);
     }
     .btn-rose:hover {
-      background-color: #f0dde0;
+      background-color: var(--rose-accent);
     }
     .btn-white {
       background-color: #ffffff;
-      color: #554a4f;
+      color: var(--text-main);
     }
     .btn-white:hover {
-      background-color: #f7f2ef;
+      background-color: #faf5f2;
+      border-color: var(--rose-accent);
     }
 
-    /* Main Dual Layout */
+    /* Layout Dual Column */
     .wiki-container {
-      max-width: 1360px;
-      width: 100%;
-      margin: 0 auto;
       display: flex;
       flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
     }
-    /* Sidebar */
+
+    /* Left Sidebar */
     .wiki-sidebar {
       width: 290px;
       background-color: var(--bg-sidebar);
@@ -130,10 +156,10 @@
       padding: 18px 14px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      max-height: calc(100vh - 59px);
+      gap: 12px;
+      height: calc(100vh - 61px);
       position: sticky;
-      top: 59px;
+      top: 61px;
       overflow-y: auto;
     }
     .nav-search {
@@ -178,57 +204,59 @@
     .nav-item {
       padding: 5px 10px;
       border-radius: 8px;
-      font-size: 12px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      color: #52474c;
+      font-size: 13px;
       text-decoration: none;
+      color: var(--text-main);
+      display: block;
+      transition: all 0.15s ease;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: all 0.15s ease;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
     .nav-item:hover {
       background-color: #ede2dd;
       color: var(--rose-deep);
     }
     .nav-item-active {
-      background-color: var(--card-white);
-      color: var(--rose-deep);
+      background-color: #ffffff !important;
+      color: var(--rose-deep) !important;
       font-weight: 700;
-      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
       border-left: 3px solid var(--rose-accent);
     }
 
-    /* Main Reading Content */
+    /* Main Content Area */
     .wiki-main {
       flex: 1;
-      background-color: var(--card-white);
       padding: 36px 48px;
-      max-width: 960px;
-      min-width: 0;
+      max-width: 980px;
+      background-color: var(--bg-cream);
     }
     .breadcrumb {
       font-size: 12px;
-      color: var(--text-sub);
       font-family: 'Zen Maru Gothic', sans-serif;
-      margin-bottom: 20px;
+      color: var(--text-sub);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .breadcrumb a {
-      color: inherit;
+      color: var(--text-sub);
       text-decoration: none;
     }
     .breadcrumb a:hover {
       color: var(--rose-accent);
     }
+    
+    /* Meta Card */
     .meta-card {
       background-color: #faf5f2;
       border: 1px solid var(--border-warm);
       border-radius: 12px;
       padding: 10px 14px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -237,57 +265,114 @@
       font-size: 12px;
     }
     .badge {
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 6px;
-      font-size: 11px;
+      font-size: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
-    .badge-gray { background: #eee7e4; color: #5a5055; }
-    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
+    .badge-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      border: 1px solid #ebd4d8;
+    }
+    .badge-gray {
+      background-color: #ffffff;
+      color: var(--text-sub);
+      border: 1px solid var(--border-warm);
+    }
+    .badge-warm {
+      background-color: #f7edea;
+      color: #634335;
+      border: 1px solid #ecd5cd;
+    }
+    .badge-green {
+      background-color: #eaf4ed;
+      color: #275632;
+      border: 1px solid #c7e2ce;
+    }
 
-    /* Markdown Styling */
+    /* APA Citation Card */
+    .apa-card {
+      background-color: #ffffff;
+      border: 1px solid #ecd5cd;
+      border-left: 4px solid var(--rose-accent);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.04);
+    }
+    .apa-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .apa-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .apa-tip {
+      font-size: 11px;
+      color: #a89fa4;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .apa-text {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13.5px;
+      color: #382e32;
+      line-height: 1.6;
+    }
+
+    /* Typography in Articles */
     .content h1 {
       font-size: 28px;
       font-weight: 800;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border-warm);
-      padding-bottom: 10px;
-      color: #2e292d;
+      color: #262123;
+      margin-bottom: 18px;
+      letter-spacing: 0.03em;
     }
     .content h2 {
       font-size: 20px;
       font-weight: 700;
-      margin-top: 28px;
+      color: #2e292d;
+      margin-top: 30px;
       margin-bottom: 12px;
-      color: #40363a;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 6px;
     }
     .content h3 {
       font-size: 16px;
       font-weight: 700;
+      color: #423b3f;
       margin-top: 20px;
       margin-bottom: 8px;
-      color: #55484d;
     }
     .content p {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 15px;
-      line-height: 1.85;
       margin-bottom: 14px;
-      color: #40383b;
+      font-size: 15px;
+      color: #383134;
+      line-height: 1.8;
     }
     .content ul {
-      padding-left: 24px;
       margin-bottom: 16px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #483f43;
+      padding-left: 20px;
     }
     .content li {
       margin-bottom: 6px;
+      font-size: 14.5px;
+      color: #383134;
+      line-height: 1.7;
     }
     .content hr {
-      border: 0;
+      border: none;
       border-top: 1px dashed var(--border-warm);
       margin: 28px 0;
     }
@@ -295,14 +380,56 @@
       font-family: ui-monospace, Consolas, monospace;
       background-color: #f2e9e6;
       color: var(--rose-deep);
-      padding: 2px 6px;
-      border-radius: 5px;
+      padding: 2px 5px;
+      border-radius: 4px;
       font-size: 13px;
     }
 
-    /* Clickable Wiki Links */
+    /* Diagrams & Code Blocks */
+    .mermaid-diagram {
+      background: #ffffff;
+      border: 1px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 20px 16px;
+      margin: 24px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      box-shadow: 0 2px 10px rgba(140, 75, 87, 0.04);
+    }
+    .mermaid-diagram pre.mermaid {
+      background: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+    }
+    .code-container {
+      margin: 20px 0;
+    }
+    .code-block {
+      background-color: #f7f1ee;
+      color: #382e32;
+      border: 1px solid var(--border-warm);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .code-block code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    /* Wikilinks */
     a.wiki-link {
-      color: var(--rose-accent);
+      color: var(--rose-deep);
       font-weight: 600;
       text-decoration: none;
       border-bottom: 1px dashed var(--rose-accent);
@@ -316,9 +443,19 @@
       border-radius: 4px;
       padding: 2px 4px;
     }
+    /* UNRESOLVED ITEMS: Clean, soft tag with NO line-through or dead gray! */
     .wiki-link-unresolved {
-      color: #a89fa4;
-      text-decoration: line-through;
+      color: #5d5357;
+      background-color: #f6efec;
+      border: 1px solid #ebdcd5;
+      border-radius: 5px;
+      padding: 1px 7px;
+      font-size: 13px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      text-decoration: none;
     }
 
     /* Callout Boxes */
@@ -344,14 +481,15 @@
     .table-container {
       overflow-x: auto;
       margin: 20px 0;
+      border-radius: 10px;
       border: 1px solid var(--border-warm);
-      border-radius: 12px;
+      background-color: #ffffff;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 13px;
+      font-size: 13.5px;
       text-align: left;
     }
     th {
@@ -375,7 +513,7 @@
 
     @media (max-width: 860px) {
       .wiki-container { flex-direction: column; }
-      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; height: auto; }
       .wiki-main { padding: 24px 20px; }
     }
   </style>
@@ -479,6 +617,8 @@
 
       
 
+      
+
       <article class="content">
         <h1>知識庫操作日誌 (Wiki Operations Log)</h1>
 <p>本檔案為時間軸單向追加日誌（Append-only）。記錄所有文獻攝取（Ingest）、綜合查詢回填（Query Backfill）與健康檢查（Lint）之歷程。</p>
@@ -487,7 +627,7 @@
 <ul>
 <li><strong>操作類型</strong>：系統初始化 (System Init)</li>
 <li><strong>完成項目</strong>：</li>
-<li>建立規範手冊 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span>，確立三層架構與 Ingest / Query / Lint 運作流程。</li>
+<li>建立規範手冊 <a href="https://github.com/sasa0905/10/blob/main/AGENTS.md" class="wiki-link" title="AGENTS.md">AGENTS.md</a>，確立三層架構與 Ingest / Query / Lint 運作流程。</li>
 <li>確立採用「由下而上 (Bottom-up)」策略與 APA 7th 證據溯源規範。</li>
 <li>建立全域目錄 <a href="index.html" class="wiki-link" title="index.md">index.md</a> 與日誌 <a href="log.html" class="wiki-link" title="log.md">log.md</a>。</li>
 <li>建立資料夾結構：<code>raw/</code>、<code>wiki/schools/</code>、<code>wiki/theories/</code>、<code>wiki/constructs/</code>、<code>wiki/paradigms-scales/</code>、<code>wiki/controversies/</code>、<code>wiki/sources/</code>。</li>
@@ -495,7 +635,7 @@
 <h2>[2026-11-18] ingest | Conditioned Emotional Reactions (Watson & Rayner, 1920)</h2>
 <ul>
 <li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
-<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/watson-rayner-1920.md</span></li>
+<li><strong>原始來源</strong>：<a href="sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="raw/watson-rayner-1920.md">raw/watson-rayner-1920.md</a></li>
 <li><strong>新建文獻摘要頁</strong>：</li>
 <li><a href="sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="watson-rayner-1920-conditioned-fear">watson-rayner-1920-conditioned-fear</a> (N = 1, 7 次 CS-US 配對, 刺激類化至兔/狗/毛皮大衣/面具, 持續 31 天)</li>
 <li><strong>衍生與更新實體頁面</strong>：</li>
@@ -510,7 +650,7 @@
 <h2>[2026-11-18] ingest | The Origin and Development of Psychoanalysis (Freud, 1910)</h2>
 <ul>
 <li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
-<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/freud-1910.md</span></li>
+<li><strong>原始來源</strong>：<a href="sources/freud-1910-psychoanalysis-origin.html" class="wiki-link" title="raw/freud-1910.md">raw/freud-1910.md</a></li>
 <li><strong>新建文獻摘要頁</strong>：<a href="sources/freud-1910-psychoanalysis-origin.html" class="wiki-link" title="freud-1910-psychoanalysis-origin">freud-1910-psychoanalysis-origin</a> (Anna O. 案例, 壓抑, 夢的工作, 幼兒性慾, 移情)</li>
 <li><strong>衍生實體頁面</strong>：</li>
 <li>流派頁：<a href="schools/psychoanalysis.html" class="wiki-link" title="psychoanalysis">psychoanalysis</a>（建立精神分析學派與潛意識假設）</li>
@@ -522,7 +662,7 @@
 <h2>[2026-11-18] ingest | The Magical Number Seven, Plus or Minus Two (Miller, 1956)</h2>
 <ul>
 <li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
-<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/miller-1956.md</span></li>
+<li><strong>原始來源</strong>：<a href="sources/miller-1956-magical-number-seven.html" class="wiki-link" title="raw/miller-1956.md">raw/miller-1956.md</a></li>
 <li><strong>新建文獻摘要頁</strong>：<a href="sources/miller-1956-magical-number-seven.html" class="wiki-link" title="miller-1956-magical-number-seven">miller-1956-magical-number-seven</a> (單維通道容量 2.6 bits, 立即記憶廣度 7±2, 重新編碼)</li>
 <li><strong>衍生實體頁面</strong>：</li>
 <li>流派頁：<a href="schools/cognitive-psychology.html" class="wiki-link" title="cognitive-psychology">cognitive-psychology</a>（建立認知心理學派與資訊處理觀）</li>
@@ -534,7 +674,7 @@
 <h2>[2026-11-18] ingest | A Theory of Human Motivation (Maslow, 1943)</h2>
 <ul>
 <li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
-<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/maslow-1943.md</span></li>
+<li><strong>原始來源</strong>：<a href="sources/maslow-1943-human-motivation.html" class="wiki-link" title="raw/maslow-1943.md">raw/maslow-1943.md</a></li>
 <li><strong>新建文獻摘要頁</strong>：<a href="sources/maslow-1943-human-motivation.html" class="wiki-link" title="maslow-1943-human-motivation">maslow-1943-human-motivation</a> (五大基本需求, 相對優勢性, 階層反轉例外)</li>
 <li><strong>衍生實體頁面</strong>：</li>
 <li>流派頁：<a href="schools/humanistic-psychology.html" class="wiki-link" title="humanistic-psychology">humanistic-psychology</a>（建立人本主義學派「第三勢力」）</li>
@@ -544,7 +684,7 @@
 <h2>[2026-11-18] ingest | Emotion Circuits in the Brain (LeDoux, 2000)</h2>
 <ul>
 <li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
-<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/ledoux-2000.md</span></li>
+<li><strong>原始來源</strong>：<a href="sources/ledoux-2000-emotion-circuits.html" class="wiki-link" title="raw/ledoux-2000.md">raw/ledoux-2000.md</a></li>
 <li><strong>新建文獻摘要頁</strong>：<a href="sources/ledoux-2000-emotion-circuits.html" class="wiki-link" title="ledoux-2000-emotion-circuits">ledoux-2000-emotion-circuits</a> (側杏仁核感覺介面, 丘腦低路徑/高路徑, LTP 突觸可塑性, 邊緣系統批判)</li>
 <li><strong>衍生實體頁面</strong>：</li>
 <li>流派頁：<a href="schools/neuroscience.html" class="wiki-link" title="neuroscience">neuroscience</a>（建立神經科學與生物心理學派）</li>
@@ -557,7 +697,7 @@
 <ul>
 <li><strong>操作類型</strong>：系統規範升級 (Schema Update)</li>
 <li><strong>更新項目</strong>：</li>
-<li>在 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span> 正式增訂「第 5 章：簡報生成工作流規範 (Presentation Generation Workflow — Graph Schema)」。</li>
+<li>在 <a href="https://github.com/sasa0905/10/blob/main/AGENTS.md" class="wiki-link" title="AGENTS.md">AGENTS.md</a> 正式增訂「第 5 章：簡報生成工作流規範 (Presentation Generation Workflow — Graph Schema)」。</li>
 <li>確立 10 節點 Graph 架構（含覆蓋率關卡、忠實度檢查、渲染相容性檢查、大綱階段人工確認與單頁局部退回修復）。</li>
 <li>確立簡報目錄架構：<code>slides/</code> 與 <code>slides/drafts/</code>。</li>
 <li>固化春櫻豆沙系日系明朝體、大字級與內聯向量 SVG 圖標設計規範。</li>
@@ -578,19 +718,30 @@
 <li><strong>操作類型</strong>：工作流強化升級 (Workflow Enhancement)</li>
 <li><strong>完成項目</strong>：</li>
 <li>簡報檔案結構定案：最新正式檔存放於 <code>slides/<主題>_presentation.html</code>，草稿存於 <code>slides/drafts/</code>（不保留多餘歷史備份）。</li>
-<li>在 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span> 第 5 章增加「圖示完整度專項檢查點」，明訂：零脆弱 Emoji 原則、零外部 CDN 依賴、SVG 格式合法性檢查與安全幾何底座規範。</li>
+<li>在 <a href="https://github.com/sasa0905/10/blob/main/AGENTS.md" class="wiki-link" title="AGENTS.md">AGENTS.md</a> 第 5 章增加「圖示完整度專項檢查點」，明訂：零脆弱 Emoji 原則、零外部 CDN 依賴、SVG 格式合法性檢查與安全幾何底座規範。</li>
 <li>將實務反思的三大防線（Node 3/4 規格前移、Node 7 數值硬斷言、Node 9 靜態代碼掃描閥門）固化入正式 Graph Schema。</li>
 </ul>
-<h2>[2026-11-18] presentation | 各流派介紹（全面套用三大防線之正式交付）</h2>
+<h2>[2026-11-19] web | 靜態純 HTML 知識庫生成（零前端框架直接部署）</h2>
 <ul>
-<li><strong>操作類型</strong>：Graph 工作流正式執行 (Graph Execution)</li>
-<li><strong>大綱審查</strong>：<code>slides/drafts/psychology_schools_outline.md</code>（經使用者核准）</li>
-<li><strong>逐頁腳本</strong>：<code>slides/drafts/psychology_schools_script.md</code></li>
-<li><strong>正式交付檔</strong>：<code>slides/psychology_schools_presentation.html</code></li>
-<li><strong>防線檢核紀錄</strong>：</li>
-<li>防線 1（規格前移）：卡片字數 $\le 25$ 字，內置 5 大純向量 SVG 圖標，排版無溢出。</li>
-<li>防線 2（數值硬斷言）：樣本 $N=1$、7 次配對、2.6 bits、$7\pm 2$ vs $4\pm 1$、<20ms 低路徑等數值 100% 吻合 Wiki。</li>
-<li>防線 3（代碼靜態掃描）：字級 $\ge 14\text{px}$、零高位 Emoji、所有 SVG 標籤閉合且合規。</li>
+<li><strong>操作類型</strong>：Web 發布層架構升級 (Zero-Framework Static Export)</li>
+<li><strong>完成項目</strong>：</li>
+<li>將 31 篇 Markdown 筆記全面預先轉譯為純靜態 HTML 頁面（共 33 篇獨立網頁，無 React/Vue/Node.js 等前端框架依賴）。</li>
+<li>所有 <code><span class="wiki-link-unresolved" title="參照項目">雙向鏈接</span></code> 轉化為原生相對路徑 HTML 超連結，點擊即流暢跳轉，瀏覽器上一頁/下一頁原生支援。</li>
+<li>保留春櫻豆沙系日系明朝體、Zen Maru Gothic、Washi 質感與四大高亮引言盒排版。</li>
+<li>支援直接部署至 GitHub Pages 即開即看。</li>
+</ul>
+<h2>[2026-11-19] fix | 修復 Mermaid 圖解渲染與作者文獻鏈接反灰問題</h2>
+<ul>
+<li><strong>操作類型</strong>：渲染相容性修復與鏈接解析升級 (Renderer Fix & Link Resolving)</li>
+<li><strong>問題根因</strong>：</li>
+</ul>
+<p>1. Markdown 轉 HTML 編譯器未處理 Fenced Code Blocks，導致 7 處 Mermaid 圖表代碼被當作普通段落渲染，流程圖與圖解無法顯現。</p>
+<p>2. 未解析的 <code><span class="wiki-link-unresolved" title="參照項目">wikilinks</span></code> 原先採用了 <code>text-decoration: line-through; color: #a89fa4</code> 刪除線樣式，且文獻縮寫與別名未登錄，致使所有作者文獻（如 Watson & Rayner 1920、Freud 1910）均顯示為帶斜線的反灰刪除文字。</p>
+<ul>
+<li><strong>修復項目</strong>：</li>
+<li>導入 Mermaid 10 向量圖渲染引擎，完整支援 7 份理論、構念與文獻模型圖解及 ASCII 代碼塊。</li>
+<li>徹底移除 <code>line-through</code> 刪除線樣式，全面重構全域雙向關聯字典，智慧對照五大奠基論文縮寫、學者名稱與正文別名。</li>
+<li>在論文摘要頁增加獨立完整的 APA 7th 官方文獻出處專屬卡片與作者溫潤標籤。</li>
 </ul>
       </article>
     </main>
