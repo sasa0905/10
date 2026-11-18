@@ -20,12 +20,12 @@ raw_file: "../raw/ledoux-2000.md"
 
 > [!abstract] 核心發現
 > Joseph LeDoux 突破了傳統模糊的「邊緣系統（Limbic System）」概念，透過巴夫洛夫恐懼制約典範，精確解構了大腦情緒學習與記憶的神經解剖與分子機制：
-> 1. **感覺介面 (Sensory Interface)**：側杏仁核（Lateral Amygdala, LA）是聽覺與各類感覺刺激進入杏仁核的核心入口，也是 CS（制約刺激）與 US（嫌惡刺激）資訊匯聚與突觸可塑性發生的關鍵中樞。
-> 2. **雙路徑傳導 (Dual Pathways)**：
+> * **感覺介面 (Sensory Interface)**：側杏仁核（Lateral Amygdala, LA）是聽覺與各類感覺刺激進入杏仁核的核心入口，也是 CS（制約刺激）與 US（嫌惡刺激）資訊匯聚與突觸可塑性發生的關鍵中樞。
+> * **雙路徑傳導 (Dual Pathways)**：
 >    * **低路徑 (Low Road, 丘腦 $\rightarrow$ 側杏仁核)**：反應延遲極短（$<20\text{ ms}$），提供快速、粗糙的無意識危機警報。
 >    * **高路徑 (High Road, 丘腦 $\rightarrow$ 聽覺皮質 $\rightarrow$ 側杏仁核)**：處理複雜、精細的情境刺激表徵。
-> 3. **輸出中樞 (Output Central)**：中央杏仁核（Central Amygdala, CE）負責統籌控制防衛行為（導水管周圍灰質 PAG $\rightarrow$ 僵直 Freezing）、自主神經亢奮（外側下視丘 LH $\rightarrow$ 血壓上升）及壓力荷爾蒙分泌（終紋床核 BNST $\rightarrow$ 腎上腺皮質軸 HPA）。
-> 4. **情境恐懼與雙重解離**：情境恐懼需海馬迴參與。人類雙重解離研究（Bechara et al., 1995）證實杏仁核損毀喪失內隱情緒制約，但外顯記憶完好；海馬迴損毀則喪失外顯記憶但情緒制約完好。
+> * **輸出中樞 (Output Central)**：中央杏仁核（Central Amygdala, CE）負責統籌控制防衛行為（導水管周圍灰質 PAG $\rightarrow$ 僵直 Freezing）、自主神經亢奮（外側下視丘 LH $\rightarrow$ 血壓上升）及壓力荷爾蒙分泌（終紋床核 BNST $\rightarrow$ 腎上腺皮質軸 HPA）。
+> * **情境恐懼與雙重解離**：情境恐懼需海馬迴參與。人類雙重解離研究（Bechara et al., 1995）證實杏仁核損毀喪失內隱情緒制約，但外顯記憶完好；海馬迴損毀則喪失外顯記憶但情緒制約完好。
 
 ---
 

@@ -25,11 +25,11 @@ graph LR
     BLACKBOX --> RESP["外顯可測反應 (Response)<br>行為動作、恐懼哭泣、逃避爬離"]
 ```
 
-1. **古典制約 (Classical Conditioning)**：
+* **古典制約 (Classical Conditioning)**：
    * 源自 Ivan Pavlov 的唾液反射實驗，後由 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 引入人類情緒與恐懼形成的研究中。
-2. **操作制約 (Operant Conditioning)**：
+* **操作制約 (Operant Conditioning)**：
    * 後期由 B. F. Skinner 發展，強調行為結果（增強 Reinforcement / 懲罰 Punishment）對行為發生頻率的決定性影響。
-3. **刺激-反應模型 (S-R Framework)**：
+* **刺激-反應模型 (S-R Framework)**：
    * 將人體視為黑盒子（Black Box），只關注輸入的環境刺激（S）與輸出的行為反應（R），認為透過精準控制環境條件即可預測並塑造行為。
 
 ---

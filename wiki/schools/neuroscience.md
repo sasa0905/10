@@ -28,11 +28,11 @@ graph LR
     CE ==> DEFENSE["自主神經 / 僵直行為 (Freezing)"]
 ```
 
-1. **情緒迴路解剖學 (Emotion Circuits)**：
+* **情緒迴路解剖學 (Emotion Circuits)**：
    * 突破傳統模糊的「邊緣系統」假設，精確解析以杏仁核為核心的威脅偵測與防衛系統（[[dual-route-emotion-theory|情緒雙路徑理論]]）。
-2. **學習與記憶的分子機制**：
+* **學習與記憶的分子機制**：
    * 突觸長時程增益（[[synaptic-plasticity-ltp|LTP]]）、受體機制（NMDA、L-型鈣離子通道）與基因轉錄（CREB）所介導的蛋白質合成。
-3. **記憶系統的多重解離 (Multiple Memory Systems)**：
+* **記憶系統的多重解離 (Multiple Memory Systems)**：
    * 內隱情緒記憶（杏仁核管轄）與外顯陳述性記憶（海馬迴管轄）的解剖解離。
 
 ---

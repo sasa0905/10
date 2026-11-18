@@ -27,11 +27,11 @@ graph LR
     LTM -.->|由上而下提取脈絡| STM
 ```
 
-1. **人類訊息處理模型 (Information-Processing Model)**：
+* **人類訊息處理模型 (Information-Processing Model)**：
    * 將心智類比為計算機硬體與軟體，研究資訊如何由感官輸入、短時暫存、編碼轉化並進入長時記憶。
-2. **容量限制與瓶頸理論 (Capacity Limitations)**：
+* **容量限制與瓶頸理論 (Capacity Limitations)**：
    * 人類處理外部世界的資訊通道容量是有限的（如 [[channel-capacity|通道容量]] 與 [[short-term-memory-span|短期記憶廣度]]）。
-3. **主動重新編碼 (Active Recoding)**：
+* **主動重新編碼 (Active Recoding)**：
    * 個體並非被動接受刺激，而是透過組織、概念分類與 [[chunking|訊息組塊]] 主動擴增處理效能。
 
 ---

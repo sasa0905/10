@@ -28,11 +28,11 @@ related_sources: ["[[watson-rayner-1920-conditioned-fear]]"]
 
 心理學界長期關心 Albert 離院後的命運，近年歷史考證出現了重大爭端：
 
-1. **Douglas Merritte 假說 (Beck, Levinson, & Irons, 2009)**：
+* **Douglas Merritte 假說 (Beck, Levinson, & Irons, 2009)**：
    * 考證指出 Albert 真實身分為 Douglas Merritte，其母親為乳母 Arvilla Merritte。
    * **震撼發現**：醫療紀錄顯示該男嬰自幼患有先天性腦積水（Hydrocephalus），伴隨嚴重視神經與神經系統損傷，於 6 歲時早夭。
    * **學術震盪**：若被試原本即有神經認知病變，Watson 在論文中宣稱其「健康正常、性格穩定」即屬嚴重學術不端（Misrepresentation）。
-2. **William Barger 假說 (Powell et al., 2014)**：
+* **William Barger 假說 (Powell et al., 2014)**：
    * 隨後學者提出反證，認為 Albert 其實是另一名乳母的孩子 William Barger。
    * 該男嬰發育完全正常，成年後以普通人身分生活，於 2007 年高齡 87 歲逝世。據親友回憶，他終生對犬類確實抱有莫名的厭惡。
 

@@ -20,9 +20,9 @@ raw_file: "../raw/miller-1956.md"
 
 > [!abstract] 核心發現
 > George Miller 將資訊理論（Information Theory）引進認知心理學，揭示了人類認知架構中兩項截然不同但極度關鍵的容量瓶頸：
-> 1. **絕對判斷之通道容量 (Channel Capacity)**：人類對單一維度刺激（音高、響度、味道、線段長度）的絕對辨識能力上限為 **$2.6\text{ bits}$（約 5 到 9 個類別，平均 6.5 個）**。增加刺激的維度能提升容量，但增長幅度遞減。
-> 2. **立即記憶廣度 (Immediate Memory Span)**：短期記憶容量受到 **組塊數量（Chunks）** 而非資訊位元（Bits）的嚴格限制，恆常維持在 **$7 \pm 2$ 個組塊**。
-> 3. **重新編碼（Recoding / Chunking）**：人類透過將分散的刺激組合成高層次、有意義的結構（如語詞、代碼），能大幅克服短期記憶的容量瓶頸。
+> * **絕對判斷之通道容量 (Channel Capacity)**：人類對單一維度刺激（音高、響度、味道、線段長度）的絕對辨識能力上限為 **$2.6\text{ bits}$（約 5 到 9 個類別，平均 6.5 個）**。增加刺激的維度能提升容量，但增長幅度遞減。
+> * **立即記憶廣度 (Immediate Memory Span)**：短期記憶容量受到 **組塊數量（Chunks）** 而非資訊位元（Bits）的嚴格限制，恆常維持在 **$7 \pm 2$ 個組塊**。
+> * **重新編碼（Recoding / Chunking）**：人類透過將分散的刺激組合成高層次、有意義的結構（如語詞、代碼），能大幅克服短期記憶的容量瓶頸。
 
 ---
 
@@ -39,12 +39,12 @@ raw_file: "../raw/miller-1956.md"
 
 ```mermaid
 graph TD
-    subgraph S1 ["1. 絕對判斷：通道容量 (Channel Capacity)"]
+    subgraph S1 ["【通道容量】絕對判斷 (Channel Capacity)"]
         IN1["單維刺激 (音高/音量/味覺)"] --> CAP1["單維極限約 2.6 bits<br>(僅能精準辨識約 6.5 種等級)"]
         IN_MULTI["多維刺激複合 (音高+音量+位置)"] --> CAP_MULTI["容量擴增但具邊際遞減效應"]
     end
 
-    subgraph S2 ["2. 立即記憶：組塊容量 (Memory Span & Chunks)"]
+    subgraph S2 ["【組塊容量】立即記憶 (Memory Span & Chunks)"]
         BITS["資訊位元數量 (Bits)"] -->|非記憶瓶頸| CHUNKS["組塊常數限制: 7 ± 2 個 Chunks"]
         RECODE["主動重新編碼 (Recoding)"] -->|結合長時記憶語意網絡| COMBO["將多個 Bits 打包成 1 個 Chunk<br>倍數擴增心智處理總量"]
     end

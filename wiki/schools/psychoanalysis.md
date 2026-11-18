@@ -30,14 +30,14 @@ graph TD
     U -.->|壓抑突破| SYMPTOM["神經症症狀 / 夢境象徵 / 口誤"]
 ```
 
-1. **意識三層次與心理結構**：
+* **意識三層次與心理結構**：
    * 意識（Conscious）、前意識（Preconscious）、潛意識（Unconscious）。
    * 本我（Id，遵循享樂原則）、自我（Ego，遵循現實原則）、超我（Superego，遵循道德原則）。
-2. **壓抑與心理防衛機制 (Defense Mechanisms)**：
+* **壓抑與心理防衛機制 (Defense Mechanisms)**：
    * 當衝突過於痛苦，自我發動「[[repression|壓抑]]」封鎖記憶；當壓抑失效，則藉由身體化轉換（Conversion）、置換或投影形成症狀。
-3. **性動力與發展階段**：
+* **性動力與發展階段**：
    * 心理性慾能量（Libido）自嬰兒期即存在（[[infantile-sexuality|幼兒性慾]]），經歷口腔期、肛門期、性器期（伊底帕斯情結），並可能發生固著（Fixation）與退行（Regression）。
-4. **精神分析治療核心**：
+* **精神分析治療核心**：
    * [[talking-cure-catharsis|談話療法與情緒宣洩]]、自由聯想、夢的解析、[[transference|移情作用]] 之解析與修通。
 
 ---

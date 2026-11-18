@@ -125,6 +125,14 @@
   - 檢索全專案所有 Markdown 實體與互動簡報，將所有樣本數（$N = 1$、$N = 15$）、容量限制常數（$7 \pm 2$、$4 \pm 1$）、資訊理論數值（$\mu = 2.6\text{ bits}$、$\sigma \approx 0.6\text{ bits}$、$2.5\text{ bits}$、$2.3\text{ bits}$、$1.9\text{ bits}$、$3.25\text{ bits}$、$4.6\text{ bits}$、$7.2\text{ bits}$）、指數運算（$2^{2.6} \approx 6.5$）、反應延遲（$< 20\text{ ms}$）、顯著性（$p < .01$）及離散位元單位（$1\text{ bit/item}$、$3.3\text{ bits/item}$、$4.7\text{ bits/item}$、$\approx 10\text{ bits/item}$）全面統一改採標準 LaTeX 數學語法。
   - 在全站與簡報中強化 KaTeX 載入生命週期與多重喚醒機制（`onload`、`DOMContentLoaded`、定時重掃），確保公式 100% 準確轉換為向量級數學排版。
 
+## [2026-11-19] refactor | 需求階層精簡為純金字塔架構，並貫徹「僅小標加標號、底下內文不加標號」排版規範
+- **操作類型**：視覺與列表排版層級規範重構 (Layout Simplification & Numbering Hierarchy Normalization)
+- **完成項目**：
+  - **需求階層理論精簡**：在 `theories/hierarchy-of-needs.md` 與 `sources/maslow-1943-human-motivation.md` 中，依使用者需求徹底移除上方多餘的 Mermaid 流程圖，僅保留核心階層金字塔圖形，並移除金字塔內各層級項目前綴之數字標號（5~1）。
+  - **貫徹標號層級規範**：全站貫徹「只有小標題（`## 1.`、`## 2.`、`### 2.1`、`【階段 1】` 等）加標號，底下項目內容、引言盒列舉與子節清單一律不加標號（統一改為圓點項目清單 `*`）」的視覺原則，遍歷並重構 18 個 Markdown 實體頁面（含 5 大學派、5 大來源文獻、構念、爭端與實驗典範）。
+  - **靜態編譯與重構**：執行編譯器重新生成全庫 33 篇靜態 HTML 頁面，確保金字塔圖形、KaTeX 數學排版與雙向導覽無縫運作。
+
+
 
 
 

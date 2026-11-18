@@ -20,11 +20,11 @@ raw_file: "../raw/freud-1910.md"
 
 > [!abstract] 核心發現
 > 佛洛伊德於美國克拉克大學 20 週年校慶發表的五場歷史性演講，系統闡述精神分析的起源與核心機制：
-> 1. 歇斯底里症（Hysteria）源於過去創傷回憶的積壓，病患「深受回憶所苦（suffer from reminiscences）」，情緒能量轉化為軀體症狀（身體化轉換 Conversion）。
-> 2. 創傷記憶被自我的道德防衛機制「壓抑（Repression）」至潛意識，但壓抑失敗產生症狀替代（Ersatzbildung）。
-> 3. 自由聯想與「夢的解析（Traumdeutung）」是通往潛意識的康莊大道（via regia）。
-> 4. 神經症的病因追溯至童年期的「幼兒性慾（Infantile Sexuality）」與伊底帕斯情結（Oedipus Complex）。
-> 5. 治療的關鍵在於引導「移情（Transference）」並將本能驅力轉化為「昇華（Sublimation）」。
+> * 歇斯底里症（Hysteria）源於過去創傷回憶的積壓，病患「深受回憶所苦（suffer from reminiscences）」，情緒能量轉化為軀體症狀（身體化轉換 Conversion）。
+> * 創傷記憶被自我的道德防衛機制「壓抑（Repression）」至潛意識，但壓抑失敗產生症狀替代（Ersatzbildung）。
+> * 自由聯想與「夢的解析（Traumdeutung）」是通往潛意識的康莊大道（via regia）。
+> * 神經症的病因追溯至童年期的「幼兒性慾（Infantile Sexuality）」與伊底帕斯情結（Oedipus Complex）。
+> * 治療的關鍵在於引導「移情（Transference）」並將本能驅力轉化為「昇華（Sublimation）」。
 
 ---
 

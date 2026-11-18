@@ -24,11 +24,11 @@ graph BT
     DEFICIT["匱乏性動機 (D-Needs)<br>生理 / 安全 / 愛與歸屬 / 尊嚴"] --> GROWTH["成長性動機 (B-Needs)<br>自我實現 (Self-Actualization)<br>發揮個人全部真善美潛能"]
 ```
 
-1. **需求階層與相對優勢 (Hierarchy of Needs)**：
+* **需求階層與相對優勢 (Hierarchy of Needs)**：
    * [[hierarchy-of-needs|需求階層理論]]：從底層生理、安全、愛、自尊，逐層晉級至頂層的 [[self-actualization|自我實現]]。
-2. **自我實現傾向 (Actualizing Tendency)**：
+* **自我實現傾向 (Actualizing Tendency)**：
    * 借鑒 Kurt Goldstein 的有機體理論，認為個體有將自身全部潛力轉化為現實的強大衝動（「一個人能成為什麼，他就必須成為什麼」）。
-3. **當事人中心與無條件正向關懷 (Person-Centered)**：
+* **當事人中心與無條件正向關懷 (Person-Centered)**：
    * Carl Rogers 提倡真誠一致、共情理解與無條件接納，促成個體自我概念與真實經驗的整合。
 
 ---

@@ -17,9 +17,9 @@ related_sources: ["[[freud-1910-psychoanalysis-origin]]"]
 ## 1. 潛意識的運作特質 (Freud, 1910)
 
 根據 [[freud-1910-psychoanalysis-origin|Freud (1910)]] 在克拉克大學的闡述：
-1. **動態活躍性 (Dynamic Nature)**：被壓抑進潛意識的願望並非處於休眠狀態，而是持續向外尋求表現機會。
-2. **象徵性偽裝 (Disguised Representation)**：為了躲避意識守衛（阻抗 Resistance），潛意識內容會轉化為替代產物（Ersatzbildung），如夢境、神經症軀體症狀、口誤（Fehlhandlungen）或機智幽默（Wit）。
-3. **超越常規理性**：潛意識不受時間順序、矛盾律或外在現實法則約束（原發歷程思維 Primary Process Thinking）。
+* **動態活躍性 (Dynamic Nature)**：被壓抑進潛意識的願望並非處於休眠狀態，而是持續向外尋求表現機會。
+* **象徵性偽裝 (Disguised Representation)**：為了躲避意識守衛（阻抗 Resistance），潛意識內容會轉化為替代產物（Ersatzbildung），如夢境、神經症軀體症狀、口誤（Fehlhandlungen）或機智幽默（Wit）。
+* **超越常規理性**：潛意識不受時間順序、矛盾律或外在現實法則約束（原發歷程思維 Primary Process Thinking）。
 
 ---
 

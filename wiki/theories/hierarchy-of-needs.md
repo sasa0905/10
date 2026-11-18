@@ -15,31 +15,18 @@ related_constructs: ["[[self-actualization]]", "[[prepotency]]", "[[basic-needs]
 
 ## 1. 五層階層結構 (The Five Levels)
 
-```mermaid
-graph BT
-    L1["1. 生理需求 (Physiological)<br>體內恆定、食物、水、睡眠、空氣"] --> L2["2. 安全需求 (Safety)<br>人身安全、秩序結構、穩定性、免於恐懼"]
-    L2 --> L3["3. 愛與歸屬 (Love &amp; Belongingness)<br>友誼、愛情、家庭、群體接納"]
-    L3 --> L4["4. 自尊需求 (Esteem)<br>勝任能力、自尊自信、社會地位、認可"]
-    L4 --> L5["5. 自我實現 (Self-Actualization)<br>充分發揮個人全部潛能、真善美、創造力"]
-
-    classDef basic fill:#faf5f3,stroke:#c27685,stroke-width:1.5px;
-    classDef peak fill:#fdf0f2,stroke:#8c4b57,stroke-width:2.5px;
-    class L1,L2,L3,L4 basic;
-    class L5 peak;
-```
-
 ```text
                ▲
               / \
-             /   \      5. 自我實現需求 (Self-Actualization)
+             /   \      自我實現需求 (Self-Actualization)
             /-----\        追求發揮個人全部潛能、真善美、創造力
-           /       \    4. 自尊需求 (Esteem)
+           /       \    自尊需求 (Esteem)
           /---------\      自我價值感、勝任能力、社會認可、聲譽
-         /           \  3. 愛與歸屬需求 (Love & Belongingness)
+         /           \  愛與歸屬需求 (Love & Belongingness)
         /-------------\    友誼、愛情、家庭、群體接納
-       /               \2. 安全需求 (Safety)
+       /               \安全需求 (Safety)
       /-----------------\  人身安全、秩序結構、穩定性、免於恐懼
-     /                   \1. 生理需求 (Physiological)
+     /                   \生理需求 (Physiological)
     /---------------------\ 體內恆定、食物、水、睡眠、空氣
 ```
 

@@ -23,7 +23,7 @@ graph TD
         CS1["中性制約刺激 (CS)<br>例：小白鼠"] --> NR1["中性探索反應<br>好奇伸手觸摸、無恐懼"]
     end
 
-    S1 ==>|"經過多次時間伴隨配對（累積 7 次聯合刺激）"| S2
+    S1 == "經過多次時間伴隨配對（累積 7 次聯合刺激）" ==> S2
 
     subgraph S2 ["【階段 2】制約配對 (Conditioning Phase)"]
         direction LR
@@ -32,7 +32,7 @@ graph TD
         PAIR --> UR2["非制約驚嚇反應 (UR)<br>跳動倒地、劇烈嗚咽"]
     end
 
-    S2 ==>|"神經聯結固化：中性刺激轉化為威脅信號"| S3
+    S2 == "神經聯結固化：中性刺激轉化為威脅信號" ==> S3
 
     subgraph S3 ["【階段 3】制約後 (Post-conditioning)"]
         direction LR

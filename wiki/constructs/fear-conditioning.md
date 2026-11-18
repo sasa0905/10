@@ -35,9 +35,9 @@ related_constructs: ["[[stimulus-generalization]]", "[[extinction]]"]
 
 ## 2. 相關機制與伴隨反應 (Mechanisms & Reactions)
 
-1. **防衛性補償行為 (Compensatory Device)**：
+* **防衛性補償行為 (Compensatory Device)**：
    * 在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 中觀察到，受試嬰兒在面臨高度恐懼威脅時，會自發進行「吸吮拇指（Thumb-sucking）」，一旦手指放入口中，恐懼反應即被顯著抑制與阻斷。這顯示自發性的愉悅刺激接觸可作為對抗負向情緒的補償通道。
-2. **刺激擴散性**：
+* **刺激擴散性**：
    * 恐懼制約一旦成形，極易沿著物體表面特徵（如白毛、柔軟質地）自發擴散，形成 [[stimulus-generalization|刺激類化]]。
 
 ---
