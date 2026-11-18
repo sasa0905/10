@@ -29,7 +29,7 @@
 * [壓抑 (Repression)](constructs/repression.md) — 自我最重要的心理防衛機制，主動將不相容的痛苦願望驅逐出意識層面。
 * [移情作用 (Transference)](constructs/transference.md) — 病患將早年重要客體的情感無意識投射至治療師身上，為分析治療的核心催化劑。
 * [訊息組塊 (Chunking)](constructs/chunking.md) — 將零散低階資訊重新組織為有意義的高階單元，以克服短期記憶容量瓶頸。
-* [通道容量 (Channel Capacity)](constructs/channel-capacity.md) — 人類對單維度感覺刺激進行絕對判斷的極限（平均約 2.6 bits，約 7 個類別）。
+* [通道容量 (Channel Capacity)](constructs/channel-capacity.md) — 人類對單維度感覺刺激進行絕對判斷的極限（平均約 .6\text{ bits}$，約 7 個類別）。
 * [自我實現 (Self-Actualization)](constructs/self-actualization.md) — 個體追求充分發揮全部內在才能、創造力與生命可能性的最高階成長動機。
 
 ---
@@ -43,9 +43,9 @@
 ---
 
 ## ⚖️ 學術爭端與複製檢驗 (Controversies & Replication)
-* [小阿爾伯特重複性檢驗與學術爭辯 (Little Albert Debate)](controversies/little-albert-replication-debate.md) — 聚焦於 $N=1$ 方法缺陷、Bregman (1934) 複製失敗、被試先天腦積水疑雲與重大研究倫理爭議。
+* [小阿爾伯特重複性檢驗與學術爭辯 (Little Albert Debate)](controversies/little-albert-replication-debate.md) — 聚焦於 $N = 1$ 方法缺陷、Bregman (1934) 複製失敗、被試先天腦積水疑雲與重大研究倫理爭議。
 * [行為學派 vs 精神分析：恐懼症成因論戰 (Etiology of Phobias Debate)](controversies/behaviorism-vs-psychoanalysis.md) — S-R 環境制約反射論與童年潛意識性壓抑論在恐懼病理成因上的世紀交鋒。
-* [短期記憶容量爭辯：7±2 vs 4±1 (Memory Capacity Debate)](controversies/chunking-capacity-cowan-debate.md) — 探討 Miller 的 7 個項目是否混雜了語音複誦，當代純工作記憶焦點容量修正為 4。
+* [短期記憶容量爭辯： \pm 2$ vs.  \pm 1$ (Memory Capacity Debate)](controversies/chunking-capacity-cowan-debate.md) — 探討 Miller 的 7 個項目是否混雜了語音複誦，當代純工作記憶焦點容量修正為 4。
 * [杏仁核記憶儲存 vs 調節爭端 (Amygdala Storage vs. Modulation)](controversies/amygdala-storage-vs-modulation.md) — 杏仁核究竟是恐懼記憶獲得的直接突觸儲存中樞（LeDoux），還是其他記憶系統的調節器（McGaugh）。
 
 ---
@@ -53,6 +53,6 @@
 ## 📄 論文文獻庫 (Sources)
 * [Watson & Rayner (1920) Conditioned Emotional Reactions](sources/watson-rayner-1920-conditioned-fear.md) — 行為主義奠基文獻；以 7 次鋼條巨響配對在男嬰 Albert 身上確立恐懼制約與毛皮物體類化。
 * [Freud (1910) The Origin and Development of Psychoanalysis](sources/freud-1910-psychoanalysis-origin.md) — 精神分析登陸美國之經典五講；系統闡釋 Anna O. 案例、壓抑、夢的解析、幼兒性慾與移情。
-* [Miller (1956) The Magical Number Seven, Plus or Minus Two](sources/miller-1956-magical-number-seven.md) — 認知心理學里程碑；確立單維通道容量 2.6 bits 與短期記憶 $7 \pm 2$ 組塊限制。
+* [Miller (1956) The Magical Number Seven, Plus or Minus Two](sources/miller-1956-magical-number-seven.md) — 認知心理學里程碑；確立單維通道容量 .6\text{ bits}$ 與短期記憶 $7 \pm 2$ 組塊限制。
 * [Maslow (1943) A Theory of Human Motivation](sources/maslow-1943-human-motivation.md) — 人本主義動機開山之作；提出五大需求階層、相對優勢性與自我實現概念。
 * [LeDoux (2000) Emotion Circuits in the Brain](sources/ledoux-2000-emotion-circuits.md) — 情緒神經科學權威綜述；解構杏仁核感覺介面、丘腦低路徑/高路徑、中央核輸出與 LTP 分子機制。

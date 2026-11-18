@@ -16,13 +16,13 @@ key_sources: ["[[miller-1956-magical-number-seven]]"]
 ## 1. 實驗設計與材料變異 (Miller, 1956)
 
 [[miller-1956-magical-number-seven|Miller (1956)]] 引述 Hayes (1952) 的經典實驗，比較了不同資訊密度材料下的廣度表現：
-* **二進位數字 (Binary Digits, 1 bit/item)**：廣度約為 **9 個項目**。
-* **十進位數字 (Decimal Digits, 3.3 bits/item)**：廣度約為 **7 到 8 個項目**。
-* **英文字母 (Letters, 4.7 bits/item)**：廣度約為 **6 到 7 個項目**。
-* **單音節英文單字 (Monosyllables, ~10 bits/item)**：廣度約為 **5 個項目**。
+* **二進位數字 (Binary Digits, $1\text{ bit/item}$)**：廣度約為 **$9$ 個項目**。
+* **十進位數字 (Decimal Digits, $3.3\text{ bits/item}$)**：廣度約為 **$7 \sim 8$ 個項目**。
+* **英文字母 (Letters, $4.7\text{ bits/item}$)**：廣度約為 **$6 \sim 7$ 個項目**。
+* **單音節英文單字 (Monosyllables, $\approx 10\text{ bits/item}$)**：廣度約為 **$5$ 個項目**。
 
 ---
 
 ## 2. 理論核心：證明「組塊」容量恆定
 
-* 雖然單字與二進位數字的「資訊量（Bits）」相差 10 倍，但受試者能記憶的項目數量僅從 9 掉到 5，證明限制記憶廣度的並非資訊位元量，而是「獨立組塊（Chunks）」的數量，正常成人平均恆定在 **$7 \pm 2$**。
+* 雖然單字與二進位數字的「資訊量（Bits）」相差 $10$ 倍，但受試者能記憶的項目數量僅從 $9$ 掉到 $5$，證明限制記憶廣度的並非資訊位元量，而是「獨立組塊（Chunks）」的數量，正常成人平均恆定在 **$7 \pm 2$**。

@@ -10,7 +10,7 @@ theories: ["[[dual-route-emotion-theory|情緒雙路徑理論]]", "[[classical-c
 constructs: ["[[fear-conditioning|恐懼制約]]", "[[synaptic-plasticity-ltp|突觸可塑性與長時程增益]]"]
 paradigms: ["[[auditory-fear-conditioning-paradigm|聽覺恐懼制約神經實驗典範]]"]
 sample_size: "齧齒類動物神經損毀/電生理記錄 (多個實驗組，N 遍及大鼠、貓、靈長類與人類 fMRI/損毀案例)"
-effect_size: "丘腦-杏仁核神經反應延遲 < 20 ms；單元放電與場電位顯著增強 (p < .01)"
+effect_size: "丘腦-杏仁核神經反應延遲 $< 20\\text{ ms}$；單元放電與場電位顯著增強 ($p < .01$)"
 preregistered: false
 replication_status: "supported"
 raw_file: "../raw/ledoux-2000.md"

@@ -502,10 +502,22 @@ def build_html_page(note, current_html_path):
   <!-- KaTeX for mathematical notation rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKatexMath()"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
+    function renderKatexMath() {{
+      if (window.renderMathInElement) {{
+        renderMathInElement(document.body, {{
+          delimiters: [
+            {{left: '$$', right: '$$', display: true}},
+            {{left: '$', right: '$', display: false}}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
+        }});
+      }}
+    }}
     document.addEventListener("DOMContentLoaded", function() {{
       if (window.mermaid) {{
         mermaid.initialize({{
@@ -530,16 +542,9 @@ def build_html_page(note, current_html_path):
           }}
         }});
       }}
-      if (window.renderMathInElement) {{
-        renderMathInElement(document.body, {{
-          delimiters: [
-            {{left: '$$', right: '$$', display: true}},
-            {{left: '$', right: '$', display: false}}
-          ],
-          ignoredClasses: ['mermaid', 'code-block', 'pre'],
-          throwOnError: false
-        }});
-      }}
+      renderKatexMath();
+      setTimeout(renderKatexMath, 150);
+      setTimeout(renderKatexMath, 500);
     }});
   </script>
   <style>

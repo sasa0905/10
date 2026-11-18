@@ -10,10 +10,22 @@
   <!-- KaTeX for mathematical notation rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKatexMath()"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
+    function renderKatexMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
+        });
+      }
+    }
     document.addEventListener("DOMContentLoaded", function() {
       if (window.mermaid) {
         mermaid.initialize({
@@ -38,16 +50,9 @@
           }
         });
       }
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false}
-          ],
-          ignoredClasses: ['mermaid', 'code-block', 'pre'],
-          throwOnError: false
-        });
-      }
+      renderKatexMath();
+      setTimeout(renderKatexMath, 150);
+      setTimeout(renderKatexMath, 500);
     });
   </script>
   <style>
@@ -673,14 +678,14 @@
       
 
       <article class="content">
-        <h1>短期記憶容量之爭：神奇數字 7±2 還是 4±1？</h1>
+        <h1>短期記憶容量之爭：神奇數字 $7 \pm 2$ 還是 $4 \pm 1$？</h1>
 <div class="callout callout-important"><div class="callout-title">⚖️ 核心學術爭端與理論衝突</div><div class="callout-body"><p>核心爭端概述</p>
 <p><a href="../sources/miller-1956-magical-number-seven.html" class="wiki-link" title="George Miller (1956)">George Miller (1956)</a> 提出的神奇數字 $7 \pm 2$ 長年成為大眾心理學的常識。然而進入 21 世紀後，Nelson Cowan (2001) 與當代認知心理學家透過嚴密排除「語音複誦」與「長時記憶組塊」的實驗設計，證明人類純粹的工作記憶核心容量其實只有 <strong>$4 \pm 1$ 個組塊</strong>。</p></div></div>
 <hr>
 <h2>1. 雙方論點與實驗控制差異</h2>
 <div class="table-container"><table>
 <thead><tr><th>維度</th><th>Miller (1956) 的 $7 \pm 2$ 模型</th><th>Cowan (2001) 的 $4 \pm 1$ 核心模型</th></tr></thead><tbody>
-<tr><td><strong>宣稱容量</strong></td><td>$7 \pm 2$ 個組塊</td><td>$4 \pm 1$ 個組塊（通常為 3 到 5 個）</td></tr>
+<tr><td><strong>宣稱容量</strong></td><td>$7 \pm 2$ 個組塊</td><td>$4 \pm 1$ 個組塊（通常為 $3 \sim 5$ 個）</td></tr>
 <tr><td><strong>實驗條件</strong></td><td>允許受試者在心裡默唸（語音複誦 Subvocal Rehearsal）與自發重編碼。</td><td>嚴格使用口語抑制作業（Articulatory Suppression）或瞬間視覺陣列，禁止默誦。</td></tr>
 <tr><td><strong>容量本質</strong></td><td>複合性短期記憶廣度（包含周邊感覺緩衝、語音迴路與長時知識調用）。</td><td>中央執行注意力焦點（Focus of Attention）的純粹工作記憶上限。</td></tr>
 </tbody></table></div>
@@ -688,11 +693,11 @@
 <h2>2. 為什麼 Miller 當年會測出 7？</h2>
 <p>1. <strong>語音迴路 (Phonological Loop) 的時間滾動</strong>：</p>
 <ul>
-<li>Alan Baddeley 發現短期記憶受限於「約 2 秒內能唸完的詞彙量」。當呈現十進位數字時，多數人能在 2 秒內於心中默誦 7 個數字，使得表觀廣度達到了 7。</li>
+<li>Alan Baddeley 發現短期記憶受限於「約 $2\text{ 秒}$內能唸完的詞彙量」。當呈現十進位數字時，多數人能在 $2\text{ 秒}$內於心中默誦 $7$ 個數字，使得表觀廣度達到了 $7$。</li>
 </ul>
 <p>2. <strong>長時記憶的隱性支援</strong>：</p>
 <ul>
-<li>在記憶數字時，受試者會下意識將「1, 9, 8, 4」結合為長時記憶中的「1984年」，偷渡了組塊資訊。</li>
+<li>在記憶數字時，受試者會下意識將「$1, 9, 8, 4$」結合為長時記憶中的「$1984\text{年}$」，偷渡了組塊資訊。</li>
 </ul>
 <hr>
 <h2>3. 當代理論共識</h2>

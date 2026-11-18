@@ -10,7 +10,7 @@ theories: ["[[information-processing-theory|人類訊息處理理論]]"]
 constructs: ["[[chunking|訊息組塊]]", "[[channel-capacity|通道容量]]", "[[short-term-memory-span|短期記憶廣度]]"]
 paradigms: ["[[absolute-judgment-paradigm|絕對判斷實驗典範]]", "[[immediate-memory-span-task|立即記憶廣度作業]]"]
 sample_size: "彙整多項心理物理學實驗（Pollack, Garner, Hake, Hayes, Smith 等研究數據）"
-effect_size: "單維通道容量平均 2.6 bits (SD = 0.6 bit)；立即記憶廣度約 7 個組塊"
+effect_size: "單維通道容量平均 $2.6\\text{ bits}$ ($\\text{SD} = 0.6\\text{ bit}$)；立即記憶廣度約 $7 \\pm 2$ 個組塊"
 preregistered: false
 replication_status: "mixed"
 raw_file: "../raw/miller-1956.md"
@@ -52,17 +52,17 @@ graph TD
 
 ### 2.1 單維刺激的絕對判斷通道容量
 Miller 統整了多項經典心理物理學實驗數據：
-* **音高 (Pitch)**（Pollack）：極限約為 **$2.5\text{ bits}$**（約 6 個無法混淆的音高）。
-* **音量 (Loudness)**（Garner）：極限約為 **$2.3\text{ bits}$**（約 5 個等級）。
-* **味覺濃度 (Taste Intensity)**（Beebe-Center et al.）：極限約為 **$1.9\text{ bits}$**（約 4 種鹽水濃度）。
-* **視覺位置 (Visual Position)**（Hake & Garner）：極限約為 **$3.25\text{ bits}$**（10～15 個位置）。
-* **整體單維均值**：$\mu = 2.6\text{ bits}, \sigma = 0.6\text{ bits}$。換算為可辨識類別數約為 $6.5$ 類（$4$ 到 $10$ 之間）。
+* **音高 (Pitch)**（Pollack）：極限約為 **$2.5\text{ bits}$**（約 $6$ 個無法混淆的音高）。
+* **音量 (Loudness)**（Garner）：極限約為 **$2.3\text{ bits}$**（約 $5$ 個等級）。
+* **味覺濃度 (Taste Intensity)**（Beebe-Center et al.）：極限約為 **$1.9\text{ bits}$**（約 $4$ 種鹽水濃度）。
+* **視覺位置 (Visual Position)**（Hake & Garner）：極限約為 **$3.25\text{ bits}$**（$10 \sim 15$ 個位置）。
+* **整體單維均值**：$\mu = 2.6\text{ bits}, \sigma = 0.6\text{ bits}$。換算為可辨識類別數約為 $6.5$ 類（$4 \sim 10$ 之間）。
 
 ### 2.2 關鍵理論突破：Bits vs. Chunks 的分野
-當時學界普遍誤以為「絕對判斷容量」與「立即記憶廣度」（均約為 7）源自同一神經生理瓶頸。Miller 透過嚴密比對 Hayes (1952) 與 Pollack (1953) 的記憶廣度實驗予以推翻：
-* 若短期記憶受限於「資訊量（Bits）」，則二進位數字（1 bit/item）應能記住 23 個，單音節單字（10 bits/item）只能記住 2~3 個。
-* **實驗事實**：受試者能記住 9 個二進位數字、7 個十進位數字、5 個英文單字。
-* **結論**：**立即記憶的上限不是 bits，而是 chunks！**
+當時學界普遍誤以為「絕對判斷容量」與「立即記憶廣度」（均約為 $7$）源自同一神經生理瓶頸。Miller 透過嚴密比對 Hayes (1952) 與 Pollack (1953) 的記憶廣度實驗予以推翻：
+* 若短期記憶受限於「資訊量（Bits）」，則二進位數字（$1\text{ bit/item}$）應能記住 $23$ 個，單音節單字（$10\text{ bits/item}$）只能記住 $2 \sim 3$ 個。
+* **實驗事實**：受試者能記住 $9$ 個二進位數字、$7$ 個十進位數字、$5$ 個英文單字。
+* **結論**：**立即記憶的上限不是 bits，而是 chunks！**（恆常維持在 $7 \pm 2$ 個組塊）。
 
 ### 2.3 重新編碼（Recoding）實驗
 * Sidney Smith (1954) 實驗：將 18 個二進位數字（010001...）以 3:1 規則重新編碼為 6 個八進位數字（0~7）。

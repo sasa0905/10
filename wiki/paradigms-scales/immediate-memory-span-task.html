@@ -10,10 +10,22 @@
   <!-- KaTeX for mathematical notation rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKatexMath()"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
+    function renderKatexMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
+        });
+      }
+    }
     document.addEventListener("DOMContentLoaded", function() {
       if (window.mermaid) {
         mermaid.initialize({
@@ -38,16 +50,9 @@
           }
         });
       }
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false}
-          ],
-          ignoredClasses: ['mermaid', 'code-block', 'pre'],
-          throwOnError: false
-        });
-      }
+      renderKatexMath();
+      setTimeout(renderKatexMath, 150);
+      setTimeout(renderKatexMath, 500);
     });
   </script>
   <style>
@@ -680,15 +685,15 @@
 <h2>1. 實驗設計與材料變異 (Miller, 1956)</h2>
 <p><a href="../sources/miller-1956-magical-number-seven.html" class="wiki-link" title="Miller (1956)">Miller (1956)</a> 引述 Hayes (1952) 的經典實驗，比較了不同資訊密度材料下的廣度表現：</p>
 <ul>
-<li><strong>二進位數字 (Binary Digits, 1 bit/item)</strong>：廣度約為 <strong>9 個項目</strong>。</li>
-<li><strong>十進位數字 (Decimal Digits, 3.3 bits/item)</strong>：廣度約為 <strong>7 到 8 個項目</strong>。</li>
-<li><strong>英文字母 (Letters, 4.7 bits/item)</strong>：廣度約為 <strong>6 到 7 個項目</strong>。</li>
-<li><strong>單音節英文單字 (Monosyllables, ~10 bits/item)</strong>：廣度約為 <strong>5 個項目</strong>。</li>
+<li><strong>二進位數字 (Binary Digits, $1\text{ bit/item}$)</strong>：廣度約為 <strong>$9$ 個項目</strong>。</li>
+<li><strong>十進位數字 (Decimal Digits, $3.3\text{ bits/item}$)</strong>：廣度約為 <strong>$7 \sim 8$ 個項目</strong>。</li>
+<li><strong>英文字母 (Letters, $4.7\text{ bits/item}$)</strong>：廣度約為 <strong>$6 \sim 7$ 個項目</strong>。</li>
+<li><strong>單音節英文單字 (Monosyllables, $\approx 10\text{ bits/item}$)</strong>：廣度約為 <strong>$5$ 個項目</strong>。</li>
 </ul>
 <hr>
 <h2>2. 理論核心：證明「組塊」容量恆定</h2>
 <ul>
-<li>雖然單字與二進位數字的「資訊量（Bits）」相差 10 倍，但受試者能記憶的項目數量僅從 9 掉到 5，證明限制記憶廣度的並非資訊位元量，而是「獨立組塊（Chunks）」的數量，正常成人平均恆定在 <strong>$7 \pm 2$</strong>。</li>
+<li>雖然單字與二進位數字的「資訊量（Bits）」相差 $10$ 倍，但受試者能記憶的項目數量僅從 $9$ 掉到 $5$，證明限制記憶廣度的並非資訊位元量，而是「獨立組塊（Chunks）」的數量，正常成人平均恆定在 <strong>$7 \pm 2$</strong>。</li>
 </ul>
       </article>
     </main>

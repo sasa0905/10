@@ -119,6 +119,13 @@
   - 古典制約理論（`theories/classical-conditioning.md` 及 `sources/watson-rayner-1920-conditioned-fear.md`）核心架構由橫向左右排列全面重構為由上而下（Top-Down, `graph TD`）的階段 1 $\rightarrow$ 階段 2 $\rightarrow$ 階段 3 嚴格循序流程圖，清楚呈現制約前、配對刺激與制約後（含刺激類化）之時序演變。
   - 全站 33 篇靜態 HTML 及簡報頁面全面導入 KaTeX 數學渲染引擎與 Auto-Render 模組，完整呈現 $N = 1$、$7 \pm 2$、$4 \pm 1$、$\mu = 2.6\text{ bits}$、$\sigma = 0.6\text{ bits}$ 等數學與統計符號。
 
+## [2026-11-19] format | 全域統一採用標準 LaTeX 數學與統計語法排版
+- **操作類型**：公式與統計量標準化 (Universal LaTeX Math Normalization)
+- **完成項目**：
+  - 檢索全專案所有 Markdown 實體與互動簡報，將所有樣本數（$N = 1$、$N = 15$）、容量限制常數（$7 \pm 2$、$4 \pm 1$）、資訊理論數值（$\mu = 2.6\text{ bits}$、$\sigma \approx 0.6\text{ bits}$、$2.5\text{ bits}$、$2.3\text{ bits}$、$1.9\text{ bits}$、$3.25\text{ bits}$、$4.6\text{ bits}$、$7.2\text{ bits}$）、指數運算（$2^{2.6} \approx 6.5$）、反應延遲（$< 20\text{ ms}$）、顯著性（$p < .01$）及離散位元單位（$1\text{ bit/item}$、$3.3\text{ bits/item}$、$4.7\text{ bits/item}$、$\approx 10\text{ bits/item}$）全面統一改採標準 LaTeX 數學語法。
+  - 在全站與簡報中強化 KaTeX 載入生命週期與多重喚醒機制（`onload`、`DOMContentLoaded`、定時重掃），確保公式 100% 準確轉換為向量級數學排版。
+
+
 
 
 

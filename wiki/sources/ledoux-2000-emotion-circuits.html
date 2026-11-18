@@ -10,10 +10,22 @@
   <!-- KaTeX for mathematical notation rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKatexMath()"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
+    function renderKatexMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
+        });
+      }
+    }
     document.addEventListener("DOMContentLoaded", function() {
       if (window.mermaid) {
         mermaid.initialize({
@@ -38,16 +50,9 @@
           }
         });
       }
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false}
-          ],
-          ignoredClasses: ['mermaid', 'code-block', 'pre'],
-          throwOnError: false
-        });
-      }
+      renderKatexMath();
+      setTimeout(renderKatexMath, 150);
+      setTimeout(renderKatexMath, 500);
     });
   </script>
   <style>
@@ -668,7 +673,7 @@
         <span style="color: var(--rose-deep); font-weight: 700;">Emotion Circuits in the Brain</span>
       </div>
 
-      <div class="meta-card"><span class="badge badge-warm font-bold">✍️ 作者：Joseph E. LeDoux</span><span class="badge badge-gray">📅 年份：2000</span><span class="badge badge-gray">📰 期刊：Annual Review of Neuroscience</span><span class="badge badge-warm">🔬 樣本：齧齒類動物神經損毀/電生理記錄 (多個實驗組，N 遍及大鼠、貓、靈長類與人類 fMRI/損毀案例)</span><span class="badge badge-gray">📊 效應值：丘腦-杏仁核神經反應延遲 < 20 ms；單元放電與場電位顯著增強 (p < .01)</span><span class="badge badge-green font-bold">✓ 複製支持 (supported)</span><a href="https://doi.org/10.1146/annurev.neuro.23.1.155" target="_blank" class="badge badge-rose">🔗 DOI: 10.1146/annurev.neuro.23.1.155 ↗</a></div>
+      <div class="meta-card"><span class="badge badge-warm font-bold">✍️ 作者：Joseph E. LeDoux</span><span class="badge badge-gray">📅 年份：2000</span><span class="badge badge-gray">📰 期刊：Annual Review of Neuroscience</span><span class="badge badge-warm">🔬 樣本：齧齒類動物神經損毀/電生理記錄 (多個實驗組，N 遍及大鼠、貓、靈長類與人類 fMRI/損毀案例)</span><span class="badge badge-gray">📊 效應值：丘腦-杏仁核神經反應延遲 $< 20\\text{ ms}$；單元放電與場電位顯著增強 ($p < .01$)</span><span class="badge badge-green font-bold">✓ 複製支持 (supported)</span><a href="https://doi.org/10.1146/annurev.neuro.23.1.155" target="_blank" class="badge badge-rose">🔗 DOI: 10.1146/annurev.neuro.23.1.155 ↗</a></div>
 
       
             <div class="apa-card">

@@ -10,10 +10,22 @@
   <!-- KaTeX for mathematical notation rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKatexMath()"></script>
   <!-- Mermaid.js for beautiful interactive diagram rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
+    function renderKatexMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          ignoredClasses: ['mermaid', 'code-block', 'pre'],
+          throwOnError: false
+        });
+      }
+    }
     document.addEventListener("DOMContentLoaded", function() {
       if (window.mermaid) {
         mermaid.initialize({
@@ -38,16 +50,9 @@
           }
         });
       }
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false}
-          ],
-          ignoredClasses: ['mermaid', 'code-block', 'pre'],
-          throwOnError: false
-        });
-      }
+      renderKatexMath();
+      setTimeout(renderKatexMath, 150);
+      setTimeout(renderKatexMath, 500);
     });
   </script>
   <style>
@@ -701,7 +706,7 @@ graph LR
 <h2>2. 實證文獻脈絡 (Empirical Context)</h2>
 <div class="table-container"><table>
 <thead><tr><th>年份</th><th>代表文獻 / 學者</th><th>核心實證發現</th><th>影響與地位</th></tr></thead><tbody>
-<tr><td><strong>1956</strong></td><td><a href="../sources/miller-1956-magical-number-seven.html" class="wiki-link" title="Miller (1956)">Miller (1956)</a></td><td>確立單維絕對判斷通道容量約 2.6 bits，立即記憶廣度受限於 $7 \pm 2$ 個「組塊（Chunks）」，提出重新編碼理論。</td><td>認知革命的先鋒號角，正式敲響純行為主義黑盒子範式的喪鐘。</td></tr>
+<tr><td><strong>1956</strong></td><td><a href="../sources/miller-1956-magical-number-seven.html" class="wiki-link" title="Miller (1956)">Miller (1956)</a></td><td>確立單維絕對判斷通道容量約 $2.6\text{ bits}$，立即記憶廣度受限於 $7 \pm 2$ 個「組塊（Chunks）」，提出重新編碼理論。</td><td>認知革命的先鋒號角，正式敲響純行為主義黑盒子範式的喪鐘。</td></tr>
 </tbody></table></div>
 <hr>
 <h2>3. 學派衝突與對外延伸</h2>

@@ -9,7 +9,7 @@ school: ["[[behaviorism|行為主義學派]]"]
 theories: ["[[classical-conditioning|古典制約理論]]"]
 constructs: ["[[fear-conditioning|恐懼制約]]", "[[stimulus-generalization|刺激類化]]"]
 paradigms: ["[[little-albert-paradigm|小阿爾伯特實驗典範]]"]
-sample_size: "N = 1 (Albert B., 9–12 個月大男嬰)"
+sample_size: "$N = 1$ (Albert B., 9–12 個月大男嬰)"
 effect_size: "N/A (質性行為觀察與試次計數)"
 preregistered: false
 replication_status: "failed"
