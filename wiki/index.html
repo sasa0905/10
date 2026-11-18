@@ -1,694 +1,557 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="dark">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obsidian Web Vault — 心理學論文 LLM Wiki</title>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <title>心理學論文 LLM Wiki 總索引 (Index) — 心理學 LLM Wiki</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            obsidian: {
-              base: '#1e1e1e',
-              sidebar: '#252525',
-              ribbon: '#181818',
-              border: '#333333',
-              text: '#dcddde',
-              muted: '#8b8d91',
-              accent: '#7b6cd9',
-              accentHover: '#9082ec',
-              card: '#222222'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* Pure Vanilla CSS - Zero Framework Dependencies */
+    :root {
+      --bg-cream: #faf7f5;
+      --bg-sidebar: #f5eeea;
+      --card-white: #ffffff;
+      --border-warm: #ebdcd5;
+      --border-rose: #edd5da;
+      --text-main: #332d30;
+      --text-sub: #786f73;
+      --rose-deep: #8c4b57;
+      --rose-accent: #c27685;
+      --rose-light: #f7ebeb;
+      --green-soft: #597864;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: 'Inter', 'Noto Sans TC', sans-serif;
-      user-select: none;
+      font-family: 'Shippori Mincho', 'Noto Serif TC', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    .dark {
-      color-scheme: dark;
-      --bg-base: #1e1e1e;
-      --bg-sidebar: #252525;
-      --bg-ribbon: #181818;
-      --border-color: #333333;
-      --text-main: #dcddde;
-      --text-sub: #8b8d91;
-      --accent: #7b6cd9;
-      --callout-bg: #262626;
+    /* Top Header */
+    .top-header {
+      background-color: rgba(250, 247, 245, 0.95);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
     }
-    .light {
-      color-scheme: light;
-      --bg-base: #ffffff;
-      --bg-sidebar: #f5f5f5;
-      --bg-ribbon: #e8e8e8;
-      --border-color: #e0e0e0;
-      --text-main: #2e3338;
-      --text-sub: #6c757d;
-      --accent: #6c5ce7;
-      --callout-bg: #f9f9f9;
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
     }
-    /* Obsidian Callouts Exact Styling */
-    .obsidian-callout {
-      border-left: 4px solid var(--accent);
-      background-color: var(--callout-bg);
-      border-radius: 6px;
-      padding: 10px 14px;
-      margin: 14px 0;
-      font-size: 0.92rem;
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8c7cd, #f7ebeb);
+      border: 1px solid #e5b9c1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rose-deep);
+      font-weight: bold;
+      font-size: 15px;
     }
-    .callout-title {
+    .logo-text h1 {
+      font-size: 15px;
       font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .logo-text span {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: block;
+      margin-top: -2px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-warm);
+    }
+    .btn-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+    }
+    .btn-rose:hover {
+      background-color: #f0dde0;
+    }
+    .btn-white {
+      background-color: #ffffff;
+      color: #554a4f;
+    }
+    .btn-white:hover {
+      background-color: #f7f2ef;
+    }
+
+    /* Main Dual Layout */
+    .wiki-container {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+    }
+    /* Sidebar */
+    .wiki-sidebar {
+      width: 290px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-warm);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 59px);
+      position: sticky;
+      top: 59px;
+      overflow-y: auto;
+    }
+    .nav-search {
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-warm);
+      background-color: #ffffff;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      outline: none;
+    }
+    .nav-search:focus {
+      border-color: var(--rose-accent);
+    }
+    .nav-section {
+      margin-bottom: 6px;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .nav-section-count {
+      font-size: 10px;
+      color: #a89fa4;
+    }
+    .nav-section-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 6px;
+      margin-top: 2px;
+    }
+    .nav-item {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #52474c;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s ease;
+    }
+    .nav-item:hover {
+      background-color: #ede2dd;
+      color: var(--rose-deep);
+    }
+    .nav-item-active {
+      background-color: var(--card-white);
+      color: var(--rose-deep);
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      border-left: 3px solid var(--rose-accent);
+    }
+
+    /* Main Reading Content */
+    .wiki-main {
+      flex: 1;
+      background-color: var(--card-white);
+      padding: 36px 48px;
+      max-width: 960px;
+      min-width: 0;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 4px;
     }
-    .callout-abstract { border-color: #a855f7; }
-    .callout-info { border-color: #3b82f6; }
-    .callout-warning { border-color: #f59e0b; }
-    .callout-important { border-color: #ef4444; }
+    .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--rose-accent);
+    }
+    .meta-card {
+      background-color: #faf5f2;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12px;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
+    .badge-gray { background: #eee7e4; color: #5a5055; }
+    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
 
-    .wiki-prose {
-      user-select: text;
+    /* Markdown Styling */
+    .content h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 10px;
+      color: #2e292d;
+    }
+    .content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: #40363a;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #55484d;
+    }
+    .content p {
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      color: #40383b;
+    }
+    .content ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
       line-height: 1.8;
+      color: #483f43;
     }
-    .wiki-prose h1 { font-size: 1.8rem; font-weight: 700; margin-top: 1rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem; }
-    .wiki-prose h2 { font-size: 1.35rem; font-weight: 600; margin-top: 1.4rem; margin-bottom: 0.5rem; }
-    .wiki-prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.1rem; margin-bottom: 0.4rem; }
-    .wiki-prose p { margin-bottom: 0.85rem; }
-    .wiki-prose ul { list-style-type: disc; padding-left: 1.4rem; margin-bottom: 0.85rem; }
-    .wiki-prose li { margin-bottom: 0.3rem; }
-    .wiki-prose code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: rgba(125, 125, 125, 0.15); padding: 2px 5px; border-radius: 4px; }
-    .wiki-prose hr { border: 0; border-top: 1px solid var(--border-color); margin: 1.5rem 0; }
-    .obsidian-link {
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      font-weight: 500;
+    .content li {
+      margin-bottom: 6px;
     }
-    .obsidian-link:hover {
-      color: #a29bfe;
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--border-warm);
+      margin: 28px 0;
     }
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(150, 150, 150, 0.25); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(150, 150, 150, 0.45); }
+    .content code {
+      font-family: ui-monospace, Consolas, monospace;
+      background-color: #f2e9e6;
+      color: var(--rose-deep);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    /* Clickable Wiki Links */
+    a.wiki-link {
+      color: var(--rose-accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rose-accent);
+      padding-bottom: 1px;
+      transition: all 0.15s ease;
+    }
+    a.wiki-link:hover {
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      border-bottom-style: solid;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    .wiki-link-unresolved {
+      color: #a89fa4;
+      text-decoration: line-through;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .callout-abstract { background-color: #fdf5f6; border-left: 4px solid var(--rose-accent); color: #423237; }
+    .callout-info { background-color: #f3f8f5; border-left: 4px solid var(--green-soft); color: #2e3d33; }
+    .callout-warning { background-color: #faf5f0; border-left: 4px solid #b56b3e; color: #473325; }
+    .callout-important { background-color: #fbf0f2; border-left: 4px solid #8c4b57; color: #47262d; }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      padding: 10px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-warm);
+      color: #483f43;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: #faf5f2;
+    }
+
+    @media (max-width: 860px) {
+      .wiki-container { flex-direction: column; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-main { padding: 24px 20px; }
+    }
   </style>
 </head>
-<body class="bg-obsidian-base text-obsidian-text h-screen w-screen flex flex-col overflow-hidden">
+<body>
 
-  <!-- Top App Window Bar -->
-  <header class="h-9 bg-obsidian-ribbon border-b border-obsidian-border flex items-center justify-between px-3 shrink-0 text-xs text-obsidian-muted select-none">
-    <div class="flex items-center gap-3">
-      <div class="flex items-center gap-1.5 mr-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+  <!-- Top Header -->
+  <header class="top-header">
+    <a href="../index.html" class="header-logo" title="回總傳送門">
+      <div class="logo-badge">栞</div>
+      <div class="logo-text">
+        <h1>心理學論文 LLM Wiki</h1>
+        <span>純靜態直接部署 • 零框架</span>
       </div>
-      <div class="flex items-center gap-1 text-obsidian-text font-medium">
-        <svg class="w-3.5 h-3.5 text-obsidian-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        <span>Obsidian</span>
-        <span class="text-obsidian-muted font-normal">/ wiki (Vault)</span>
-      </div>
-    </div>
-
-    <!-- Active Tab Title -->
-    <div id="top-title" class="text-obsidian-muted font-mono text-[11px] truncate max-w-sm hidden md:block">
-      index.md
-    </div>
-
-    <!-- Quick Shortcuts -->
-    <div class="flex items-center gap-2">
-      <a href="../slides/psychology_schools_presentation.html" class="flex items-center gap-1 px-2.5 py-0.5 rounded bg-obsidian-accent/20 hover:bg-obsidian-accent/30 text-obsidian-accent text-xs font-medium transition">
-        <span>📊</span> 觀看簡報
-      </a>
-      <button onclick="toggleTheme()" class="p-1 rounded hover:bg-obsidian-border text-obsidian-muted hover:text-obsidian-text" title="切換深色/淺色主題">
-        <svg id="theme-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      </button>
-      <a href="https://github.com/sasa0905/10" target="_blank" class="p-1 rounded hover:bg-obsidian-border text-obsidian-muted hover:text-obsidian-text" title="GitHub 原始碼">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      </a>
+    </a>
+    <div class="header-actions">
+      <a href="../slides/psychology_schools_presentation.html" class="btn btn-rose"><span>📊</span> 簡報播放</a>
+      <a href="index.html" class="btn btn-white"><span>📑</span> 總索引</a>
+      <a href="log.html" class="btn btn-white"><span>📜</span> 日誌</a>
     </div>
   </header>
 
-  <!-- Workspace Body -->
-  <div class="flex-1 flex overflow-hidden">
+  <!-- Dual Layout Container -->
+  <div class="wiki-container">
 
-    <!-- 1. Leftmost Obsidian Ribbon -->
-    <aside class="w-11 bg-obsidian-ribbon border-r border-obsidian-border flex flex-col items-center py-2.5 gap-3 shrink-0 text-obsidian-muted">
-      <button onclick="switchLeftTab('files')" class="p-2 rounded hover:bg-obsidian-border hover:text-obsidian-text text-obsidian-accent" title="檔案總管 (Files)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
-      </button>
-      <button onclick="switchLeftTab('search')" class="p-2 rounded hover:bg-obsidian-border hover:text-obsidian-text" title="搜尋筆記 (Search)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </button>
-      <button onclick="toggleRightGraph()" class="p-2 rounded hover:bg-obsidian-border hover:text-obsidian-text text-obsidian-accent" title="開啟/關閉 知識圖譜 (Graph View)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      </button>
-      <div class="flex-1"></div>
-      <a href="../index.html" class="p-2 rounded hover:bg-obsidian-border hover:text-obsidian-text" title="回專案傳送門">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      </a>
+    <!-- Left Sidebar -->
+    <aside class="wiki-sidebar">
+      <input type="text" id="navSearch" class="nav-search" placeholder="搜尋構念、流派..." oninput="filterNav(this.value)">
+      <div id="navGroupList">
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📚 各大心理學流派</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="schools/behaviorism.html" class="nav-item" title="Behaviorism">行為學派</a><a href="schools/cognitive-psychology.html" class="nav-item" title="Cognitive Psychology">認知心理學派</a><a href="schools/humanistic-psychology.html" class="nav-item" title="Humanistic Psychology">人本主義心理學派</a><a href="schools/neuroscience.html" class="nav-item" title="Neuroscience and Biological Psychology">神經科學</a><a href="schools/psychoanalysis.html" class="nav-item" title="Psychoanalysis">精神分析學派</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🏛️ 理論與心理模型</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="theories/classical-conditioning.html" class="nav-item" title="Classical Conditioning">古典制約</a><a href="theories/dual-route-emotion-theory.html" class="nav-item" title="Dual-Route Theory of Emotion">情緒雙路徑理論</a><a href="theories/hierarchy-of-needs.html" class="nav-item" title="Hierarchy of Needs Theory">需求階層理論</a><a href="theories/information-processing-theory.html" class="nav-item" title="Information Processing Theory">人類訊息處理理論</a><a href="theories/psychoanalytic-theory.html" class="nav-item" title="Psychoanalytic Theory">精神分析理論</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>💡 核心心理學構念</span>
+            <span class="nav-section-count">8</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="constructs/channel-capacity.html" class="nav-item" title="Channel Capacity">通道容量</a><a href="constructs/chunking.html" class="nav-item" title="Chunking">訊息組塊</a><a href="constructs/fear-conditioning.html" class="nav-item" title="Fear Conditioning">恐懼制約</a><a href="constructs/repression.html" class="nav-item" title="Repression">壓抑</a><a href="constructs/self-actualization.html" class="nav-item" title="Self-Actualization">自我實現</a><a href="constructs/stimulus-generalization.html" class="nav-item" title="Stimulus Generalization">刺激類化</a><a href="constructs/transference.html" class="nav-item" title="Transference">移情</a><a href="constructs/unconscious.html" class="nav-item" title="The Unconscious">潛意識</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🔬 實驗典範與量表</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="paradigms-scales/auditory-fear-conditioning-paradigm.html" class="nav-item" title="Auditory Fear Conditioning Paradigm">聽覺恐懼制約實驗典範</a><a href="paradigms-scales/immediate-memory-span-task.html" class="nav-item" title="Immediate Memory Span Task">立即記憶廣度作業</a><a href="paradigms-scales/little-albert-paradigm.html" class="nav-item" title="Little Albert Paradigm">小阿爾伯特實驗典範</a><a href="paradigms-scales/talking-cure-catharsis.html" class="nav-item" title="Talking Cure and Cathartic Method">談話療法</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>⚖️ 學術爭端與檢驗</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="controversies/amygdala-storage-vs-modulation.html" class="nav-item" title="Amygdala: Memory Storage vs. Memory Modulation Debate">杏仁核爭端：記憶儲存地還是調節器？</a><a href="controversies/behaviorism-vs-psychoanalysis.html" class="nav-item" title="Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate">行為學派 vs 精神分析：恐懼症成因論戰</a><a href="controversies/chunking-capacity-cowan-debate.html" class="nav-item" title="The Working Memory Capacity Debate: 7±2 vs 4±1">短期記憶容量爭辯：7±2 vs 4±1</a><a href="controversies/little-albert-replication-debate.html" class="nav-item" title="Little Albert Replication & Ethics Debate">小阿爾伯特重複性檢驗與真實身分爭端</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📄 奠基論文文獻庫</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="sources/freud-1910-psychoanalysis-origin.html" class="nav-item" title="The Origin and Development of Psychoanalysis">The Origin and Development of Psychoanalysis</a><a href="sources/ledoux-2000-emotion-circuits.html" class="nav-item" title="Emotion Circuits in the Brain">Emotion Circuits in the Brain</a><a href="sources/maslow-1943-human-motivation.html" class="nav-item" title="A Theory of Human Motivation">A Theory of Human Motivation</a><a href="sources/miller-1956-magical-number-seven.html" class="nav-item" title="The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information">The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information</a><a href="sources/watson-rayner-1920-conditioned-fear.html" class="nav-item" title="Conditioned Emotional Reactions">Conditioned Emotional Reactions</a>
+          </div>
+        </div>
+        
+      </div>
     </aside>
 
-    <!-- 2. Left File Explorer Pane -->
-    <aside id="file-pane" class="w-64 bg-obsidian-sidebar border-r border-obsidian-border flex flex-col shrink-0 text-xs">
-      <!-- Vault Header -->
-      <div class="px-3 py-2 border-b border-obsidian-border flex items-center justify-between text-obsidian-muted font-medium">
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          <span class="tracking-wide text-obsidian-text font-bold">WIKI</span>
-        </div>
-        <span class="text-[10px] bg-obsidian-base px-1.5 py-0.5 rounded text-obsidian-muted">31 notes</span>
+    <!-- Main Article -->
+    <main class="wiki-main">
+      <div class="breadcrumb">
+        <a href="index.html">Wiki</a> <span>/</span>
+        <span>root</span> <span>/</span>
+        <span style="color: var(--rose-deep); font-weight: 700;">心理學論文 LLM Wiki 總索引 (Index)</span>
       </div>
 
-      <!-- Search box inside pane -->
-      <div id="search-container" class="p-2 border-b border-obsidian-border hidden">
-        <input type="text" id="file-search-input" placeholder="搜尋檔名或構念..." class="w-full bg-obsidian-base border border-obsidian-border rounded px-2.5 py-1 text-xs text-obsidian-text focus:outline-none focus:border-obsidian-accent">
-      </div>
+      
 
-      <!-- File Tree List -->
-      <div id="file-tree" class="flex-1 overflow-y-auto p-2 space-y-1 font-mono text-[12px]">
-        <!-- Injected via JavaScript -->
-      </div>
-    </aside>
-
-    <!-- 3. Center Editor / Reading Pane -->
-    <main class="flex-1 flex flex-col bg-obsidian-base overflow-hidden">
-      <!-- Tabs Bar -->
-      <div class="h-9 bg-obsidian-sidebar border-b border-obsidian-border flex items-center px-2 gap-1 shrink-0 overflow-x-auto">
-        <div id="active-tab" class="bg-obsidian-base border-t-2 border-obsidian-accent text-obsidian-text px-3 py-1.5 rounded-t text-xs flex items-center gap-2 shadow-sm font-medium">
-          <svg class="w-3.5 h-3.5 text-obsidian-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          <span id="tab-title">index.md</span>
-        </div>
-        <div class="flex-1"></div>
-        <!-- Right top controls inside pane -->
-        <div class="flex items-center gap-1 text-obsidian-muted text-xs">
-          <button onclick="historyBack()" class="p-1 hover:text-obsidian-text" title="上一頁">←</button>
-          <button onclick="historyForward()" class="p-1 hover:text-obsidian-text" title="下一頁">→</button>
-        </div>
-      </div>
-
-      <!-- Note Reading Area -->
-      <div class="flex-1 overflow-y-auto px-6 md:px-12 py-8">
-        <div class="max-w-3xl mx-auto">
-          
-          <!-- Obsidian Properties (YAML Frontmatter Box) -->
-          <div id="obsidian-properties" class="border border-obsidian-border rounded-lg bg-obsidian-card/60 p-3 mb-6 text-xs text-obsidian-muted hidden">
-            <div class="font-bold text-[11px] text-obsidian-text uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-obsidian-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-              PROPERTIES
-            </div>
-            <div id="properties-list" class="space-y-1.5"></div>
-          </div>
-
-          <!-- Document Markdown Render Target -->
-          <article id="markdown-viewer" class="wiki-prose text-obsidian-text">
-            <!-- Rendered by JS -->
-          </article>
-
-          <!-- Backlinks Section (Linked Mentions) -->
-          <div id="backlinks-container" class="mt-12 pt-6 border-t border-obsidian-border text-xs">
-            <h3 class="font-bold text-obsidian-text flex items-center gap-2 mb-3">
-              <svg class="w-4 h-4 text-obsidian-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-              Linked Mentions (反向連結)
-            </h3>
-            <div id="backlinks-list" class="flex flex-wrap gap-2 text-obsidian-muted"></div>
-          </div>
-
-        </div>
-      </div>
+      <article class="content">
+        <h1>心理學論文 LLM Wiki 總索引 (Index)</h1>
+<p>本索引是整個知識庫的全域導覽目錄。每當 Agent 攝取新文獻或維護頁面時，均會自動在此同步更新。所有連結支援在 GitHub 與 Obsidian 中直接點擊跳轉。</p>
+<hr>
+<h2>📚 心理學流派 (Schools of Thought)</h2>
+<ul>
+<li><a href="schools/behaviorism.html" class="wiki-link">古典行為主義學派 (Behaviorism)</a> — 主張心理學應聚焦於客觀可觀察行為，以環境刺激與反應（S-R）解釋心理歷程，排斥內省主義。</li>
+<li><a href="schools/psychoanalysis.html" class="wiki-link">精神分析學派 (Psychoanalysis)</a> — 奠基於深層潛意識心理動力、本能衝突、防衛機制與童年性心理發展歷程。</li>
+<li><a href="schools/cognitive-psychology.html" class="wiki-link">認知心理學派 (Cognitive Psychology)</a> — 揚棄黑盒子教條，借用資訊理論與計算架構，研究注意力、記憶編碼與心智表徵。</li>
+<li><a href="schools/humanistic-psychology.html" class="wiki-link">人本主義心理學派 (Humanistic Psychology)</a> — 心理學第三勢力，強調全人有機體、自由意志、人性尊嚴與自我實現之正向潛能。</li>
+<li><a href="schools/neuroscience.html" class="wiki-link">神經科學與生物心理學派 (Neuroscience)</a> — 將心理與情緒歷程還原並錨定在大腦神經迴路、突觸可塑性（LTP）與生物分子基礎。</li>
+</ul>
+<hr>
+<h2>🏛️ 理論與模型 (Theories & Models)</h2>
+<ul>
+<li><a href="theories/classical-conditioning.html" class="wiki-link">古典制約理論 (Classical Conditioning)</a> — 透過中性刺激（CS）與非制約刺激（US）之時間配對建立反射聯結的學習機制。</li>
+<li><a href="theories/psychoanalytic-theory.html" class="wiki-link">精神分析理論 (Psychoanalytic Theory)</a> — 人格由本我、自我、超我構成，症狀源於壓抑失敗與潛意識慾望妥協。</li>
+<li><a href="theories/information-processing-theory.html" class="wiki-link">人類訊息處理理論 (Information Processing Theory)</a> — 心智如資訊通訊系統，涵蓋感覺登錄、通道容量過濾、短期記憶組塊化與長時固化。</li>
+<li><a href="theories/hierarchy-of-needs.html" class="wiki-link">需求階層理論 (Hierarchy of Needs Theory)</a> — 人類五大基本需求依相對優勢性排列，匱乏需求相對滿足後成長需求浮現。</li>
+<li><a href="theories/dual-route-emotion-theory.html" class="wiki-link">情緒雙路徑理論 (Dual-Route Theory of Emotion)</a> — 大腦處理恐懼具備皮質下極速粗糙的「低路徑」與皮質精細意識的「高路徑」。</li>
+</ul>
+<hr>
+<h2>💡 心理學構念 (Constructs)</h2>
+<ul>
+<li><a href="constructs/fear-conditioning.html" class="wiki-link">恐懼制約 (Fear Conditioning)</a> — 中性刺激經嫌惡刺激配對後誘發防禦逃避反應；神經基礎位於側杏仁核與中央杏仁核。</li>
+<li><a href="constructs/stimulus-generalization.html" class="wiki-link">刺激類化 (Stimulus Generalization)</a> — 個體對特定刺激建立制約後，反應自發擴散至其他外觀或特徵相似物體的現象。</li>
+<li><a href="constructs/unconscious.html" class="wiki-link">潛意識 (The Unconscious)</a> — 個體無法直接覺察的本能慾望與被壓抑創傷儲存庫，具備動態活躍性與象徵偽裝性。</li>
+<li><a href="constructs/repression.html" class="wiki-link">壓抑 (Repression)</a> — 自我最重要的心理防衛機制，主動將不相容的痛苦願望驅逐出意識層面。</li>
+<li><a href="constructs/transference.html" class="wiki-link">移情作用 (Transference)</a> — 病患將早年重要客體的情感無意識投射至治療師身上，為分析治療的核心催化劑。</li>
+<li><a href="constructs/chunking.html" class="wiki-link">訊息組塊 (Chunking)</a> — 將零散低階資訊重新組織為有意義的高階單元，以克服短期記憶容量瓶頸。</li>
+<li><a href="constructs/channel-capacity.html" class="wiki-link">通道容量 (Channel Capacity)</a> — 人類對單維度感覺刺激進行絕對判斷的極限（平均約 2.6 bits，約 7 個類別）。</li>
+<li><a href="constructs/self-actualization.html" class="wiki-link">自我實現 (Self-Actualization)</a> — 個體追求充分發揮全部內在才能、創造力與生命可能性的最高階成長動機。</li>
+</ul>
+<hr>
+<h2>🔬 實驗典範與量表 (Paradigms & Scales)</h2>
+<ul>
+<li><a href="paradigms-scales/little-albert-paradigm.html" class="wiki-link">小阿爾伯特實驗典範 (Little Albert Paradigm)</a> — 探討嬰兒恐懼獲得、類化梯度與時間持久性之經典行為實驗程序。</li>
+<li><a href="paradigms-scales/talking-cure-catharsis.html" class="wiki-link">談話療法與情緒宣洩典範 (The Talking Cure & Catharsis)</a> — 透過語言重現創傷情境並宣洩積壓情感，以消除神經症軀體化症狀。</li>
+<li><a href="paradigms-scales/immediate-memory-span-task.html" class="wiki-link">立即記憶廣度作業 (Immediate Memory Span Task)</a> — 以固定速率呈現序列項目測量短期記憶組塊容量之認知作業。</li>
+<li><a href="paradigms-scales/auditory-fear-conditioning-paradigm.html" class="wiki-link">聽覺恐懼制約神經實驗典範 (Auditory Fear Conditioning Paradigm)</a> — 動物模型中藉純音配對電擊評估僵直行為（Freezing）與杏仁核突觸可塑性之標準典範。</li>
+</ul>
+<hr>
+<h2>⚖️ 學術爭端與複製檢驗 (Controversies & Replication)</h2>
+<ul>
+<li><a href="controversies/little-albert-replication-debate.html" class="wiki-link">小阿爾伯特重複性檢驗與學術爭辯 (Little Albert Debate)</a> — 聚焦於 $N=1$ 方法缺陷、Bregman (1934) 複製失敗、被試先天腦積水疑雲與重大研究倫理爭議。</li>
+<li><a href="controversies/behaviorism-vs-psychoanalysis.html" class="wiki-link">行為學派 vs 精神分析：恐懼症成因論戰 (Etiology of Phobias Debate)</a> — S-R 環境制約反射論與童年潛意識性壓抑論在恐懼病理成因上的世紀交鋒。</li>
+<li><a href="controversies/chunking-capacity-cowan-debate.html" class="wiki-link">短期記憶容量爭辯：7±2 vs 4±1 (Memory Capacity Debate)</a> — 探討 Miller 的 7 個項目是否混雜了語音複誦，當代純工作記憶焦點容量修正為 4。</li>
+<li><a href="controversies/amygdala-storage-vs-modulation.html" class="wiki-link">杏仁核記憶儲存 vs 調節爭端 (Amygdala Storage vs. Modulation)</a> — 杏仁核究竟是恐懼記憶獲得的直接突觸儲存中樞（LeDoux），還是其他記憶系統的調節器（McGaugh）。</li>
+</ul>
+<hr>
+<h2>📄 論文文獻庫 (Sources)</h2>
+<ul>
+<li><a href="sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link">Watson & Rayner (1920) Conditioned Emotional Reactions</a> — 行為主義奠基文獻；以 7 次鋼條巨響配對在男嬰 Albert 身上確立恐懼制約與毛皮物體類化。</li>
+<li><a href="sources/freud-1910-psychoanalysis-origin.html" class="wiki-link">Freud (1910) The Origin and Development of Psychoanalysis</a> — 精神分析登陸美國之經典五講；系統闡釋 Anna O. 案例、壓抑、夢的解析、幼兒性慾與移情。</li>
+<li><a href="sources/miller-1956-magical-number-seven.html" class="wiki-link">Miller (1956) The Magical Number Seven, Plus or Minus Two</a> — 認知心理學里程碑；確立單維通道容量 2.6 bits 與短期記憶 $7 \pm 2$ 組塊限制。</li>
+<li><a href="sources/maslow-1943-human-motivation.html" class="wiki-link">Maslow (1943) A Theory of Human Motivation</a> — 人本主義動機開山之作；提出五大需求階層、相對優勢性與自我實現概念。</li>
+<li><a href="sources/ledoux-2000-emotion-circuits.html" class="wiki-link">LeDoux (2000) Emotion Circuits in the Brain</a> — 情緒神經科學權威綜述；解構杏仁核感覺介面、丘腦低路徑/高路徑、中央核輸出與 LTP 分子機制。</li>
+</ul>
+      </article>
     </main>
-
-    <!-- 4. Right Obsidian Interactive Graph View -->
-    <aside id="graph-pane" class="w-80 bg-obsidian-sidebar border-l border-obsidian-border flex flex-col shrink-0">
-      <!-- Graph Header -->
-      <div class="h-9 px-3 border-b border-obsidian-border flex items-center justify-between text-xs text-obsidian-muted font-medium shrink-0">
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-obsidian-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          <span class="text-obsidian-text font-bold">GRAPH VIEW (知識圖譜)</span>
-        </div>
-        <span class="text-[10px] text-obsidian-muted font-mono" id="graph-stats">185 links</span>
-      </div>
-
-      <!-- Graph Canvas Container -->
-      <div class="flex-1 relative overflow-hidden bg-obsidian-base">
-        <canvas id="graph-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
-        <div class="absolute bottom-2 left-2 text-[10px] text-obsidian-muted bg-obsidian-sidebar/80 backdrop-blur px-2 py-1 rounded border border-obsidian-border">
-          滾輪縮放 • 拖曳節點 • 點擊跳轉
-        </div>
-      </div>
-    </aside>
 
   </div>
 
-  <!-- Bottom Obsidian Status Bar -->
-  <footer class="h-6 bg-obsidian-ribbon border-t border-obsidian-border px-3 flex items-center justify-between text-[11px] text-obsidian-muted select-none">
-    <div class="flex items-center gap-3">
-      <span>Obsidian Web v1.8</span>
-      <span>•</span>
-      <span id="stat-words">0 words</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <span id="stat-path" class="font-mono">wiki/index.md</span>
-      <span>•</span>
-      <span class="text-obsidian-accent font-medium">100% Obsidian Compatible</span>
-    </div>
-  </footer>
-
   <script>
-    const filesData = {"index.md": "# 心理學論文 LLM Wiki 總索引 (Index)\n\n本索引是整個知識庫的全域導覽目錄。每當 Agent 攝取新文獻或維護頁面時，均會自動在此同步更新。所有連結支援在 GitHub 與 Obsidian 中直接點擊跳轉。\n\n---\n\n## 📚 心理學流派 (Schools of Thought)\n* [古典行為主義學派 (Behaviorism)](schools/behaviorism.md) — 主張心理學應聚焦於客觀可觀察行為，以環境刺激與反應（S-R）解釋心理歷程，排斥內省主義。\n* [精神分析學派 (Psychoanalysis)](schools/psychoanalysis.md) — 奠基於深層潛意識心理動力、本能衝突、防衛機制與童年性心理發展歷程。\n* [認知心理學派 (Cognitive Psychology)](schools/cognitive-psychology.md) — 揚棄黑盒子教條，借用資訊理論與計算架構，研究注意力、記憶編碼與心智表徵。\n* [人本主義心理學派 (Humanistic Psychology)](schools/humanistic-psychology.md) — 心理學第三勢力，強調全人有機體、自由意志、人性尊嚴與自我實現之正向潛能。\n* [神經科學與生物心理學派 (Neuroscience)](schools/neuroscience.md) — 將心理與情緒歷程還原並錨定在大腦神經迴路、突觸可塑性（LTP）與生物分子基礎。\n\n---\n\n## 🏛️ 理論與模型 (Theories & Models)\n* [古典制約理論 (Classical Conditioning)](theories/classical-conditioning.md) — 透過中性刺激（CS）與非制約刺激（US）之時間配對建立反射聯結的學習機制。\n* [精神分析理論 (Psychoanalytic Theory)](theories/psychoanalytic-theory.md) — 人格由本我、自我、超我構成，症狀源於壓抑失敗與潛意識慾望妥協。\n* [人類訊息處理理論 (Information Processing Theory)](theories/information-processing-theory.md) — 心智如資訊通訊系統，涵蓋感覺登錄、通道容量過濾、短期記憶組塊化與長時固化。\n* [需求階層理論 (Hierarchy of Needs Theory)](theories/hierarchy-of-needs.md) — 人類五大基本需求依相對優勢性排列，匱乏需求相對滿足後成長需求浮現。\n* [情緒雙路徑理論 (Dual-Route Theory of Emotion)](theories/dual-route-emotion-theory.md) — 大腦處理恐懼具備皮質下極速粗糙的「低路徑」與皮質精細意識的「高路徑」。\n\n---\n\n## 💡 心理學構念 (Constructs)\n* [恐懼制約 (Fear Conditioning)](constructs/fear-conditioning.md) — 中性刺激經嫌惡刺激配對後誘發防禦逃避反應；神經基礎位於側杏仁核與中央杏仁核。\n* [刺激類化 (Stimulus Generalization)](constructs/stimulus-generalization.md) — 個體對特定刺激建立制約後，反應自發擴散至其他外觀或特徵相似物體的現象。\n* [潛意識 (The Unconscious)](constructs/unconscious.md) — 個體無法直接覺察的本能慾望與被壓抑創傷儲存庫，具備動態活躍性與象徵偽裝性。\n* [壓抑 (Repression)](constructs/repression.md) — 自我最重要的心理防衛機制，主動將不相容的痛苦願望驅逐出意識層面。\n* [移情作用 (Transference)](constructs/transference.md) — 病患將早年重要客體的情感無意識投射至治療師身上，為分析治療的核心催化劑。\n* [訊息組塊 (Chunking)](constructs/chunking.md) — 將零散低階資訊重新組織為有意義的高階單元，以克服短期記憶容量瓶頸。\n* [通道容量 (Channel Capacity)](constructs/channel-capacity.md) — 人類對單維度感覺刺激進行絕對判斷的極限（平均約 2.6 bits，約 7 個類別）。\n* [自我實現 (Self-Actualization)](constructs/self-actualization.md) — 個體追求充分發揮全部內在才能、創造力與生命可能性的最高階成長動機。\n\n---\n\n## 🔬 實驗典範與量表 (Paradigms & Scales)\n* [小阿爾伯特實驗典範 (Little Albert Paradigm)](paradigms-scales/little-albert-paradigm.md) — 探討嬰兒恐懼獲得、類化梯度與時間持久性之經典行為實驗程序。\n* [談話療法與情緒宣洩典範 (The Talking Cure & Catharsis)](paradigms-scales/talking-cure-catharsis.md) — 透過語言重現創傷情境並宣洩積壓情感，以消除神經症軀體化症狀。\n* [立即記憶廣度作業 (Immediate Memory Span Task)](paradigms-scales/immediate-memory-span-task.md) — 以固定速率呈現序列項目測量短期記憶組塊容量之認知作業。\n* [聽覺恐懼制約神經實驗典範 (Auditory Fear Conditioning Paradigm)](paradigms-scales/auditory-fear-conditioning-paradigm.md) — 動物模型中藉純音配對電擊評估僵直行為（Freezing）與杏仁核突觸可塑性之標準典範。\n\n---\n\n## ⚖️ 學術爭端與複製檢驗 (Controversies & Replication)\n* [小阿爾伯特重複性檢驗與學術爭辯 (Little Albert Debate)](controversies/little-albert-replication-debate.md) — 聚焦於 $N=1$ 方法缺陷、Bregman (1934) 複製失敗、被試先天腦積水疑雲與重大研究倫理爭議。\n* [行為學派 vs 精神分析：恐懼症成因論戰 (Etiology of Phobias Debate)](controversies/behaviorism-vs-psychoanalysis.md) — S-R 環境制約反射論與童年潛意識性壓抑論在恐懼病理成因上的世紀交鋒。\n* [短期記憶容量爭辯：7±2 vs 4±1 (Memory Capacity Debate)](controversies/chunking-capacity-cowan-debate.md) — 探討 Miller 的 7 個項目是否混雜了語音複誦，當代純工作記憶焦點容量修正為 4。\n* [杏仁核記憶儲存 vs 調節爭端 (Amygdala Storage vs. Modulation)](controversies/amygdala-storage-vs-modulation.md) — 杏仁核究竟是恐懼記憶獲得的直接突觸儲存中樞（LeDoux），還是其他記憶系統的調節器（McGaugh）。\n\n---\n\n## 📄 論文文獻庫 (Sources)\n* [Watson & Rayner (1920) Conditioned Emotional Reactions](sources/watson-rayner-1920-conditioned-fear.md) — 行為主義奠基文獻；以 7 次鋼條巨響配對在男嬰 Albert 身上確立恐懼制約與毛皮物體類化。\n* [Freud (1910) The Origin and Development of Psychoanalysis](sources/freud-1910-psychoanalysis-origin.md) — 精神分析登陸美國之經典五講；系統闡釋 Anna O. 案例、壓抑、夢的解析、幼兒性慾與移情。\n* [Miller (1956) The Magical Number Seven, Plus or Minus Two](sources/miller-1956-magical-number-seven.md) — 認知心理學里程碑；確立單維通道容量 2.6 bits 與短期記憶 $7 \\pm 2$ 組塊限制。\n* [Maslow (1943) A Theory of Human Motivation](sources/maslow-1943-human-motivation.md) — 人本主義動機開山之作；提出五大需求階層、相對優勢性與自我實現概念。\n* [LeDoux (2000) Emotion Circuits in the Brain](sources/ledoux-2000-emotion-circuits.md) — 情緒神經科學權威綜述；解構杏仁核感覺介面、丘腦低路徑/高路徑、中央核輸出與 LTP 分子機制。\n", "log.md": "# 知識庫操作日誌 (Wiki Operations Log)\n\n本檔案為時間軸單向追加日誌（Append-only）。記錄所有文獻攝取（Ingest）、綜合查詢回填（Query Backfill）與健康檢查（Lint）之歷程。\n\n---\n\n## [2026-11-18] init | 建立心理學論文 LLM Wiki 知識庫規範與骨架\n- **操作類型**：系統初始化 (System Init)\n- **完成項目**：\n  - 建立規範手冊 [[AGENTS.md]]，確立三層架構與 Ingest / Query / Lint 運作流程。\n  - 確立採用「由下而上 (Bottom-up)」策略與 APA 7th 證據溯源規範。\n  - 建立全域目錄 [[index.md]] 與日誌 [[log.md]]。\n  - 建立資料夾結構：`raw/`、`wiki/schools/`、`wiki/theories/`、`wiki/constructs/`、`wiki/paradigms-scales/`、`wiki/controversies/`、`wiki/sources/`。\n\n## [2026-11-18] ingest | Conditioned Emotional Reactions (Watson & Rayner, 1920)\n- **操作類型**：論文攝取與網絡編織 (Ingest & Compounding)\n- **原始來源**：[[raw/watson-rayner-1920.md]]\n- **新建文獻摘要頁**：\n  - [[watson-rayner-1920-conditioned-fear]] (N = 1, 7 次 CS-US 配對, 刺激類化至兔/狗/毛皮大衣/面具, 持續 31 天)\n- **衍生與更新實體頁面**：\n  - 流派頁：[[behaviorism]]（動態建立古典行為主義頁面與 S-R 主張）\n  - 理論頁：[[classical-conditioning]]（建立古典制約情緒機制與流程圖）\n  - 構念頁：[[fear-conditioning]]（建立恐懼制約定義與吸吮拇指補償反應）\n  - 構念頁：[[stimulus-generalization]]（建立刺激類化概念與 Albert 類化梯度圖）\n  - 典範頁：[[little-albert-paradigm]]（整理四階段實驗程序與倫理檢討）\n  - 爭端頁：[[little-albert-replication-debate]]（記錄 Bregman 1934 複製失敗、Douglas Merritte 腦積水爭端與對抗精神分析之病因論戰）\n- **目錄更新**：同步登記於 [[index.md]]\n\n## [2026-11-18] ingest | The Origin and Development of Psychoanalysis (Freud, 1910)\n- **操作類型**：論文攝取與網絡編織 (Ingest & Compounding)\n- **原始來源**：[[raw/freud-1910.md]]\n- **新建文獻摘要頁**：[[freud-1910-psychoanalysis-origin]] (Anna O. 案例, 壓抑, 夢的工作, 幼兒性慾, 移情)\n- **衍生實體頁面**：\n  - 流派頁：[[psychoanalysis]]（建立精神分析學派與潛意識假設）\n  - 理論頁：[[psychoanalytic-theory]]（心智三結構與人格動力模型）\n  - 構念頁：[[unconscious]]（潛意識定義）、[[repression]]（壓抑與阻抗機制）、[[transference]]（移情作用）\n  - 典範頁：[[talking-cure-catharsis]]（談話療法與情緒宣洩）\n  - 爭端頁：[[behaviorism-vs-psychoanalysis]]（行為學派 vs 精神分析在恐懼成因的世紀論戰）\n\n## [2026-11-18] ingest | The Magical Number Seven, Plus or Minus Two (Miller, 1956)\n- **操作類型**：論文攝取與網絡編織 (Ingest & Compounding)\n- **原始來源**：[[raw/miller-1956.md]]\n- **新建文獻摘要頁**：[[miller-1956-magical-number-seven]] (單維通道容量 2.6 bits, 立即記憶廣度 7±2, 重新編碼)\n- **衍生實體頁面**：\n  - 流派頁：[[cognitive-psychology]]（建立認知心理學派與資訊處理觀）\n  - 理論頁：[[information-processing-theory]]（心智通訊與計算流程圖）\n  - 構念頁：[[chunking]]（訊息組塊化）、[[channel-capacity]]（單維與多維通道容量）\n  - 典範頁：[[immediate-memory-span-task]]（立即記憶廣度作業）\n  - 爭端頁：[[chunking-capacity-cowan-debate]]（記憶容量 7±2 vs. Cowan 4±1 爭辯）\n\n## [2026-11-18] ingest | A Theory of Human Motivation (Maslow, 1943)\n- **操作類型**：論文攝取與網絡編織 (Ingest & Compounding)\n- **原始來源**：[[raw/maslow-1943.md]]\n- **新建文獻摘要頁**：[[maslow-1943-human-motivation]] (五大基本需求, 相對優勢性, 階層反轉例外)\n- **衍生實體頁面**：\n  - 流派頁：[[humanistic-psychology]]（建立人本主義學派「第三勢力」）\n  - 理論頁：[[hierarchy-of-needs]]（五層需求階層金字塔與動態特徵）\n  - 構念頁：[[self-actualization]]（自我實現構念定義與正向心理學延伸）\n\n## [2026-11-18] ingest | Emotion Circuits in the Brain (LeDoux, 2000)\n- **操作類型**：論文攝取與網絡編織 (Ingest & Compounding)\n- **原始來源**：[[raw/ledoux-2000.md]]\n- **新建文獻摘要頁**：[[ledoux-2000-emotion-circuits]] (側杏仁核感覺介面, 丘腦低路徑/高路徑, LTP 突觸可塑性, 邊緣系統批判)\n- **衍生實體頁面**：\n  - 流派頁：[[neuroscience]]（建立神經科學與生物心理學派）\n  - 理論頁：[[dual-route-emotion-theory]]（情緒雙路徑低路徑/高路徑神經迴路圖）\n  - 典範頁：[[auditory-fear-conditioning-paradigm]]（聽覺恐懼制約神經實驗典範）\n  - 爭端頁：[[amygdala-storage-vs-modulation]]（杏仁核是直接突觸儲存中樞還是調節器之論戰）\n  - 實體多點更新：同步更新 [[fear-conditioning]] 補充細胞與神經迴路層次機制；更新 [[behaviorism]] 增列神經機制還原。\n\n## [2026-11-18] schema | 建立簡報生成 Graph 工作流規範\n- **操作類型**：系統規範升級 (Schema Update)\n- **更新項目**：\n  - 在 [[AGENTS.md]] 正式增訂「第 5 章：簡報生成工作流規範 (Presentation Generation Workflow — Graph Schema)」。\n  - 確立 10 節點 Graph 架構（含覆蓋率關卡、忠實度檢查、渲染相容性檢查、大綱階段人工確認與單頁局部退回修復）。\n  - 確立簡報目錄架構：`slides/` 與 `slides/drafts/`。\n  - 固化春櫻豆沙系日系明朝體、大字級與內聯向量 SVG 圖標設計規範。\n\n## [2026-11-18] presentation | 各流派介紹（五大流派全景解析重點複習講義）\n- **操作類型**：Graph 工作流簡報生成 (Presentation Generation)\n- **依據大綱**：`slides/drafts/psychology_schools_outline.md`（經使用者人工審查核准）\n- **逐頁腳本**：`slides/drafts/psychology_schools_script.md`\n- **生成檔案**：`slides/psychology_schools_presentation.html` (9 頁互動簡報)\n- **關卡檢驗**：\n  - 覆蓋率關卡：Pass（涵蓋 5 篇奠基論文、5 大流派、5 個核心模型、4 項爭端）\n  - 忠實度檢查：Pass（數據與 Wiki 實體 100% 吻合，零外推）\n  - 渲染相容性：Pass（向量 SVG 圖標、字體放大至 15px+、無文字溢出、全螢幕與鍵盤導航正常）\n\n## [2026-11-18] schema | 固化圖示相容性檢查點與簡報流程定案\n- **操作類型**：工作流強化升級 (Workflow Enhancement)\n- **完成項目**：\n  - 簡報檔案結構定案：最新正式檔存放於 `slides/<主題>_presentation.html`，草稿存於 `slides/drafts/`（不保留多餘歷史備份）。\n  - 在 [[AGENTS.md]] 第 5 章增加「圖示完整度專項檢查點」，明訂：零脆弱 Emoji 原則、零外部 CDN 依賴、SVG 格式合法性檢查與安全幾何底座規範。\n  - 將實務反思的三大防線（Node 3/4 規格前移、Node 7 數值硬斷言、Node 9 靜態代碼掃描閥門）固化入正式 Graph Schema。\n\n## [2026-11-18] presentation | 各流派介紹（全面套用三大防線之正式交付）\n- **操作類型**：Graph 工作流正式執行 (Graph Execution)\n- **大綱審查**：`slides/drafts/psychology_schools_outline.md`（經使用者核准）\n- **逐頁腳本**：`slides/drafts/psychology_schools_script.md`\n- **正式交付檔**：`slides/psychology_schools_presentation.html`\n- **防線檢核紀錄**：\n  - 防線 1（規格前移）：卡片字數 $\\le 25$ 字，內置 5 大純向量 SVG 圖標，排版無溢出。\n  - 防線 2（數值硬斷言）：樣本 $N=1$、7 次配對、2.6 bits、$7\\pm 2$ vs $4\\pm 1$、<20ms 低路徑等數值 100% 吻合 Wiki。\n  - 防線 3（代碼靜態掃描）：字級 $\\ge 14\\text{px}$、零高位 Emoji、所有 SVG 標籤閉合且合規。\n\n\n\n\n\n", "constructs/channel-capacity.md": "---\ntitle: \"Channel Capacity\"\naliases: [\"通道容量\", \"通訊通道容量\", \"絕對判斷容量\"]\ntags: [\"construct\", \"information-theory\", \"cognitive-psychology\", \"perception\"]\nschools: [\"[[cognitive-psychology]]\"]\nrelated_constructs: [\"[[chunking]]\", \"[[short-term-memory-span]]\"]\nrelated_sources: [\"[[miller-1956-magical-number-seven]]\"]\n---\n\n# 通道容量 (Channel Capacity)\n\n> [!info] 構念定義\n> 通道容量源自 Shannon 資訊理論，指一個通訊系統傳遞資訊的最大傳輸速率或極限。在認知心理學中，指人類觀察者在進行「絕對判斷（Absolute Judgment）」時，能夠無差錯辨識刺激等級所能傳輸的最大資訊量（以位元 Bits 表示）。\n\n---\n\n## 1. 單維度感覺刺激的極限 (Miller, 1956)\n\n[[miller-1956-magical-number-seven|Miller (1956)]] 統整了大量心理物理學文獻，發現無論是何種單一感覺維度，人類的絕對判斷通道容量均存在驚人一致的上限：\n* **平均通道容量**：約 **$2.6\\text{ bits}$**（標準差約 $0.6\\text{ bits}$）。\n* **可辨識類別數**：$2^{2.6} \\approx 6.5$ 個類別（通常在 4 到 10 之間，常見為 7）。\n* **結論**：人類的神經系統在面對單一連續變異的物理刺激時，能做出無誤絕對分類的精確度極為有限。\n\n---\n\n## 2. 突破單維限制：多維度刺激整合 (Multidimensional Expansion)\n\n當環境刺激同時具備多個獨立維度時，總通道容量顯著上升，但各維度的邊際貢獻遞減：\n* 點在二維平面方格中的位置：$4.6\\text{ bits}$（約 24 個位置）。\n* 6 種聲學特徵複合音：$7.2\\text{ bits}$（約 150 種辨識類別）。\n* **演化適應意義**：生物體在演化中演變為「對環境多種屬性進行粗糙、即時的同時判斷」，以利在複雜生態系中生存，而非精確測量單一物理屬性。\n", "constructs/chunking.md": "---\ntitle: \"Chunking\"\naliases: [\"訊息組塊\", \"組塊化\", \"組塊處理\", \"Chunk\"]\ntags: [\"construct\", \"cognitive-psychology\", \"memory\"]\nschools: [\"[[cognitive-psychology]]\"]\nrelated_constructs: [\"[[channel-capacity]]\", \"[[short-term-memory-span]]\"]\nrelated_sources: [\"[[miller-1956-magical-number-seven]]\"]\n---\n\n# 訊息組塊 (Chunking)\n\n> [!info] 構念定義\n> 訊息組塊是指人類心智將多個零散、孤立的低層次刺激元素，依據既有的長時記憶知識結構、語意規則或關聯性，重新組織並編碼成一個獨立、有意義的高階單元（稱為一個「組塊 Chunk」）的認知歷程。\n\n---\n\n## 1. 突破記憶瓶頸的關鍵機制 (Miller, 1956)\n\n根據 [[miller-1956-magical-number-seven|Miller (1956)]]：\n* **瓶頸常數**：短期記憶的物理儲存槽限制在於 **$7 \\pm 2$ 個組塊**，而**不是**資訊位元量（Bits）。\n* **擴增容量的捷徑**：如果我們無法增加「槽位的數量」，我們可以透過組塊化增加「每個槽位內包含的資訊量（Bits per Chunk）」。\n* **經典實證（Sidney Smith, 1954 二進位重編碼實驗）**：\n  * 未經組塊：`1 0 1 0 0 0 1 0 0 1 1 1`（12 個獨立數字，超出一般人立即記憶廣度）。\n  * 3:1 八進位組塊：`(101) (000) (100) (111) = 5 0 4 7`（僅需記憶 4 個八進位數字，輕鬆完整複述）。\n  * 熟練受試者透過 5:1 重編碼，短期記憶廣度可從 8 個數字飆升至 **40 個二進位數字**。\n\n---\n\n## 2. 日常應用與專家知識\n\n* **電話號碼與身分證**：將 10 位數字拆為 `0912-345-678`（3 個組塊）遠比連續字串容易記憶。\n* **西洋棋大師研究**（Chase & Simon, 1973）：棋藝大師在 5 秒內能記住整盤複雜棋局，並非天生記憶力超群，而是將棋子歸納為高階戰術「組塊」；若隨機亂擺棋子，大師的記憶優勢隨即消失。\n", "constructs/fear-conditioning.md": "---\ntitle: \"Fear Conditioning\"\naliases: [\"恐懼制約\", \"條件性恐懼\", \"恐懼條件作用\"]\ntags: [\"construct\", \"emotion\", \"behaviorism\", \"neuroscience\"]\nschools: [\"[[behaviorism]]\"]\nrelated_constructs: [\"[[stimulus-generalization]]\", \"[[extinction]]\"]\n---\n\n# 恐懼制約 (Fear Conditioning)\n\n> [!info] 構念定義\n> 恐懼制約（Fear Conditioning）是指個體在經歷原本中性的刺激（CS，如動物、幾何圖形、特定聲音）與帶有威脅性或傷害性的嫌惡刺激（US，如強烈噪音、電擊）時間配對後，該中性刺激轉變為能自主誘發防禦反應（CR，如戰或逃、僵直不動 Freezing、哭泣逃避、自主神經亢奮）的心理歷程。\n\n---\n\n## 1. 實證證據演進 (Empirical Evidence Timeline)\n\n### 1.1 行為層次觀察 (Behavioral Level)\n* **奠基實證**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]]\n  * **被試**：Albert B.（11 個月大嬰兒）。\n  * **操弄**：以活體白鼠（CS）配對身後鋼條鐵鎚敲擊聲（US）。\n  * **指標**：在第 8 次呈現白鼠時，引發劇烈轉身逃跑、側翻倒地與大哭等行為制約反應。\n  * **持久度**：在無額外刺激暴露下持續長達 31 天以上。\n\n### 1.2 神經生物與細胞層次解析 (Neural Circuit Level)\n* **神經迴路權威模型**：[[ledoux-2000-emotion-circuits|LeDoux (2000)]]\n  * **側杏仁核 (LA)**：確立側杏仁核為 CS 與 US 匯聚的「感覺閘門（Sensory Gateway）」，單元放電延遲小於 20 ms。\n  * **[[dual-route-emotion-theory|雙路徑傳導]]**：\n    * 低路徑：丘腦 $\\rightarrow$ LA（極速粗糙無意識警報）。\n    * 高路徑：丘腦 $\\rightarrow$ 聽覺皮質 $\\rightarrow$ LA（複雜精細刺激分析）。\n  * **中央杏仁核 (CE)**：總輸出中樞，直通腦幹（PAG 僵直、LH 血壓心跳、BNST 壓力荷爾蒙）。\n  * **突觸可塑性**：恐懼制約促發側杏仁核的長時程增益（LTP），仰賴鈣離子湧入與蛋白質合成。\n\n---\n\n## 2. 相關機制與伴隨反應 (Mechanisms & Reactions)\n\n1. **防衛性補償行為 (Compensatory Device)**：\n   * 在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 中觀察到，受試嬰兒在面臨高度恐懼威脅時，會自發進行「吸吮拇指（Thumb-sucking）」，一旦手指放入口中，恐懼反應即被顯著抑制與阻斷。這顯示自發性的愉悅刺激接觸可作為對抗負向情緒的補償通道。\n2. **刺激擴散性**：\n   * 恐懼制約一旦成形，極易沿著物體表面特徵（如白毛、柔軟質地）自發擴散，形成 [[stimulus-generalization|刺激類化]]。\n\n---\n\n## 3. 跨學派觀點差異 (Cross-School Perspectives)\n\n| 維度 | [[behaviorism\\|行為學派 (Behaviorism)]] | [[psychoanalysis\\|精神分析學派 (Psychoanalysis)]] |\n| :--- | :--- | :--- |\n| **恐懼本質** | 環境 S-R 聯結學習，為三大原始情緒之一 | 性衝動（Libido）被壓抑後的轉化或象徵置換 |\n| **病因解釋** | 外在偶發的嫌惡性刺激配對歷史 | 童年伊底帕斯情結、閹割焦慮或未解決之潛意識衝突 |\n| **矯治途徑** | 去制約（消退 Extinction）、抗制約（反制約 Counter-conditioning） | 自由聯想、夢的解析、移情（Transference）修通 |\n", "constructs/repression.md": "---\ntitle: \"Repression\"\naliases: [\"壓抑\", \"潛抑\", \"Verdrängung\"]\ntags: [\"construct\", \"defense-mechanism\", \"psychoanalysis\"]\nschools: [\"[[psychoanalysis]]\"]\nrelated_constructs: [\"[[unconscious]]\", \"[[transference]]\"]\nrelated_sources: [\"[[freud-1910-psychoanalysis-origin]]\"]\n---\n\n# 壓抑 (Repression / Verdrängung)\n\n> [!info] 構念定義\n> 壓抑是自我（Ego）最基礎、核心的心理防衛機制。當某個心理意念、慾望或創傷記憶與個人的道德觀、美學標準或自我認同產生不可調和的尖銳衝突時，個體會在無意識中將該意念驅逐出意識範圍，使其無法進入自覺思考。\n\n---\n\n## 1. 壓抑的運作機制與阻抗比喻 (Freud, 1910)\n\n在 [[freud-1910-psychoanalysis-origin|Freud (1910)]] 的第二場演講中，他以演講廳鬧事者生動比喻壓抑與阻抗（Resistance）：\n* **情境**：演講廳內有一名滋事分子（不相容的願望），打擾了演講進行。\n* **壓抑**：幾位壯漢合力將滋事分子推出門外（壓抑至潛意識）。\n* **阻抗**：壯漢們把椅子搬到門口守門，防止該人重新衝入（維持壓抑所需的心理能量消耗，即臨床治療中遭遇的「阻抗」）。\n* **症狀形成**：被趕到門外的滋事者在門外猛烈捶門呼喊（壓抑未完全成功，能量轉化為焦慮與神經症狀）。\n\n---\n\n## 2. 跨學派對比：壓抑 vs. 恐懼制約\n\n| 維度 | [[psychoanalysis\\|精神分析 (Freud, 1910)]] | [[behaviorism\\|行為學派 (Watson & Rayner, 1920)]] |\n| :--- | :--- | :--- |\n| **遺忘與障礙本質** | 內在衝突被主動「壓抑」至潛意識，戴面具表現為軀體化症狀 | 外在環境的「制約反射」缺乏消退刺激，持續保持神經聯結 |\n| **治療解方** | 克服阻抗、將壓抑回憶意識化、情感宣洩與昇華 | 暴露療法、系統減敏、重新制約（去制約） |\n", "constructs/self-actualization.md": "---\ntitle: \"Self-Actualization\"\naliases: [\"自我實現\", \"潛能實現\", \"自我充實\"]\ntags: [\"construct\", \"motivation\", \"humanistic-psychology\", \"positive-psychology\"]\nschools: [\"[[humanistic-psychology]]\"]\nrelated_theories: [\"[[hierarchy-of-needs]]\"]\nrelated_sources: [\"[[maslow-1943-human-motivation]]\"]\n---\n\n# 自我實現 (Self-Actualization)\n\n> [!info] 構念定義\n> 自我實現最早由神經病學家 Kurt Goldstein 提出，後由 Abraham Maslow 定義為：個體實現其全部潛在才能、創造力與生命可能性的內在渴望。意即「一個人具備成為什麼的潛力，他就必須成為什麼樣的人（What a man can be, he must be）」。\n\n---\n\n## 1. 在動機階層中的定位 (Maslow, 1943)\n\n根據 [[maslow-1943-human-motivation|Maslow (1943)]]：\n* **頂層成長需求 (Growth / Being Need)**：不同於前四層「匱乏需求（Deficiency Needs）」，自我實現並非因匱乏而尋求彌補，而是基於個體自我展開與昇華的動力。\n* **湧現前提**：通常需要生理、安全、愛與歸屬、自尊等基本需求獲得相當程度的滿足後，自我實現才能清晰浮現。\n* **表現的多樣性**：自我實現的形式因人而異——在某些人身上體現為優秀的母親、在某些人體現為藝術繪畫、在運動員身上體現為極限體能展現。\n\n---\n\n## 2. 後續演進與正向心理學\n\n* 自我實現的概念直接啟發了 Deci & Ryan 的「自我決定論（Self-Determination Theory, SDT）」中的內在動機研究，以及 Mihaly Csikszentmihalyi 的「心流體驗（Flow）」，成為現代正向心理學的核心靈魂。\n", "constructs/stimulus-generalization.md": "---\ntitle: \"Stimulus Generalization\"\naliases: [\"刺激類化\", \"刺激泛化\", \"刺激推廣\"]\ntags: [\"construct\", \"learning\", \"behaviorism\"]\nschools: [\"[[behaviorism]]\"]\nrelated_constructs: [\"[[fear-conditioning]]\", \"[[classical-conditioning]]\"]\n---\n\n# 刺激類化 (Stimulus Generalization)\n\n> [!info] 構念定義\n> 刺激類化是指個體對某一特定制約刺激（CS）建立制約反應後，面對其他在物理屬性、外觀特徵或語意概念上與原刺激相似的新刺激時，不需額外經過制約學習，亦能引發相同或相似程度制約反應的現象。通常新刺激與原 CS 越相似，誘發的反應強度越高（類化梯度 Generalization Gradient）。\n\n---\n\n## 1. 經典實證：小阿爾伯特的情緒轉移 (Watson & Rayner, 1920)\n\n在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 實驗中，研究者在 Albert 身上建立了對「白鼠」的恐懼制約後，以一系列全新刺激測試其「轉移（Transfer）」反應：\n\n```mermaid\ngraph TD\n    CS[\"原制約刺激 (CS)<br>白鼠 (White Rat)\"] -->|\"引發制約恐懼 (CR)\"| FEAR[\"劇烈哭泣、逃避爬離\"]\n    \n    CS -.->|\"外觀相似度極高 (白毛/小型動物)\"| S1[\"兔子 (Rabbit)\"]\n    CS -.->|\"毛皮外觀/動物屬性\"| S2[\"狗 (Dog)\"]\n    CS -.->|\"白色厚毛皮質地\"| S3[\"海豹皮大衣 (Seal Fur Coat)\"]\n    CS -.->|\"白色鬍鬚/面部毛髮\"| S4[\"聖誕老人面具 (Santa Mask)\"]\n    CS -.->|\"白色纖維質地\"| S5[\"棉花 (Cotton Wool)\"]\n    CS -.->|\"無毛/無生命幾何物體\"| S6[\"木製積木 (Blocks)\"]\n\n    S1 ==>|\"強烈類化\"| FEAR\n    S2 ==>|\"中度類化 (吠叫時加劇)\"| FEAR\n    S3 ==>|\"強烈類化 (哭泣甩頭)\"| FEAR\n    S4 ==>|\"強烈類化 (未觸碰即大哭)\"| FEAR\n    S5 -->|\"輕度排斥 (踢開但未哭)\"| FEAR\n    S6 -->|\"無類化 (愉快玩耍)\"| NO_FEAR[\"無恐懼反應\"]\n\n    classDef fear fill:#ffebee,stroke:#c62828,stroke-width:2px;\n    classDef safe fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;\n    class FEAR fear;\n    class NO_FEAR safe;\n```\n\n---\n\n## 2. 臨床與心理病理學意涵 (Clinical Significance)\n\n* **恐懼症的擴散機制**：\n  * 臨床上許多特定恐懼症（Specific Phobias）患者所畏懼的對象往往不只是最初創傷事件中的單一物體，而是透過刺激類化擴散至整個範疇（例如：被特定狂犬咬傷後，類化為對所有犬類、毛茸茸布偶甚至犬吠錄音的普遍性恐慌）。\n* **與環境特徵的分離**：\n  * Albert 對積木毫無恐懼，證實刺激類化是具備**特徵選擇性（Feature-selective）**的，並非單純對整個實驗室或環境的全面性焦慮。\n", "constructs/transference.md": "---\ntitle: \"Transference\"\naliases: [\"移情\", \"移情作用\", \"Übertragung\"]\ntags: [\"construct\", \"psychoanalysis\", \"clinical-technique\"]\nschools: [\"[[psychoanalysis]]\"]\nrelated_sources: [\"[[freud-1910-psychoanalysis-origin]]\"]\n---\n\n# 移情作用 (Transference / Übertragung)\n\n> [!info] 構念定義\n> 移情是指在心理治療歷程中，病患將早年生活重要關係人（通常是父母）未解決的潛意識情感、願望、恐懼或敵意，非理性地投射、轉移到當前治療師身上的心理現象。\n\n---\n\n## 1. 移情的治療核心功能 (Freud, 1910)\n\n在 [[freud-1910-psychoanalysis-origin|Freud (1910)]] 的第五場演講中指出：\n* **化學反應的催化劑**：佛洛伊德引用 Ferenczi 的觀點，將治療師比喻為「催化劑（Catalytic Ferment）」，使病患過去凝固的創傷情感在移情的高溫下重新溶解、浮現並被解析。\n* **抗拒與突破**：移情最初常表現為強烈阻抗（如病患對治療師產生突發的情愛渴望或莫名憤怒）；但一旦被解析說明，便成為病患直接確信潛意識力量存在的最有力臨床證據。\n", "constructs/unconscious.md": "---\ntitle: \"The Unconscious\"\naliases: [\"潛意識\", \"無意識\", \"Unconscious Mind\"]\ntags: [\"construct\", \"psychoanalysis\", \"personality\"]\nschools: [\"[[psychoanalysis]]\"]\nrelated_constructs: [\"[[repression]]\", \"[[transference]]\"]\nrelated_sources: [\"[[freud-1910-psychoanalysis-origin]]\"]\n---\n\n# 潛意識 (The Unconscious)\n\n> [!info] 構念定義\n> 潛意識是指個體無法直接覺察、反思或用意志控制的心理歷程與內容儲存庫。在精神分析理論中，潛意識包含原始本能衝動、不可容於意識的禁忌願望，以及因造成劇烈痛苦而遭防衛機制「壓抑」的創傷記憶。\n\n---\n\n## 1. 潛意識的運作特質 (Freud, 1910)\n\n根據 [[freud-1910-psychoanalysis-origin|Freud (1910)]] 在克拉克大學的闡述：\n1. **動態活躍性 (Dynamic Nature)**：被壓抑進潛意識的願望並非處於休眠狀態，而是持續向外尋求表現機會。\n2. **象徵性偽裝 (Disguised Representation)**：為了躲避意識守衛（阻抗 Resistance），潛意識內容會轉化為替代產物（Ersatzbildung），如夢境、神經症軀體症狀、口誤（Fehlhandlungen）或機智幽默（Wit）。\n3. **超越常規理性**：潛意識不受時間順序、矛盾律或外在現實法則約束（原發歷程思維 Primary Process Thinking）。\n\n---\n\n## 2. 檢索與探測技術\n\n* **自由聯想 (Free Association)**：透過放鬆日常批判標準，讓病人順從湧現的心思，循著阻抗蹤跡追蹤潛意識情結。\n* **夢的解析 (Dream Analysis)**：佛洛伊德稱夢是「通往潛意識的康莊大道（via regia）」，透過解析顯夢還原底層隱夢。\n", "controversies/amygdala-storage-vs-modulation.md": "---\ntitle: \"Amygdala: Memory Storage vs. Memory Modulation Debate\"\naliases: [\"杏仁核爭端：記憶儲存地還是調節器？\", \"杏仁核記憶爭辯\"]\ntags: [\"controversy\", \"neuroscience\", \"memory\", \"amygdala\"]\nrelated_constructs: [\"[[fear-conditioning]]\", \"[[synaptic-plasticity-ltp]]\"]\nrelated_sources: [\"[[ledoux-2000-emotion-circuits]]\"]\n---\n\n# 杏仁核爭端：情緒記憶的儲存地還是調節器？\n\n> [!important] 核心爭端概述\n> 在情緒記憶神經科學領域，長期存在兩大陣營的尖銳分歧：以 Larry Cahill 與 James McGaugh 為代表的一方主張「杏仁核僅為情緒調節器（Modulator）」；而以 Joseph LeDoux 與 Michael Fanselow 為代表的一方則堅持「杏仁核本身就是恐懼記憶獲得與儲存的不可或缺神經基質（Site of Storage）」。\n\n---\n\n## 1. 雙方實證依據與對立模型\n\n### 陣營 A：調節器模型 (McGaugh & Cahill, 1998)\n* **核心主張**：大腦具備多重記憶系統（海馬迴掌管外顯記憶、紋狀體掌管習慣記憶）。杏仁核藉由釋放正腎上腺素與壓力荷爾蒙，其功能只是**調節（Modulate）**並增強其他腦區記憶的鞏固，其本身並不儲存記憶痕跡。\n* **主要證據**：人類杏仁核受損者依然能過正常生活，且能形成陳述性記憶；給予 $\\beta$-受體阻斷劑僅削弱情緒記憶的增強效果，但並未抹除記憶本身。\n\n### 陣營 B：突觸可塑性儲存模型 (LeDoux & Fanselow, 1999; LeDoux, 2000)\n* **核心主張**：調節證據絕不能等同於否定杏仁核的可塑性。在巴夫洛夫恐懼制約中，側杏仁核（LA）正是 CS-US 突觸匯聚並產生長時程增益（LTP）的根本所在地。\n* **反駁關鍵實驗**：\n  * **學習期去活化 (Pre-training Inactivation)**：若在制約學習前以 Muscimol 暫時阻斷杏仁核活性，動物**完全無法習得恐懼**（Muller et al., 1997）。\n  * **訓練後去活化 (Post-training)**：若在訓練結束後才去活化杏仁核，則不影響記憶保留，證明其作用於學習當下的記憶獲得，而非僅僅是事後調節。\n  * **分子阻斷**：側杏仁核局部注射蛋白質合成抑制劑（Anisomycin）能永久消滅恐懼記憶固化。\n\n---\n\n## 2. 現代科學裁決\n\n當前神經科學界普遍採納 LeDoux 的整合結論：\n1. **雙重功能**：杏仁核既是 Pavlovian 恐懼反射記憶的**直接突觸儲存中樞**，同時也向外**調節**海馬迴與大腦皮質的長時陳述性記憶固化。\n2. 兩者互不衝突，共同構成了人類面對威脅時完整的情緒神經網絡。\n", "controversies/behaviorism-vs-psychoanalysis.md": "---\ntitle: \"Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate\"\naliases: [\"行為學派 vs 精神分析：恐懼症成因論戰\", \"恐懼成因論戰\"]\ntags: [\"controversy\", \"behaviorism\", \"psychoanalysis\", \"phobia\"]\nrelated_schools: [\"[[behaviorism]]\", \"[[psychoanalysis]]\"]\nrelated_sources: [\"[[watson-rayner-1920-conditioned-fear]]\", \"[[freud-1910-psychoanalysis-origin]]\"]\n---\n\n# 行為學派 vs. 精神分析：恐懼症成因與治療論戰\n\n> [!important] 核心爭端概述\n> 20 世紀初，心理學界爆發了關於神經症與恐懼症（Phobias）根本病因的世紀論戰。以 Sigmund Freud 為首的 [[psychoanalysis|精神分析學派]] 主張恐懼源自潛意識壓抑與幼兒性心理衝突；而以 John B. Watson 為首的 [[behaviorism|行為主義學派]] 則主張恐懼純粹是後天環境刺激（S-R）的古典制約與類化。\n\n---\n\n## 1. 雙方核心主張對壘 (Competing Perspectives)\n\n| 爭論維度 | 精神分析學派 ([[freud-1910-psychoanalysis-origin|Freud, 1910]]) | 古典行為主義 ([[watson-rayner-1920-conditioned-fear|Watson & Rayner, 1920]]) |\n| :--- | :--- | :--- |\n| **病理本質** | 內在心理動力失衡、本我願望受自我壓抑。 | 後天環境偶發事件所建立的制約性反射情緒。 |\n| **恐懼症成因** | 幼兒性慾（Libido）受挫、伊底帕斯情結投射（如小漢斯對馬的恐懼被解釋為閹割焦慮）。 | 嫌惡性非制約刺激（如鋼條巨響）與中性動物刺激的配對學習。 |\n| **刺激類化解釋** | 潛意識象徵置換（Displacement），症狀是創傷情結的象徵符號。 | 物理特徵相似性所觸發的刺激類化（Stimulus Generalization）。 |\n| **治療方針** | 自由聯想、夢的解析、克服阻抗、情緒宣洩（Talking Cure）。 | 去制約（消退 Extinction）、系統減敏、反制約。 |\n\n---\n\n## 2. Watson 的公開抨擊與案例對決\n\n在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 論文第 14 頁，Watson 直白寫道：\n> 「佛洛伊德學派認為性（愛）是引起制約反應進而扭曲人格的首要情緒。我們根據實驗證據對此提出強烈反對。恐懼是與性同等原始的因素……二十年後，佛洛伊德學派若分析 Albert 對海豹皮大衣的恐懼，必定會透過夢境分析編造出一套『Albert 在 3 歲時試圖玩弄母親陰毛而遭嚴厲懲罰』的故事；但事實上，這純粹是他在 11 個月大時所建立的直接制約情緒與轉移。」\n\n---\n\n## 3. 歷史裁決與現代整合\n\n* **症狀置換假說的破除**：行為治療（如 Joseph Wolpe 系統減敏法）成功證實，直接針對表層制約恐懼進行去制約，患者並不會如精神分析預測般必然出現「其他替代症狀（Symptom Substitution）」。\n* **認知神經學的現代仲裁**：[[ledoux-2000-emotion-circuits|LeDoux (2000)]] 證實恐懼制約具備演化保留的皮質下迴路，支持了恐懼作為獨立原始情緒系統的地位。\n", "controversies/chunking-capacity-cowan-debate.md": "---\ntitle: \"The Working Memory Capacity Debate: 7±2 vs 4±1\"\naliases: [\"短期記憶容量爭辯：7±2 vs 4±1\", \"工作記憶容量爭端\"]\ntags: [\"controversy\", \"cognitive-psychology\", \"working-memory\", \"capacity\"]\nrelated_constructs: [\"[[chunking]]\", \"[[short-term-memory-span]]\"]\nrelated_sources: [\"[[miller-1956-magical-number-seven]]\"]\n---\n\n# 短期記憶容量之爭：神奇數字 7±2 還是 4±1？\n\n> [!important] 核心爭端概述\n> [[miller-1956-magical-number-seven|George Miller (1956)]] 提出的神奇數字 $7 \\pm 2$ 長年成為大眾心理學的常識。然而進入 21 世紀後，Nelson Cowan (2001) 與當代認知心理學家透過嚴密排除「語音複誦」與「長時記憶組塊」的實驗設計，證明人類純粹的工作記憶核心容量其實只有 **$4 \\pm 1$ 個組塊**。\n\n---\n\n## 1. 雙方論點與實驗控制差異\n\n| 維度 | Miller (1956) 的 $7 \\pm 2$ 模型 | Cowan (2001) 的 $4 \\pm 1$ 核心模型 |\n| :--- | :--- | :--- |\n| **宣稱容量** | $7 \\pm 2$ 個組塊 | $4 \\pm 1$ 個組塊（通常為 3 到 5 個） |\n| **實驗條件** | 允許受試者在心裡默唸（語音複誦 Subvocal Rehearsal）與自發重編碼。 | 嚴格使用口語抑制作業（Articulatory Suppression）或瞬間視覺陣列，禁止默誦。 |\n| **容量本質** | 複合性短期記憶廣度（包含周邊感覺緩衝、語音迴路與長時知識調用）。 | 中央執行注意力焦點（Focus of Attention）的純粹工作記憶上限。 |\n\n---\n\n## 2. 為什麼 Miller 當年會測出 7？\n\n1. **語音迴路 (Phonological Loop) 的時間滾動**：\n   * Alan Baddeley 發現短期記憶受限於「約 2 秒內能唸完的詞彙量」。當呈現十進位數字時，多數人能在 2 秒內於心中默誦 7 個數字，使得表觀廣度達到了 7。\n2. **長時記憶的隱性支援**：\n   * 在記憶數字時，受試者會下意識將「1, 9, 8, 4」結合為長時記憶中的「1984年」，偷渡了組塊資訊。\n\n---\n\n## 3. 當代理論共識\n\n現代認知神經科學界普遍接受：\n* 當**不允許複誦且刺激無結構可組塊時**（如螢幕閃爍多個色塊），人類注意力焦點的純容量為 **4**。\n* 當**允許正常語言編碼與策略調度時**，日常記憶廣度表現約為 **7**。\n", "controversies/little-albert-replication-debate.md": "---\ntitle: \"Little Albert Replication & Ethics Debate\"\naliases: [\"小阿爾伯特重複性檢驗與真實身分爭端\", \"小阿爾伯特爭端\"]\ntags: [\"controversy\", \"replication-crisis\", \"ethics\", \"behaviorism\"]\nrelated_theories: [\"[[classical-conditioning]]\"]\nrelated_sources: [\"[[watson-rayner-1920-conditioned-fear]]\"]\n---\n\n# 小阿爾伯特重複性檢驗與學術爭辯 (Little Albert Debate)\n\n> [!important] 核心爭端概述\n> [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 的小阿爾伯特實驗雖名列心理學教科書經典，但自發表以來在**實證重複性（Replicability）**、**受試者健康狀態（Subject Health）** 與 **研究倫理（Ethics）** 三大層面皆引發了長達百年的激烈學術交鋒。\n\n---\n\n## 1. 複製危機：實證可重複性爭議 (Replication Failures)\n\n* **Bregman (1934) 的嚴謹重複失敗**：\n  * 學者 Elise O. Bregman (1934) 嘗試以更嚴格的實驗控制複製 Watson 的實驗（$N = 15$ 名嬰兒）。\n  * 實驗使用木質幾何玩具、布簾、彩色木塊作為 CS，搭配電鈴噪音作為 US。\n  * **結果**：在超過數百次試次配對後，**完全無法在嬰兒身上建立對該無生命物體的恐懼制約**。\n* **理論分歧：等能性（Equipotentiality）的瓦解**：\n  * Watson 主張任何刺激都能同等被制約；但後續動物與人類實驗均顯示，生物體對活體動物或毛茸茸刺激的恐懼制約，遠比對人造幾何物體容易。這支持了演化心理學的「預備學習（Preparedness）」假設，削弱了純粹行為主義的環境萬能論。\n\n---\n\n## 2. 小阿爾伯特的真實身分與健康狀況之謎 (The Identity Controversy)\n\n心理學界長期關心 Albert 離院後的命運，近年歷史考證出現了重大爭端：\n\n1. **Douglas Merritte 假說 (Beck, Levinson, & Irons, 2009)**：\n   * 考證指出 Albert 真實身分為 Douglas Merritte，其母親為乳母 Arvilla Merritte。\n   * **震撼發現**：醫療紀錄顯示該男嬰自幼患有先天性腦積水（Hydrocephalus），伴隨嚴重視神經與神經系統損傷，於 6 歲時早夭。\n   * **學術震盪**：若被試原本即有神經認知病變，Watson 在論文中宣稱其「健康正常、性格穩定」即屬嚴重學術不端（Misrepresentation）。\n2. **William Barger 假說 (Powell et al., 2014)**：\n   * 隨後學者提出反證，認為 Albert 其實是另一名乳母的孩子 William Barger。\n   * 該男嬰發育完全正常，成年後以普通人身分生活，於 2007 年高齡 87 歲逝世。據親友回憶，他終生對犬類確實抱有莫名的厭惡。\n\n---\n\n## 3. 行為學派 vs. 精神分析：恐懼症成因論戰 (Etiology of Phobias)\n\n* **Watson 的挑戰**：\n  * 在 1920 年論文中，Watson 公開抨擊精神分析學派將恐懼與焦慮簡化為「性本能（Libido）的壓抑與象徵表現」，主張恐懼完全是由童年環境的制約經驗塑造。\n* **精神分析的回應**：\n  * 精神分析學者則反駁行為主義的「S-R 膚淺模型」，認為即使實驗室製造了短暫的表層制約症狀，如果沒有解決深層的動力衝突，症狀也會以其他形式轉換（Symptom Substitution）。\n", "paradigms-scales/auditory-fear-conditioning-paradigm.md": "---\ntitle: \"Auditory Fear Conditioning Paradigm\"\naliases: [\"聽覺恐懼制約實驗典範\", \"大鼠恐懼制約典範\"]\ntags: [\"paradigm\", \"neuroscience\", \"behaviorism\", \"animal-model\"]\nschools: [\"[[neuroscience]]\", \"[[behaviorism]]\"]\nkey_sources: [\"[[ledoux-2000-emotion-circuits]]\", \"[[watson-rayner-1920-conditioned-fear]]\"]\n---\n\n# 聽覺恐懼制約實驗典範 (Auditory Fear Conditioning Paradigm)\n\n> [!info] 典範定義\n> 聽覺恐懼制約典範是情緒神經科學中研究威脅偵測、恐懼學習與記憶固化最廣泛使用的動物實驗模型。透過將中性純音（CS）與輕微足部電擊（US）時間配對，評估動物後續在單獨暴露純音時所表現出的僵直（Freezing）時間比例與生理指標。\n\n---\n\n## 1. 標準實驗程序 (Standard Protocol)\n\n```text\n[1. 習慣化 Phase]\n   └── 將實驗動物（大鼠/小鼠）放入測試箱，適應環境，記錄基準行為。\n[2. 制約訓練 Phase (Conditioning)]\n   └── 呈現單純聲音 (CS, 如 80 dB 純音，持續 10~20 秒)。\n   └── 在聲音結束前的最後 0.5~1 秒，同時施加不可逃避之足部電擊 (US, 0.4~0.8 mA)。\n   └── 重複 1~5 次配對（一次足夠引發強烈制約）。\n[3. 提取與測試 Phase (Retrieval Test)]\n   └── 將動物置於全新情境（不同形狀、氣味之測試箱，排除情境制約影響）。\n   └── 單獨播放聲音 CS，記錄防衛反應。\n```\n\n---\n\n## 2. 測量指標與神經操作優勢 (LeDoux, 2000)\n\n1. **客觀行為指標**：\n   * **僵直行為 (Freezing)**：除了呼吸之外完全無自主身體動作，由導水管周圍灰質（PAG）驅動。\n   * **自主神經指標**：平均動脈血壓上升、心跳加速、驚嚇反射增強（Fear-potentiated startle）。\n2. **神經科學研究優勢**：\n   * 學習速度極快（1~3 次配對即可形成終身記憶）。\n   * 輸入路徑（聽覺丘腦）與輸出路徑（腦幹自主神經系統）解剖學邊界清晰，非常適合結合局部微量注射藥物（如 APV、Anisomycin）或單元電生理記錄以剖析突觸可塑性。\n", "paradigms-scales/immediate-memory-span-task.md": "---\ntitle: \"Immediate Memory Span Task\"\naliases: [\"立即記憶廣度作業\", \"數位廣度測驗\", \"Digit Span Task\"]\ntags: [\"paradigm\", \"cognitive-psychology\", \"memory-test\"]\nschools: [\"[[cognitive-psychology]]\"]\nkey_sources: [\"[[miller-1956-magical-number-seven]]\"]\n---\n\n# 立即記憶廣度作業 (Immediate Memory Span Task)\n\n> [!info] 典範定義\n> 立即記憶廣度作業是認知心理學測量短期記憶容量的經典實驗程序。實驗者以固定速率（通常為每秒 1 個項目）連續呈現一系列無關項目（數字、字母、單字），呈現結束後要求受試者立即依原順序完整複述。受試者能正確複述 50% 以上的最大長度即為其立即記憶廣度。\n\n---\n\n## 1. 實驗設計與材料變異 (Miller, 1956)\n\n[[miller-1956-magical-number-seven|Miller (1956)]] 引述 Hayes (1952) 的經典實驗，比較了不同資訊密度材料下的廣度表現：\n* **二進位數字 (Binary Digits, 1 bit/item)**：廣度約為 **9 個項目**。\n* **十進位數字 (Decimal Digits, 3.3 bits/item)**：廣度約為 **7 到 8 個項目**。\n* **英文字母 (Letters, 4.7 bits/item)**：廣度約為 **6 到 7 個項目**。\n* **單音節英文單字 (Monosyllables, ~10 bits/item)**：廣度約為 **5 個項目**。\n\n---\n\n## 2. 理論核心：證明「組塊」容量恆定\n\n* 雖然單字與二進位數字的「資訊量（Bits）」相差 10 倍，但受試者能記憶的項目數量僅從 9 掉到 5，證明限制記憶廣度的並非資訊位元量，而是「獨立組塊（Chunks）」的數量，正常成人平均恆定在 **$7 \\pm 2$**。\n", "paradigms-scales/little-albert-paradigm.md": "---\ntitle: \"Little Albert Paradigm\"\naliases: [\"小阿爾伯特實驗典範\", \"嬰兒恐懼制約典範\"]\ntags: [\"paradigm\", \"experimental-design\", \"behaviorism\"]\nschools: [\"[[behaviorism]]\"]\nkey_sources: [\"[[watson-rayner-1920-conditioned-fear]]\"]\n---\n\n# 小阿爾伯特實驗典範 (Little Albert Paradigm)\n\n> [!info] 典範定義\n> 小阿爾伯特實驗典範是由 John B. Watson 與 Rosalie Rayner 於 1920 年設計的經典實驗程序，旨在檢驗能否在原本無恐懼傾向的嬰兒身上，透過古典制約（配對嫌惡性聽覺巨響）人為引發對特定動物的恐懼反應，並量測此情緒反應的類化梯度與時間持久性。\n\n---\n\n## 1. 實驗標準四階段程序 (Standard Procedure)\n\n```text\n[階段一：前測基準期] (Baseline Phase, 9 個月大)\n   └── 呈現多種潛在刺激物（白鼠、兔、狗、猴、棉花、面具），確認個體無先天恐懼反應。\n   └── 測試聽覺刺激（以鐵鎚敲擊長 4 英尺鋼條），確立非制約刺激 (US) 能誘發驚嚇反應 (UR)。\n          ↓\n[階段二：制約配對期] (Conditioning Phase, 11 個月 3 天 ~ 10 天)\n   └── 呈現象徵目標物（白鼠 CS）。\n   └── 當被試伸手觸摸物體時，於其身後突然敲擊鋼條 (US)。\n   └── 試次間隔：通常連續實施 1~3 次後暫停數天，累計約 7 次聯合刺激。\n          ↓\n[階段三：類化轉移測試] (Generalization Test, 11 個月 15 天)\n   └── 引入外觀相似的測試刺激（不同動物、毛皮大衣、面具）與對照無關刺激（木塊）。\n   └── 記錄被試的逃避肢體動作、哭泣反應與反應延遲時間。\n          ↓\n[階段四：時間持久性檢測] (Retention Test, 1 歲 21 天)\n   └── 間隔約 1 個月無刺激暴露後，重新呈現上述刺激，評估反應衰減程度。\n```\n\n---\n\n## 2. 方法學爭議與倫理危機 (Methodological & Ethical Crisis)\n\n> [!warning] 現代心理學倫理的反面教材\n> 該典範在現代心理學界被公認為最嚴重的倫理違規案例之一：\n> 1. **知情同意缺失**：被試為 9 個月大嬰兒，母親為醫院內身分弱勢的乳母，未能提供現代意義下的充分知情同意。\n> 2. **不可逆之心理創傷**：明知恐懼反應可能影響個體終身人格，研究者未在研究結束前執行消退治療（去制約），放任被試帶著強烈恐懼離開醫院。\n> 3. **現代規範禁止**：根據 APA 現代倫理守則（APA Ethics Code），此類對無法自衛的脆弱母體施加高痛苦與恐懼的實驗已被徹底禁止。\n", "paradigms-scales/talking-cure-catharsis.md": "---\ntitle: \"Talking Cure and Cathartic Method\"\naliases: [\"談話療法\", \"宣洩療法\", \"淨化法\", \"Chimney Sweeping\"]\ntags: [\"paradigm\", \"clinical-technique\", \"psychoanalysis\"]\nschools: [\"[[psychoanalysis]]\"]\nkey_sources: [\"[[freud-1910-psychoanalysis-origin]]\"]\n---\n\n# 談話療法與情緒宣洩典範 (The Talking Cure & Catharsis)\n\n> [!info] 典範定義\n> 談話療法是由 Josef Breuer 與 Sigmund Freud 於 1880–1890 年代開創的心理治療技術。該技術引導病患在安全情境下回憶被壓抑的致病創傷事件，並透過言語表達將原先被壓抑阻斷的情緒能量充分宣洩（Ab-reaction），進而促使歇斯底里或神經症軀體症狀消除。\n\n---\n\n## 1. 歷史起源：Anna O. 案例 (Breuer, 1880–1882)\n\n* **個案背景**：21 歲聰慧女性，照料重病父親期間罹患嚴重歇斯底里，出現右半身癱瘓、視力與眼球運動障礙、嚴重神經性咳嗽、人格轉換及拒水（Hydrophobia）症狀。\n* **臨床發現**：病患在半恍惚（催眠）狀態下，傾訴引發症狀的初始情緒場景（如看見小狗喝管家的水杯而強忍噁心與憤怒），一旦在治療師面前強烈釋放該情緒後，拒水症狀即刻永久消失。病患戲稱為「掃煙囪（Chimney Sweeping）」。\n\n---\n\n## 2. 治療技術之演進\n\n1. **催眠宣洩**（早期）：透過催眠繞過病患的意識防衛，直接喚醒深層記憶。\n2. **自由聯想（Free Association）替代催眠**：佛洛伊德發現催眠無法適用所有病患，改以自由聯想，直接面對並處理病患的「阻抗（Resistance）」與「[[transference|移情作用]]」。\n", "schools/behaviorism.md": "---\ntitle: \"Behaviorism\"\naliases: [\"行為學派\", \"行為主義\", \"古典行為學派\"]\ntags: [\"school\", \"behaviorism\"]\nrepresentative_figures: [\"John B. Watson\", \"Ivan Pavlov\", \"B. F. Skinner\", \"Edward Thorndike\"]\ncore_assumptions: [\n  \"心理學的研究對象必須是客觀、外顯且可測量的行為，排斥主觀內省。\",\n  \"環境決定論：個體行為主要是由後天環境刺激（Stimulus-Response, S-R）塑造與制約而來。\",\n  \"極簡原則：拒絕將無法直接觀察的心理黑盒子（如意識、潛意識、心智表徵）視為因果解釋變數。\"\n]\n---\n\n# 行為主義學派 (Behaviorism)\n\n> [!info] 流派概述\n> 行為主義（Behaviorism）興起於 20 世紀初期，由 John B. Watson 於 1913 年發表《行為主義者眼中的心理學》（Psychology as the Behaviorist Views It）確立體系。該學派強力挑戰當時盛行的內省主義與歐洲精神分析，主張心理學應成為一門如物理、化學般嚴謹的純客觀實驗自然科學。\n\n---\n\n## 1. 核心理論支柱 (Theoretical Pillars)\n\n1. **古典制約 (Classical Conditioning)**：\n   * 源自 Ivan Pavlov 的唾液反射實驗，後由 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 引入人類情緒與恐懼形成的研究中。\n2. **操作制約 (Operant Conditioning)**：\n   * 後期由 B. F. Skinner 發展，強調行為結果（增強 Reinforcement / 懲罰 Punishment）對行為發生頻率的決定性影響。\n3. **刺激-反應模型 (S-R Framework)**：\n   * 將人體視為黑盒子（Black Box），只關注輸入的環境刺激（S）與輸出的行為反應（R），認為透過精準控制環境條件即可預測並塑造行為。\n\n---\n\n## 2. 實證文獻脈絡 (Empirical Context)\n\n| 年份 | 代表文獻 / 學者 | 核心實證發現 | 影響與地位 |\n| :--- | :--- | :--- | :--- |\n| **1920** | [[watson-rayner-1920-conditioned-fear\\|Watson & Rayner (1920)]] | 在 11 個月大嬰兒 Albert 身上以 7 次巨響配對成功建立對白鼠的恐懼制約，並產生刺激類化。 | 古典行為主義在人類情緒領域的奠基實驗，強烈駁斥精神分析的性驅力說。 |\n\n---\n\n## 3. 學派衝突與對外爭端 (School Conflicts)\n\n* **行為主義 vs. [[psychoanalysis|精神分析學派]]**：\n  * **分歧點**：神經症與恐懼症的病因機制。\n  * **主張衝突**：精神分析（[[freud-1910-psychoanalysis-origin|Freud, 1910]]）認為恐懼症源於潛意識壓抑與童年性心理衝突；Watson 則在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 中主張恐懼純粹是後天環境刺激的古典制約與類化。詳見 [[behaviorism-vs-psychoanalysis|行為學派 vs 精神分析之恐懼病因論戰]]。\n* **行為主義 vs. [[cognitive-psychology|認知學派]]**：\n  * **黑盒子的終結**：[[miller-1956-magical-number-seven|Miller (1956)]] 證實心智存在容量限制與主動重新編碼（Chunking），證明不能跳過內部心智表徵只談 S-R。\n* **行為主義 vs. [[humanistic-psychology|人本主義學派]]**：\n  * **人性觀衝突**：[[maslow-1943-human-motivation|Maslow (1943)]] 強烈批判行為學派將白鼠的生理匱乏動機套用至人類，忽視人類高階價值與自我實現。\n* **行為主義 vs. [[neuroscience|神經科學學派]]**：\n  * **生理基質還原**：[[ledoux-2000-emotion-circuits|LeDoux (2000)]] 突破了行為主義黑盒子，解析出恐懼制約在大腦側杏仁核（LA）的 CS-US 匯聚與突觸可塑性（LTP）。\n", "schools/cognitive-psychology.md": "---\ntitle: \"Cognitive Psychology\"\naliases: [\"認知心理學派\", \"認知學派\", \"認知革命\"]\ntags: [\"school\", \"cognitive-psychology\", \"cognition\"]\nrepresentative_figures: [\"George A. Miller\", \"Ulric Neisser\", \"Donald Broadbent\", \"Jerome Bruner\"]\ncore_assumptions: [\n  \"人腦是一個主動接收、編碼、儲存、檢索與處理資訊的複雜計算系統。\",\n  \"外在刺激與最終行為之間存在關鍵的內部心智表徵（Mental Representations）與中介歷程。\",\n  \"心智架構具備嚴格的資訊傳遞通道容量與工作記憶瓶頸。\"\n]\n---\n\n# 認知心理學派 (Cognitive Psychology)\n\n> [!info] 流派概述\n> 認知心理學興起於 1950 年代中期，史稱「認知革命（Cognitive Revolution）」。該學派推翻了古典行為主義將心智視為不可測「黑盒子」的教條，借用資訊理論、電腦運算架構與語言學概念，重新將注意力、知覺、記憶、語言與思維等內部心理歷程確立為心理學的核心科學主題。\n\n---\n\n## 1. 核心理論支柱 (Theoretical Pillars)\n\n1. **人類訊息處理模型 (Information-Processing Model)**：\n   * 將心智類比為計算機硬體與軟體，研究資訊如何由感官輸入、短時暫存、編碼轉化並進入長時記憶。\n2. **容量限制與瓶頸理論 (Capacity Limitations)**：\n   * 人類處理外部世界的資訊通道容量是有限的（如 [[channel-capacity|通道容量]] 與 [[short-term-memory-span|短期記憶廣度]]）。\n3. **主動重新編碼 (Active Recoding)**：\n   * 個體並非被動接受刺激，而是透過組織、概念分類與 [[chunking|訊息組塊]] 主動擴增處理效能。\n\n---\n\n## 2. 實證文獻脈絡 (Empirical Context)\n\n| 年份 | 代表文獻 / 學者 | 核心實證發現 | 影響與地位 |\n| :--- | :--- | :--- | :--- |\n| **1956** | [[miller-1956-magical-number-seven\\|Miller (1956)]] | 確立單維絕對判斷通道容量約 2.6 bits，立即記憶廣度受限於 $7 \\pm 2$ 個「組塊（Chunks）」，提出重新編碼理論。 | 認知革命的先鋒號角，正式敲響純行為主義黑盒子範式的喪鐘。 |\n\n---\n\n## 3. 學派衝突與對外延伸\n\n* **認知學派 vs. [[behaviorism|行為學派]]**：\n  * 行為主義排斥心智中介變數；認知心理學則以精密的反應時間（RT）與資訊理論數學模型，客觀測量出心智表徵的存在與容量瓶頸。\n* **認知學派與 [[neuroscience|神經科學]] 的融合**：\n  * 早期認知科學偏好抽象的符號計算模型，一度忽略神經生理機制；後續與神經生物學合流為「認知神經科學（Cognitive Neuroscience）」，如 [[ledoux-2000-emotion-circuits|LeDoux (2000)]] 探討情緒與認知在杏仁核及前額葉的交互整合。\n", "schools/humanistic-psychology.md": "---\ntitle: \"Humanistic Psychology\"\naliases: [\"人本主義心理學派\", \"人本學派\", \"第三勢力\"]\ntags: [\"school\", \"humanistic-psychology\"]\nrepresentative_figures: [\"Abraham H. Maslow\", \"Carl Rogers\", \"Kurt Goldstein\", \"Rollo May\"]\ncore_assumptions: [\n  \"人性本善，每個人內心深處皆具有自我實現（Self-Actualization）與追求全人潛能的內在動力。\",\n  \"有機體是一個不可分割的完整統一體（Holism），反對原子化、機械論的刺激-反應分解。\",\n  \"心理學的研究應以『人為中心』，重視人的主觀經驗、自由意志、尊嚴、愛與價值意義。\"\n]\n---\n\n# 人本主義心理學派 (Humanistic Psychology)\n\n> [!info] 流派概述\n> 人本主義心理學於 20 世紀中葉崛起，被譽為繼精神分析（第一勢力）與行為主義（第二勢力）之後的「**心理學第三勢力（The Third Force）**」。該學派反對將人視為受動物本能驅使的受害者（批判精神分析），亦反對將人視為受環境機械制約的自動機（批判行為主義），極力倡導人性尊嚴與積極正向潛能。\n\n---\n\n## 1. 核心理論支柱 (Theoretical Pillars)\n\n1. **需求階層與相對優勢 (Hierarchy of Needs)**：\n   * [[hierarchy-of-needs|需求階層理論]]：從底層生理、安全、愛、自尊，逐層晉級至頂層的 [[self-actualization|自我實現]]。\n2. **自我實現傾向 (Actualizing Tendency)**：\n   * 借鑒 Kurt Goldstein 的有機體理論，認為個體有將自身全部潛力轉化為現實的強大衝動（「一個人能成為什麼，他就必須成為什麼」）。\n3. **當事人中心與無條件正向關懷 (Person-Centered)**：\n   * Carl Rogers 提倡真誠一致、共情理解與無條件接納，促成個體自我概念與真實經驗的整合。\n\n---\n\n## 2. 實證文獻脈絡 (Empirical Context)\n\n| 年份 | 代表文獻 / 學者 | 核心實證發現 | 影響與地位 |\n| :--- | :--- | :--- | :--- |\n| **1943** | [[maslow-1943-human-motivation\\|Maslow (1943)]] | 提出人類動機的五大基本需求階層與相對優勢性（Relative Prepotency），探討階層例外與挫折耐受力。 | 人本主義心理學在人類動機領域的開山奠基之作。 |\n\n---\n\n## 3. 學派衝突與對抗論點 (School Conflicts)\n\n* **人本主義 vs. [[behaviorism|行為學派]]**：\n  * **批判點**：Maslow 強烈反對以白鼠飢餓或白鴿啄食為範例來推導人類行為，批評其為「偽簡約（Pseudo-simplicity）」，忽視了人類獨特的高階目標與價值追求。\n* **人本主義 vs. [[psychoanalysis|精神分析學派]]**：\n  * **批判點**：批評佛洛伊德將人類動機完全侷限於受壓抑的性本能與病理創傷，指出研究心靈健全的人類更能反映人性的真實面貌。\n", "schools/neuroscience.md": "---\ntitle: \"Neuroscience and Biological Psychology\"\naliases: [\"神經科學\", \"生物心理學\", \"神經生物學派\", \"生理心理學\"]\ntags: [\"school\", \"neuroscience\", \"biological-psychology\"]\nrepresentative_figures: [\"Joseph E. LeDoux\", \"Eric Kandel\", \"Antonio Damasio\", \"Michael Gazzaniga\"]\ncore_assumptions: [\n  \"所有心理歷程、情緒體驗與行為表徵均具備具體的神經解剖迴路與生化分子基礎。\",\n  \"學習與記憶的實質是神經突觸連接強度的改變（突觸可塑性 Synaptic Plasticity / LTP）。\",\n  \"跨物種的大腦演化保守性（如哺乳動物共通的恐懼防衛迴路），為客觀研究情緒提供了生物學依據。\"\n]\n---\n\n# 神經科學與生物心理學派 (Neuroscience & Biological Psychology)\n\n> [!info] 流派概述\n> 神經科學與生物心理學派將心理學研究深深錨定在大腦與神經系統的生物基礎之上。透過細胞電生理學、腦造影技術（fMRI/PET）、藥理干預與基因工程，該學派成功揭開了長期被古典心理學視為神秘心靈或外在黑盒子的神經機制。\n\n---\n\n## 1. 核心理論支柱 (Theoretical Pillars)\n\n1. **情緒迴路解剖學 (Emotion Circuits)**：\n   * 突破傳統模糊的「邊緣系統」假設，精確解析以杏仁核為核心的威脅偵測與防衛系統（[[dual-route-emotion-theory|情緒雙路徑理論]]）。\n2. **學習與記憶的分子機制**：\n   * 突觸長時程增益（[[synaptic-plasticity-ltp|LTP]]）、受體機制（NMDA、L-型鈣離子通道）與基因轉錄（CREB）所介導的蛋白質合成。\n3. **記憶系統的多重解離 (Multiple Memory Systems)**：\n   * 內隱情緒記憶（杏仁核管轄）與外顯陳述性記憶（海馬迴管轄）的解剖解離。\n\n---\n\n## 2. 實證文獻脈絡 (Empirical Context)\n\n| 年份 | 代表文獻 / 學者 | 核心實證發現 | 影響與地位 |\n| :--- | :--- | :--- | :--- |\n| **2000** | [[ledoux-2000-emotion-circuits\\|LeDoux (2000)]] | 精確闡明杏仁核側核 (LA) 的 CS-US 匯聚、丘腦雙路徑、中央核 (CE) 輸出路徑及 LTP 分子可塑性。 | 當代情緒神經科學的權威綜述，將恐懼制約提升至細胞與分子精度。 |\n\n---\n\n## 3. 學派衝突與對抗論點 (School Conflicts)\n\n* **神經生物學派 vs. 古典 [[behaviorism|行為學派]]**：\n  * **黑盒子的破解**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 只能記錄外在行為制約與類化；LeDoux 則證明了外顯行為背後具備精確的丘腦-杏仁核突觸強化機制。\n* **神經生物學派 vs. 傳統「邊緣系統 (Limbic System)」學說**：\n  * LeDoux 批判 MacLean 的邊緣系統理論缺乏精確解剖標準，並以海馬迴掌管認知記憶而非情緒的實證證據，顛覆了舊有大腦架構觀念。\n", "schools/psychoanalysis.md": "---\ntitle: \"Psychoanalysis\"\naliases: [\"精神分析學派\", \"心理動力學派\", \"精神分析\"]\ntags: [\"school\", \"psychoanalysis\", \"psychodynamics\"]\nrepresentative_figures: [\"Sigmund Freud\", \"Carl Jung\", \"Alfred Adler\", \"Josef Breuer\"]\ncore_assumptions: [\n  \"人類心理活動絕大部分運作於潛意識深處，意識僅為冰山一角。\",\n  \"心理衝突（本能衝動 vs. 現實/道德防衛）是神經症與人格特徵的核心根源。\",\n  \"童年早期的性心理發展與創傷經驗，對成年人格具有決定性影響（決定論）。\",\n  \"外顯症狀是內在被壓抑願望的象徵性替代物（Ersatzbildung）。\"\n]\n---\n\n# 精神分析學派 (Psychoanalysis)\n\n> [!info] 流派概述\n> 精神分析學派由奧地利精神醫學家 Sigmund Freud 於 19 世紀末創立。該學派革命性地將心理學探索的視野從清醒意識推向深層「潛意識（Unconscious）」，強調內在心理動力、本能衝突、防衛歷程以及童年經驗對人格結構的深遠塑造。\n\n---\n\n## 1. 核心理論支柱 (Theoretical Pillars)\n\n1. **意識三層次與心理結構**：\n   * 意識（Conscious）、前意識（Preconscious）、潛意識（Unconscious）。\n   * 本我（Id，遵循享樂原則）、自我（Ego，遵循現實原則）、超我（Superego，遵循道德原則）。\n2. **壓抑與心理防衛機制 (Defense Mechanisms)**：\n   * 當衝突過於痛苦，自我發動「[[repression|壓抑]]」封鎖記憶；當壓抑失效，則藉由身體化轉換（Conversion）、置換或投影形成症狀。\n3. **性動力與發展階段**：\n   * 心理性慾能量（Libido）自嬰兒期即存在（[[infantile-sexuality|幼兒性慾]]），經歷口腔期、肛門期、性器期（伊底帕斯情結），並可能發生固著（Fixation）與退行（Regression）。\n4. **精神分析治療核心**：\n   * [[talking-cure-catharsis|談話療法與情緒宣洩]]、自由聯想、夢的解析、[[transference|移情作用]] 之解析與修通。\n\n---\n\n## 2. 實證文獻脈絡 (Empirical Context)\n\n| 年份 | 代表文獻 / 學者 | 核心實證發現 | 影響與地位 |\n| :--- | :--- | :--- | :--- |\n| **1910** | [[freud-1910-psychoanalysis-origin\\|Freud (1910)]] | 發表克拉克大學五場著名演講，總結 Anna O. 案例、壓抑理論、夢的解析、幼兒性慾與移情作用。 | 精神分析正式登陸美國與國際學術舞台的歷史里程碑。 |\n\n---\n\n## 3. 學派衝突與對抗論點 (School Conflicts)\n\n* **精神分析 vs. [[behaviorism|行為主義學派]]**：\n  * **病因爭議**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 質疑佛洛伊德將恐懼症全數歸結於童年性壓抑，以小阿爾伯特實驗證明環境制約刺激（S-R）才是恐懼症的直接成因。\n* **精神分析 vs. [[humanistic-psychology|人本主義學派]]**：\n  * [[maslow-1943-human-motivation|Maslow (1943)]] 批評精神分析「只研究病態個體與本能衝動」，忽略了健康人類追求潛能發揮的自我實現傾向。\n* **科學哲學質疑**：\n  * Karl Popper 批評精神分析「無法被證偽（Unfalsifiable）」；任何臨床反例皆能被精神分析以防衛機制予以事後解釋。\n", "sources/freud-1910-psychoanalysis-origin.md": "---\ntitle: \"The Origin and Development of Psychoanalysis\"\nauthors: [\"Sigmund Freud\"]\nyear: 1910\njournal: \"American Journal of Psychology\"\ndoi: \"10.2307/1413001\"\napa_citation: \"Freud, S. (1910). The origin and development of psychoanalysis. The American Journal of Psychology, 21(2), 181–218. https://doi.org/10.2307/1413001\"\nschool: [\"[[psychoanalysis|精神分析學派]]\"]\ntheories: [\"[[psychoanalytic-theory|精神分析理論]]\"]\nconstructs: [\"[[unconscious|潛意識]]\", \"[[repression|壓抑]]\", \"[[transference|移情作用]]\", \"[[infantile-sexuality|幼兒性慾]]\"]\nparadigms: [\"[[talking-cure-catharsis|談話療法與情緒宣洩典範]]\"]\nsample_size: \"臨床個別病例觀察 (如 Anna O. 與臨床歇斯底里病患)\"\neffect_size: \"N/A (臨床個案質性分析)\"\npreregistered: false\nreplication_status: \"contested\"\nraw_file: \"../raw/freud-1910.md\"\n---\n\n# The Origin and Development of Psychoanalysis (Freud, 1910)\n\n> [!abstract] 核心發現\n> 佛洛伊德於美國克拉克大學 20 週年校慶發表的五場歷史性演講，系統闡述精神分析的起源與核心機制：\n> 1. 歇斯底里症（Hysteria）源於過去創傷回憶的積壓，病患「深受回憶所苦（suffer from reminiscences）」，情緒能量轉化為軀體症狀（身體化轉換 Conversion）。\n> 2. 創傷記憶被自我的道德防衛機制「壓抑（Repression）」至潛意識，但壓抑失敗產生症狀替代（Ersatzbildung）。\n> 3. 自由聯想與「夢的解析（Traumdeutung）」是通往潛意識的康莊大道（via regia）。\n> 4. 神經症的病因追溯至童年期的「幼兒性慾（Infantile Sexuality）」與伊底帕斯情結（Oedipus Complex）。\n> 5. 治療的關鍵在於引導「移情（Transference）」並將本能驅力轉化為「昇華（Sublimation）」。\n\n---\n\n## 1. 理論背景與核心假說\n\n19 世紀末期，醫學界對歇斯底里等神經症多歸因於神經系統器質性病變或先天體質退化（如 Pierre Janet 提出的心理綜合能力先天缺陷）。佛洛伊德則主張純粹的**心理動力學模型（Psychodynamic Model）**：\n* 心靈內部存在相互衝突的動力力量。當某種願望（Wish）與個人的道德、美學或自我標準無法相容時，引發高度痛苦，自我便啟動壓抑機制將其驅逐出意識。\n* 壓抑後的願望並未消失，而是在潛意識中持續蓄積能量，最終戴上面具以「症狀」形式突破防線。\n\n---\n\n## 2. 臨床方法與技術演進 (Methodology & Clinical Practice)\n\n### 2.1 從催眠到宣洩（Breuer 的 Anna O. 案例）\n* 由 Joseph Breuer (1880–1882) 治療 21 歲女病患 Anna O.（右側癱瘓、失語、拒水厭惡）。\n* 在催眠狀態下讓病患重新回憶創傷場景（如看見討厭的女管家讓小狗從水杯喝水而壓抑憤怒），並將積累的情緒藉由語言宣洩（Ab-reaction），症狀即永久消失。Anna O. 戲稱此為「談話療法（Talking Cure）」或「掃煙囪（Chimney Sweeping）」。\n\n### 2.2 自由聯想與夢的解析\n* 佛洛伊德因催眠無法普遍適用且會掩蓋病患內在阻抗（Resistance），改用「自由聯想（Free Association）」，要求病患不加批判地說出腦中湧現的一切想法。\n* 確立「夢是通往潛意識的康莊大道」：\n  * **顯意（Manifest Content）**：清晨醒來混亂破碎的表面夢境。\n  * **隱意（Latent Thoughts）**：潛意識底層真實的被壓抑願望。\n  * **夢的工作（Dream-work）**：透過「凝縮（Condensation）」與「置換（Displacement）」將禁忌願望偽裝呈現。\n\n---\n\n## 3. 理論意涵與跨學派爭辯\n\n* **挑戰醫學界唯器質論**：證明無身體器質性損傷的心理動力衝突足以引發實體癱瘓與失明。\n* **遭遇行為主義的猛烈抨擊**：\n  * [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 嚴正反駁佛洛伊德將恐懼症完全歸因於幼兒性慾與伊底帕斯情結，證明外在環境的 S-R 古典制約才是恐懼症的直接成因。\n\n---\n\n> [!warning] 方法學評價與科學地位限制\n> * **樣本與驗證限制**：全數基於回溯性臨床個案觀察，缺乏客觀控制組與定量數據。\n> * **可證偽性危機 (Unfalsifiability)**：將反對者對理論的質疑直接解釋為反對者自身的「內心阻抗與壓抑」，導致理論結構封閉，在後續科學哲學（Karl Popper）中引發長期非科學性質疑。\n", "sources/ledoux-2000-emotion-circuits.md": "---\ntitle: \"Emotion Circuits in the Brain\"\nauthors: [\"Joseph E. LeDoux\"]\nyear: 2000\njournal: \"Annual Review of Neuroscience\"\ndoi: \"10.1146/annurev.neuro.23.1.155\"\napa_citation: \"LeDoux, J. E. (2000). Emotion circuits in the brain. Annual Review of Neuroscience, 23(1), 155–184. https://doi.org/10.1146/annurev.neuro.23.1.155\"\nschool: [\"[[neuroscience|神經科學與生物心理學派]]\"]\ntheories: [\"[[dual-route-emotion-theory|情緒雙路徑理論]]\", \"[[classical-conditioning|古典制約理論]]\"]\nconstructs: [\"[[fear-conditioning|恐懼制約]]\", \"[[synaptic-plasticity-ltp|突觸可塑性與長時程增益]]\"]\nparadigms: [\"[[auditory-fear-conditioning-paradigm|聽覺恐懼制約神經實驗典範]]\"]\nsample_size: \"齧齒類動物神經損毀/電生理記錄 (多個實驗組，N 遍及大鼠、貓、靈長類與人類 fMRI/損毀案例)\"\neffect_size: \"丘腦-杏仁核神經反應延遲 < 20 ms；單元放電與場電位顯著增強 (p < .01)\"\npreregistered: false\nreplication_status: \"supported\"\nraw_file: \"../raw/ledoux-2000.md\"\n---\n\n# Emotion Circuits in the Brain (LeDoux, 2000)\n\n> [!abstract] 核心發現\n> Joseph LeDoux 突破了傳統模糊的「邊緣系統（Limbic System）」概念，透過巴夫洛夫恐懼制約典範，精確解構了大腦情緒學習與記憶的神經解剖與分子機制：\n> 1. **感覺介面 (Sensory Interface)**：側杏仁核（Lateral Amygdala, LA）是聽覺與各類感覺刺激進入杏仁核的核心入口，也是 CS（制約刺激）與 US（嫌惡刺激）資訊匯聚與突觸可塑性發生的關鍵中樞。\n> 2. **雙路徑傳導 (Dual Pathways)**：\n>    * **低路徑 (Low Road, 丘腦 $\\rightarrow$ 側杏仁核)**：反應延遲極短（$<20\\text{ ms}$），提供快速、粗糙的無意識危機警報。\n>    * **高路徑 (High Road, 丘腦 $\\rightarrow$ 聽覺皮質 $\\rightarrow$ 側杏仁核)**：處理複雜、精細的情境刺激表徵。\n> 3. **輸出中樞 (Output Central)**：中央杏仁核（Central Amygdala, CE）負責統籌控制防衛行為（導水管周圍灰質 PAG $\\rightarrow$ 僵直 Freezing）、自主神經亢奮（外側下視丘 LH $\\rightarrow$ 血壓上升）及壓力荷爾蒙分泌（終紋床核 BNST $\\rightarrow$ 腎上腺皮質軸 HPA）。\n> 4. **情境恐懼與雙重解離**：情境恐懼需海馬迴參與。人類雙重解離研究（Bechara et al., 1995）證實杏仁核損毀喪失內隱情緒制約，但外顯記憶完好；海馬迴損毀則喪失外顯記憶但情緒制約完好。\n\n---\n\n## 1. 理論背景與對「邊緣系統」的典範批判\n\n長達半世紀，神經科學界慣用 MacLean 的「邊緣系統（Limbic System / 內臟腦）」來籠統解釋情緒。LeDoux 指出其理論嚴重瑕疵：\n* **邊界模糊無法定義**：歷經 50 年爭論，沒有任何一致標準界定哪些腦區屬於邊緣系統。\n* **認知與情緒切割崩解**：邊緣系統的核心——海馬迴（Hippocampus），在 Scoville & Milner (1957) 對病患 H.M. 的研究中被證實主要掌管純認知性的長期外顯記憶，而非原始情緒。\n* **情緒的客觀操作化**：LeDoux 主張擺脫主觀「感覺經驗」的糾纏，將情緒定義為大腦「偵測威脅並做出防衛反應的客觀資訊處理系統」，而巴夫洛夫恐懼制約正是解開該迴路的最佳科學鑰匙。\n\n---\n\n## 2. 恐懼神經解剖學迴路 (Neuroanatomy of Conditioned Fear)\n\n```mermaid\ngraph TD\n    STIM[威脅刺激: 聲音 CS / 敲擊 US] --> THAL[聽覺丘腦<br>MGm / PIN]\n    \n    %% Dual Route\n    THAL ==>|\"低路徑 (Low Road)<br>延遲 < 20 ms / 快速粗糙\"| LA[側杏仁核 Lateral Amygdala<br>CS-US 匯聚與突觸可塑性 LTP 核心]\n    THAL -->|\"高路徑 (High Road)<br>皮質精細分析\"| CORTEX[大腦聽覺皮質 TE3]\n    CORTEX --> LA\n    \n    %% Context\n    HIPP[海馬迴 Hippocampus<br>CA1 / 下腳] -->|\"情境 Context CS\"| B_AB[基底與副基底核 B / AB]\n    B_AB --> CE[中央杏仁核 Central Amygdala<br>總輸出控制中樞]\n    \n    %% Intra-amygdala\n    LA ==> CE\n    \n    %% Outputs\n    CE ==> PAG[導水管周圍灰質 PAG<br>僵直行為 Freezing / 痛覺抑制]\n    CE ==> LH[外側下視丘 LH<br>自主神經血壓與心跳]\n    CE ==> BNST[終紋床核 BNST<br>壓力荷爾蒙 HPA 軸分泌]\n\n    classDef fast fill:#ffebee,stroke:#d32f2f,stroke-width:2px;\n    classDef main fill:#fff8e1,stroke:#ffa000,stroke-width:2px;\n    classDef out fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;\n    class THAL,LA fast;\n    class B_AB,CE main;\n    class PAG,LH,BNST out;\n```\n\n---\n\n## 3. 細胞與分子層級之長時程增益 (LTP)\n\n* 恐懼制約在側杏仁核（LA）誘發突觸可塑性，其機制類似海馬迴之長時程增益（LTP）。\n* **受體途徑**：丘腦-杏仁核路徑仰賴 L-型電壓閘門鈣離子通道；皮質-杏仁核路徑則仰賴 NMDA 受體。\n* **分子串聯**：細胞內鈣離子湧入 $\\rightarrow$ 活化 CaMKII、PKA、MAP 激酶 $\\rightarrow$ 促發 CREB 轉錄因子 $\\rightarrow$ 誘發蛋白質合成。注射蛋白質合成抑制劑（Anisomycin）會精確阻斷長期記憶鞏固，但不影響短期記憶。\n\n---\n\n## 4. 理論傳承與跨文獻連結 (Compounding Insights)\n\n* **行為主義的現代生理還原**：\n  * [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 在 80 年前於嬰兒身上觀察到的「外在行為制約」，在 LeDoux 手中獲得了精確的神經迴路解析。Watson 所稱的「黑盒子反射」，本質上就是丘腦-側杏仁核-中央杏仁核的神經突觸強化。\n* **消退與臨床恐懼症機制**：\n  * 內側前額葉皮質（mPFC）對杏仁核具有下行抑制功能。mPFC 損傷的大鼠其恐懼制約變得「極難消退」（Morgan et al., 1993），這直接為創傷後壓力症候群（PTSD）與難治型恐懼症提供了神經生物學模型。\n\n---\n\n> [!important] 核心學術爭端：儲存中樞 vs. 調節器？\n> Cahill & McGaugh (1998) 認為杏仁核僅僅是「調節其他腦區記憶鞏固的輔助器官」，真實記憶存於海馬迴與皮質。LeDoux 與 Fanselow (1999) 則以嚴謹實驗反駁：利用毒蕈蕈醇（Muscimol）在學習期間暫時阻斷杏仁核神經活動，制約學習便完全無法發生，證實**側杏仁核本身即是恐懼記憶獲得與儲存的不可或缺神經基質**。詳見 [[amygdala-storage-vs-modulation|杏仁核記憶儲存 vs 調節爭端]]。\n", "sources/maslow-1943-human-motivation.md": "---\ntitle: \"A Theory of Human Motivation\"\nauthors: [\"Abraham H. Maslow\"]\nyear: 1943\njournal: \"Psychological Review\"\ndoi: \"10.1037/h0054346\"\napa_citation: \"Maslow, A. H. (1943). A theory of human motivation. Psychological Review, 50(4), 370–396. https://doi.org/10.1037/h0054346\"\nschool: [\"[[humanistic-psychology|人本主義心理學派]]\"]\ntheories: [\"[[hierarchy-of-needs|需求階層理論]]\"]\nconstructs: [\"[[self-actualization|自我實現]]\", \"[[prepotency|優勢需求歷程]]\", \"[[basic-needs|基本心理需求]]\"]\nparadigms: [\"[[clinical-holistic-approach|整體動力學臨床分析取向]]\"]\nsample_size: \"臨床觀察與健康人格個案綜合質性歸納\"\neffect_size: \"N/A (理論模型構建)\"\npreregistered: false\nreplication_status: \"mixed\"\nraw_file: \"../raw/maslow-1943.md\"\n---\n\n# A Theory of Human Motivation (Maslow, 1943)\n\n> [!abstract] 核心發現\n> Abraham Maslow 提出了開創性的人類動機架構，強調有機體的整體性與目標導向性。人類的基本需求並非分散無序，而是依據 **「相對優勢性（Hierarchy of Relative Prepotency）」** 依序排列為五大層級：\n> 1. **生理需求 (Physiological)**\n> 2. **安全需求 (Safety)**\n> 3. **愛與歸屬需求 (Love & Belongingness)**\n> 4. **自尊需求 (Esteem)**\n> 5. **自我實現需求 (Self-Actualization)**\n> \n> 當較具優勢（較低層級）的需求獲得相對滿足後，較高層次的需求才會浮現成為主導行為的核心動力；一個獲得滿足的需求便不再是行為的驅動力。\n\n---\n\n## 1. 理論背景與對兩大主流的批判\n\n1940 年代心理學充斥著兩大陣營：**古典行為主義**（以白鼠飢餓或電擊等動物生理驅力為模型）與**佛洛伊德精神分析**（以病態神經症與潛意識性壓抑為模型）。Maslow 認為這兩種取向皆扭曲了真實的人性：\n* **批判動物中心論**：反對將白鼠的局部生理驅力（如胃部收縮的飢餓）套用至整體人類；動機理論必須是以「人為中心（Human-centered）」的。\n* **批判病理中心論**：心理學不應只研究心靈受挫的病人，更應研究健康者追求自我實現的積極潛能。\n* **整體動力學（General-Dynamic Theory）**：融合 James/Dewey 的功能學派、Wertheimer/Goldstein 的格式塔整體論，以及 Freud/Adler 的動力學。\n\n---\n\n## 2. 五大基本需求階層與特徵\n\n### 2.1 需求層級體系\n```mermaid\ngraph BT\n    L1[\"1. 生理需求 (Physiological)<br>體內恆定機制、食物、水、睡眠\"] --> L2[\"2. 安全需求 (Safety)<br>秩序、可預測性、免於恐懼與焦慮\"]\n    L2 --> L3[\"3. 愛與歸屬 (Love & Belongingness)<br>親情、友情、愛人、群體接納\"]\n    L3 --> L4[\"4. 自尊需求 (Esteem)<br>實質勝任能力、自尊、聲譽、社會認可\"]\n    L4 --> L5[\"5. 自我實現 (Self-Actualization)<br>充分發揮個人全部內在潛能與創造力\"]\n\n    classDef basic fill:#f5f5f5,stroke:#616161,stroke-width:1px;\n    classDef high fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;\n    class L1,L2,L3,L4 basic;\n    class L5 high;\n```\n\n### 2.2 階層特徵的重要細緻修正（常見誤解釐清）\n* **非全有全無 (Not All-or-None)**：一般人誤以為低層需求必須 100% 滿足，高層才會出現。Maslow 明確提出：階層是以「遞減滿足百分比」並存的（例如一般健康成人大約：85% 生理、70% 安全、50% 愛、40% 自尊、10% 自我實現）。\n* **階層反轉例外 (Reversals)**：\n  1. *自尊重於愛*：某些個體為了獲取愛，轉而先以強勢、進取的自尊外表作手段。\n  2. *殉道者與理想高於一切*：基於高尚社會價值或信念，個體甘願犧牲安全甚至生理生命。\n  3. *天賦創造者*：某些藝術家與科學家即使身處貧困剝奪環境，創造與自我實現驅力依然凌駕一切。\n* **童年充分滿足所產生的「挫折耐受力」**：幼年期基本需求獲得安全與關愛的孩子，成年後具備強大的挫折耐受性（Frustration Tolerance）。\n\n---\n\n## 3. 理論意涵與貢獻\n\n* 奠定了「人本主義心理學（第三勢力）」的核心理論基石。\n* 推動了後續正向心理學（Positive Psychology）與內在動機（自我決定論 SDT）的發展。\n\n---\n\n> [!warning] 實證檢驗與跨文化爭端\n> * **測量與操作型定義困難**：「自我實現」概念在實證研究中不易被量化與客觀測量。\n> * **跨文化通用性挑戰**：集體主義文化（如東亞社會）常發現「群體歸屬與社會連結」優先於「個人的自尊與自我實現」，挑戰了階層順序的絕對普世性。詳見 [[hierarchy-universality-debate|需求階層普遍性與文化差異爭辯]]。\n", "sources/miller-1956-magical-number-seven.md": "---\ntitle: \"The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information\"\nauthors: [\"George A. Miller\"]\nyear: 1956\njournal: \"Psychological Review\"\ndoi: \"10.1037/h0043158\"\napa_citation: \"Miller, G. A. (1956). The magical number seven, plus or minus two: Some limits on our capacity for processing information. Psychological Review, 63(2), 81–97. https://doi.org/10.1037/h0043158\"\nschool: [\"[[cognitive-psychology|認知心理學派]]\"]\ntheories: [\"[[information-processing-theory|人類訊息處理理論]]\"]\nconstructs: [\"[[chunking|訊息組塊]]\", \"[[channel-capacity|通道容量]]\", \"[[short-term-memory-span|短期記憶廣度]]\"]\nparadigms: [\"[[absolute-judgment-paradigm|絕對判斷實驗典範]]\", \"[[immediate-memory-span-task|立即記憶廣度作業]]\"]\nsample_size: \"彙整多項心理物理學實驗（Pollack, Garner, Hake, Hayes, Smith 等研究數據）\"\neffect_size: \"單維通道容量平均 2.6 bits (SD = 0.6 bit)；立即記憶廣度約 7 個組塊\"\npreregistered: false\nreplication_status: \"mixed\"\nraw_file: \"../raw/miller-1956.md\"\n---\n\n# The Magical Number Seven, Plus or Minus Two (Miller, 1956)\n\n> [!abstract] 核心發現\n> George Miller 將資訊理論（Information Theory）引進認知心理學，揭示了人類認知架構中兩項截然不同但極度關鍵的容量瓶頸：\n> 1. **絕對判斷之通道容量 (Channel Capacity)**：人類對單一維度刺激（音高、響度、味道、線段長度）的絕對辨識能力上限為 **$2.6\\text{ bits}$（約 5 到 9 個類別，平均 6.5 個）**。增加刺激的維度能提升容量，但增長幅度遞減。\n> 2. **立即記憶廣度 (Immediate Memory Span)**：短期記憶容量受到 **組塊數量（Chunks）** 而非資訊位元（Bits）的嚴格限制，恆常維持在 **$7 \\pm 2$ 個組塊**。\n> 3. **重新編碼（Recoding / Chunking）**：人類透過將分散的刺激組合成高層次、有意義的結構（如語詞、代碼），能大幅克服短期記憶的容量瓶頸。\n\n---\n\n## 1. 理論背景與資訊理論引入\n\n1950 年代正值心理學從「行為主義 S-R 黑盒子」走向「認知革命」的轉折點。Miller 借鑒 Shannon 的資訊理論：\n* 將人類觀察者視為一個**通訊通道（Communication Channel）**。\n* 輸入刺激的變異（Variance）代表輸入資訊量；輸入與輸出反應的共變異（Covariance）即為**傳遞資訊量（Transmitted Information）**。\n* 隨輸入刺激數量增加，傳遞資訊量逐漸達到的漸近極限值，即為**通道容量（Channel Capacity）**。\n\n---\n\n## 2. 實證數據與核心分析 (Empirical Data)\n\n### 2.1 單維刺激的絕對判斷通道容量\nMiller 統整了多項經典心理物理學實驗數據：\n* **音高 (Pitch)**（Pollack）：極限約為 **$2.5\\text{ bits}$**（約 6 個無法混淆的音高）。\n* **音量 (Loudness)**（Garner）：極限約為 **$2.3\\text{ bits}$**（約 5 個等級）。\n* **味覺濃度 (Taste Intensity)**（Beebe-Center et al.）：極限約為 **$1.9\\text{ bits}$**（約 4 種鹽水濃度）。\n* **視覺位置 (Visual Position)**（Hake & Garner）：極限約為 **$3.25\\text{ bits}$**（10～15 個位置）。\n* **整體單維均值**：$\\mu = 2.6\\text{ bits}, \\sigma = 0.6\\text{ bits}$。換算為可辨識類別數約為 $6.5$ 類（$4$ 到 $10$ 之間）。\n\n### 2.2 關鍵理論突破：Bits vs. Chunks 的分野\n當時學界普遍誤以為「絕對判斷容量」與「立即記憶廣度」（均約為 7）源自同一神經生理瓶頸。Miller 透過嚴密比對 Hayes (1952) 與 Pollack (1953) 的記憶廣度實驗予以推翻：\n* 若短期記憶受限於「資訊量（Bits）」，則二進位數字（1 bit/item）應能記住 23 個，單音節單字（10 bits/item）只能記住 2~3 個。\n* **實驗事實**：受試者能記住 9 個二進位數字、7 個十進位數字、5 個英文單字。\n* **結論**：**立即記憶的上限不是 bits，而是 chunks！**\n\n### 2.3 重新編碼（Recoding）實驗\n* Sidney Smith (1954) 實驗：將 18 個二進位數字（010001...）以 3:1 規則重新編碼為 6 個八進位數字（0~7）。\n* 受試者經過短暫訓練後，記憶廣度由 9 個二進位數字暴增至 **40 個二進位數字**！\n* 語言（Language）正是人類演化中最極致的重新編碼工具。\n\n---\n\n## 3. 理論意涵與貢獻 (Cognitive Revolution)\n\n* 正式敲響了古典行為主義黑盒子論調的喪鐘，確立了人類心智為**主動重新編碼、處理與儲存資訊的系統**。\n* 奠定了後續短期記憶、工作記憶（Baddeley Working Memory）與注意力心理學的研究典範。\n\n---\n\n> [!warning] 後續爭議與重複檢驗修正\n> * **Cowan (2001) 的 4±1 修正**：現代認知心理學指出，Miller 的 $7\\pm 2$ 包含了語音複誦（Subvocal Rehearsal）與長時記憶輔助。在嚴格排除複誦與組塊策略的純純粹短期記憶容量，其實只有 **$4 \\pm 1$ 個組塊**。詳見 [[chunking-capacity-cowan-debate|短期記憶容量 7±2 vs. 4±1 爭辯]]。\n", "sources/watson-rayner-1920-conditioned-fear.md": "---\ntitle: \"Conditioned Emotional Reactions\"\nauthors: [\"John B. Watson\", \"Rosalie Rayner\"]\nyear: 1920\njournal: \"Journal of Experimental Psychology\"\ndoi: \"10.1037/h0069608\"\napa_citation: \"Watson, J. B., & Rayner, R. (1920). Conditioned emotional reactions. Journal of Experimental Psychology, 3(1), 1–14. https://doi.org/10.1037/h0069608\"\nschool: [\"[[behaviorism|行為主義學派]]\"]\ntheories: [\"[[classical-conditioning|古典制約理論]]\"]\nconstructs: [\"[[fear-conditioning|恐懼制約]]\", \"[[stimulus-generalization|刺激類化]]\"]\nparadigms: [\"[[little-albert-paradigm|小阿爾伯特實驗典範]]\"]\nsample_size: \"N = 1 (Albert B., 9–12 個月大男嬰)\"\neffect_size: \"N/A (質性行為觀察與試次計數)\"\npreregistered: false\nreplication_status: \"failed\"\nraw_file: \"../raw/watson-rayner-1920.md\"\n---\n\n# Conditioned Emotional Reactions (Watson & Rayner, 1920)\n\n> [!abstract] 核心發現\n> 嬰兒先天的原始情緒反應極為有限（僅觀察到恐懼、憤怒與愛）。透過將先天無恐懼反應的中性刺激（白鼠 CS）與引發強烈驚嚇的非制約刺激（敲擊鋼條之巨響 US）進行 7 次聯合配對，成功在 11 個月大的嬰兒 Albert 身上建立了對白鼠的恐懼制約反應；此恐懼反應進一步類化至其他帶有毛皮特徵的刺激（兔子、狗、海豹皮大衣、棉花、聖誕老人面具），並在相隔 31 天後依然持續存在。\n\n---\n\n## 1. 理論背景與假說 (Theoretical Background & Hypotheses)\n\n在 20 世紀初，心理學正面臨內省主義（Introspectionism）與精神分析（Psychoanalysis）的思潮主導。John B. Watson 主張心理學應轉型為客觀研究「外顯可觀察行為」的自然科學。\n\nWatson 與 Morgan 先前提出假說：成人在面對環境刺激時所展現的複雜情緒，並非來自遺傳本能或潛意識性慾衝突，而是由嬰兒期少數基本情緒經由**制約反射歷程（Conditioned Reflex Factors）**擴展組合而來。本研究提出四項核心實驗問題：\n1. **制約獲得 (Acquisition)**：能否透過將動物（白鼠）與敲擊鋼條巨響配對，人為建立恐懼情緒？\n2. **刺激轉移 (Transfer / Generalization)**：若恐懼建立，是否會類化擴展至其他動物或外觀相似之無生命物體？\n3. **時間持久性 (Temporal Stability)**：此制約情緒能維持多久？是否會隨時間自然消退？\n4. **去制約方法 (Extinction / Detachment)**：若未自然消退，實驗室可用何種技術予以消除？\n\n---\n\n## 2. 研究方法與數據 (Methodology & Empirical Data)\n\n### 2.1 被試特徵 (Participant)\n* **被試**：Albert B.，9 個月大健康男嬰，自幼在 Harriet Lane 殘疾兒童之家由擔任乳母的母親撫養。\n* **入選理由**：發育健全良好（9 個月體重達 21 磅），性格沉穩（stolid and unemotional），極少哭泣，研究者認為對其進行實驗「造成的傷害相對微小」。\n\n### 2.2 實驗進程與關鍵時程數據\n* **前測階段（約 9 個月大）**：\n  * *情緒基準測試*：依序呈現白鼠、兔子、狗、猴子、帶毛與無毛面具、棉花、燃燒紙張等。Albert 展現抓取探索反應，**完全未出現任何恐懼**。\n  * *聽覺刺激測試 (8m 26d)*：在 Albert 身後以鐵鎚重擊長 4 英尺、直徑 0.75 英寸的懸吊鋼條。第 1 次劇烈跳動、呼吸中斷；第 2 次嘴角顫抖；第 3 次突發嚎啕大哭。確立敲擊巨響為有效的非制約刺激 (US)。\n* **恐懼制約建立階段 (11m 3d ~ 11m 10d)**：\n  * *11m 3d*：呈現象徵 CS 的白鼠，當 Albert 伸手觸碰時立即敲擊鋼條 (US)，重複 2 次，Albert 均劇烈跳動向前跌倒並嗚咽。為免過度干擾，暫停一週。\n  * *11m 10d*：先單獨呈現白鼠（手退縮不碰）；接著實施 5 次聯合刺激（白鼠 + 巨響）。\n  * *結果*：**累計共 7 次聯合配對**後，第 8 次單獨呈現白鼠時，Albert 立刻崩潰大哭、轉身側翻，以四肢急速爬離實驗桌邊緣，完成恐懼制約。\n* **刺激類化測試 (11m 15d)**：\n  * *無關物體測試*：給予木製積木，Albert 玩耍如常、發出咯咯笑聲，證實恐懼並非對整個實驗房間或所有物體的普遍泛化。\n  * *外觀相似物測試*：\n    * **兔子 (Rabbit)**：強烈負向反應，哭泣並爬離，將臉埋入床墊。\n    * **狗 (Dog)**：退縮、身體後仰並大哭。\n    * **海豹皮大衣 (Seal Fur Coat)**：碰觸瞬間大哭並劇烈甩頭。\n    * **聖誕老人面具 (Santa Claus Mask)**：僅看見面具即引發嚎啕大哭。\n    * **棉花 (Cotton Wool)**：腳踢開、拒絕用手碰觸。\n* **時間持久性測試 (1y 21d，間隔 31 天)**：\n  * 在完全未接觸上述刺激的 31 天常態育嬰後，Albert 再次面對面具、皮衣、白鼠與兔子時，依然展現顯著的退縮與哭泣反應，證實制約恐懼可持續超過一個月以上。\n\n### 2.3 附帶關鍵發現 (Incidental Observation)\n* **吸吮手指的防禦機制**：在恐懼高漲即將哭泣時，Albert 會不斷將大拇指塞入口中；一旦手指入口，恐懼反應立即被阻斷。研究者必須將其拇指拉出才能觀測到制約恐懼。\n\n---\n\n## 3. 理論意涵與跨學派爭辯 (Theoretical Impact & Controversies)\n\n### 3.1 古典行為主義的奠基\n* 實證證實了情緒反應可經由環境制約習得，否定了複雜情緒皆為先天本能的傳統假設，確立了古典制約在人類情緒形成中的關鍵機制。\n\n### 3.2 對精神分析學派的強烈反駁\n* Watson 在文末針對 [[psychoanalysis|精神分析學派]] 的 [[freud-1910-psychoanalysis-origin|Sigmund Freud]] 提出公開批判：\n  * 佛洛伊德認為恐懼症（Phobias）源自性本能（Libido）受壓抑的投射或伊底帕斯情結。\n  * Watson 直言反對：「恐懼是與性（愛）同等重要的原始因素。二十年後若有精神分析師分析 Albert 對海豹皮大衣的恐懼，必定會透過夢境分析編造出一套『Albert 在 3 歲時玩弄母親陰毛而遭痛斥』的性學說；然而實驗證實，恐懼症純粹是嬰兒期建立的制約情緒反應與轉移。」\n\n---\n\n> [!warning] 方法學評價與研究限制 (Methodological & Ethical Appraisal)\n> 1. **極度嚴重的研究倫理缺失**：\n>    * 研究者明知會對男嬰造成持續性恐懼傷害，仍執意施加實驗。\n>    * 論文原訂第 IV 項目的為探索「去制約（Detachment / Extinction）」，但 Albert 在完成恐懼測試當天即被母親帶離醫院，**未接受任何去制約治療**，給受試者留下潛在終身恐懼。\n> 2. **方法學極限**：\n>    * **樣本數過小**：$N = 1$，無隨機對照，無法排除發育個體差異。\n>    * **刺激呈現缺乏客觀標準**：鋼條敲擊分貝數未量化，實驗者與被試間缺乏雙盲。\n> 3. **複製失敗與歷史爭端**：\n>    * 後續多位學者（如 Bregman, 1934）嘗試在嬰兒身上重複以巨響配對無生命物體建立恐懼，**均以失敗告終**。詳見 [[little-albert-replication-debate|小阿爾伯特重複性檢驗與真實身份爭議]]。\n", "theories/classical-conditioning.md": "---\ntitle: \"Classical Conditioning\"\naliases: [\"古典制約\", \"巴夫洛夫制約\", \"古典條件反射\", \"條件作用\"]\ntags: [\"theory\", \"learning\", \"behaviorism\"]\nschools: [\"[[behaviorism]]\"]\nrelated_constructs: [\"[[fear-conditioning]]\", \"[[stimulus-generalization]]\", \"[[extinction]]\"]\n---\n\n# 古典制約理論 (Classical Conditioning)\n\n> [!info] 理論定義\n> 古典制約（又稱巴夫洛夫制約）是一種聯結學習機制。當原本無法引發特定生理或情緒反應的中性刺激（制約刺激, CS），與能夠自然引發非自主生理反應的無條件刺激（非制約刺激, US）在時間上多次重複伴隨出現後，該中性刺激便能單獨誘發與原反應相似的反應（制約反應, CR）。\n\n---\n\n## 1. 核心模型架構 (Core Model)\n\n```mermaid\ngraph LR\n    subgraph 制約前 [1. 制約前 (Pre-conditioning)]\n        US1[非制約刺激 US<br>例：鋼條巨響] --> UR1[非制約反應 UR<br>驚嚇、哭泣]\n        CS1[制約刺激 CS<br>例：白鼠] --> NR1[無關或探索反應]\n    end\n\n    subgraph 制約中 [2. 制約配對 (Conditioning Phase)]\n        CS2[CS: 白鼠] --> PAIR((配對呈現))\n        US2[US: 鋼條巨響] --> PAIR\n        PAIR --> UR2[UR: 驚嚇反應]\n    end\n\n    subgraph 制約後 [3. 制約後 (Post-conditioning)]\n        CS3[CS: 白鼠] --> CR[制約反應 CR<br>逃避、崩潰大哭]\n    end\n```\n\n---\n\n## 2. 實證證據演進 (Empirical Evidence Timeline)\n\n* **1920年**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]]\n  * **突破性貢獻**：首度將動物生理學的巴夫洛夫制約機制推展至人類嬰兒的情緒歷程，證實僅需 7 次 CS-US 配對即可建立持續性的情緒恐懼。\n  * **關鍵衍生**：發現了制約反應並非侷限於單一刺激，而是會自發擴散至特徵相似的物體，催生了 [[stimulus-generalization|刺激類化]] 理論。\n\n---\n\n## 3. 理論侷限與後續演變 (Limitations & Evolution)\n\n> [!warning] 準備學習原則（Preparedness）的挑戰\n> 古典行為主義假設「任何刺激皆可等同地成為制約刺激（Equipotentiality 原則）」。然而後續研究（如 Seligman, 1971; Öhman, 1992）指出，生物在演化上具有「預備學習（Prepared Learning）」傾向——生物體對蛇、蜘蛛等具生存威脅的刺激能極快速建立恐懼制約，但對木塊、布簾等無生命刺激則極難制約成功。這直接動搖了 Watson 當年的通用等能假設。\n", "theories/dual-route-emotion-theory.md": "---\ntitle: \"Dual-Route Theory of Emotion\"\naliases: [\"情緒雙路徑理論\", \"恐懼雙路徑模型\", \"高低路徑模型\", \"Low Road and High Road\"]\ntags: [\"theory\", \"neuroscience\", \"emotion\"]\nschools: [\"[[neuroscience]]\"]\nrelated_constructs: [\"[[fear-conditioning]]\", \"[[synaptic-plasticity-ltp]]\"]\nrelated_sources: [\"[[ledoux-2000-emotion-circuits]]\"]\n---\n\n# 情緒雙路徑理論 (Dual-Route Theory of Emotion)\n\n> [!info] 理論定義\n> 情緒雙路徑理論由 Joseph LeDoux 於 1990 年代提出並在 2000 年系統總結。該理論主張大腦在處理威脅刺激（如引發恐懼的物體）時，存在兩條在速度、解析度與神經解剖上並行的神經路徑：「低路徑（Low Road）」負責演化上的生死極速避險，「高路徑（High Road）」負責認知上的精確特徵辨識。\n\n---\n\n## 1. 雙路徑神經迴路對比 (Low Road vs. High Road)\n\n```mermaid\ngraph TD\n    THAL[感覺丘腦 Sensory Thalamus<br>MGm / PIN]\n    \n    %% Low Road\n    THAL ==>|\"【低路徑 Low Road】<br>皮質下直達 / 粗糙極速 (<20 ms)\"| LA[側杏仁核 Lateral Amygdala]\n    \n    %% High Road\n    THAL -->|\"【高路徑 High Road】<br>多突觸轉折 / 精細意識分析 (>30-40 ms)\"| CORTEX[大腦感覺皮質 Sensory Cortex<br>TE1 / TE3]\n    CORTEX -->|精細特徵辨識與情境評估| LA\n\n    LA ==> CE[中央杏仁核 Central Amygdala]\n    CE ==> DEFENSE[防衛反應: 僵直 Freezing、心跳加速、血壓暴增]\n\n    classDef fast fill:#ffebee,stroke:#c62828,stroke-width:2px;\n    classDef slow fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;\n    class THAL,LA,CE fast;\n    class CORTEX slow;\n```\n\n### 關鍵維度比較表\n\n| 維度 | 低路徑 (Low Road) | 高路徑 (High Road) |\n| :--- | :--- | :--- |\n| **神經路徑** | 感覺器官 $\\rightarrow$ 丘腦 $\\rightarrow$ 側杏仁核 (LA) | 感覺器官 $\\rightarrow$ 丘腦 $\\rightarrow$ 感覺皮質 $\\rightarrow$ 側杏仁核 (LA) |\n| **傳導速度** | 極快（神經反應延遲 $< 20\\text{ ms}$） | 較慢（延遲時間顯著拉長） |\n| **訊號解析度** | 粗糙、單維、未經意識加工的原始刺激 | 精細、多維、複雜圖案與語意辨識 |\n| **演化功能** | 生死存亡關頭的瞬間防禦（「寧可誤報，不可漏報」） | 驗證威脅真偽，抑制不必要的虛警反應 |\n| **生活實例** | 在樹林草叢中瞥見彎曲條狀物，身體瞬間僵直跳開 | 走近定睛細看，意識到那只是一條生鏽的水管，隨即放鬆 |\n\n---\n\n## 2. 實證證據演進 (Empirical Evidence Timeline)\n\n* **2000年**：[[ledoux-2000-emotion-circuits|LeDoux (2000)]]\n  * **單元記錄 (Single-unit recordings)**：在大鼠側杏仁核（LA）記錄到對聲音 CS 的超短延遲放電（10~15 ms），比聽覺皮質的反應早出現數個毫秒，證實丘腦直達路徑在制約獲得中扮演先導角色。\n  * **人類 fMRI 研究**（Morris et al., 1999）：在人類受試者身上呈現潛意識（閾下遮蔽）的恐懼面孔時，杏仁核活性顯著升高，且該活性直接與丘腦活動共變，證實人類大腦亦完整保留此條皮質下直達的低路徑。\n", "theories/hierarchy-of-needs.md": "---\ntitle: \"Hierarchy of Needs Theory\"\naliases: [\"需求階層理論\", \"馬斯洛需求金字塔\", \"需求層次理論\"]\ntags: [\"theory\", \"motivation\", \"humanistic-psychology\"]\nschools: [\"[[humanistic-psychology]]\"]\nrelated_constructs: [\"[[self-actualization]]\", \"[[prepotency]]\", \"[[basic-needs]]\"]\n---\n\n# 需求階層理論 (Hierarchy of Needs Theory)\n\n> [!info] 理論定義\n> 需求階層理論是由 Abraham Maslow 於 1943 年提出的人類動機架構。該理論主張人類行為是由五個具備內在階層關係的基本需求系統所驅動；這些需求依據「相對優勢性（Prepotency）」排列，當較低層級的匱乏需求得到相對滿足後，更高層級的成長需求才會顯現並支配個體的心理生活。\n\n---\n\n## 1. 五層階層結構 (The Five Levels)\n\n```text\n               ▲\n              / \\\n             /   \\      5. 自我實現需求 (Self-Actualization)\n            /-----\\        追求發揮個人全部潛能、真善美、創造力\n           /       \\    4. 自尊需求 (Esteem)\n          /---------\\      自我價值感、勝任能力、社會認可、聲譽\n         /           \\  3. 愛與歸屬需求 (Love & Belongingness)\n        /-------------\\    友誼、愛情、家庭、群體接納\n       /               \\2. 安全需求 (Safety)\n      /-----------------\\  人身安全、秩序結構、穩定性、免於恐懼\n     /                   \\1. 生理需求 (Physiological)\n    /---------------------\\ 體內恆定、食物、水、睡眠、空氣\n```\n\n---\n\n## 2. 實證與理論特徵 (Empirical Characteristics)\n\n* **奠基實證**：[[maslow-1943-human-motivation|Maslow (1943)]]\n* **相對優勢性（Relative Prepotency）**：\n  * 當一個人在極端饑荒時，所有思維、夢境與價值觀皆圍繞食物運轉，「人只靠麵包而活」。但一旦生理獲得保障，安全需求立即浮現接管行為動機。\n* **滿足百分比漸進觀（不是全有全無）**：\n  * 高階需求並非在低階 100% 滿足後才跳躍產生，而是以漸進比例湧現（如平均公民可能為：生理 85%、安全 70%、愛 50%、自尊 40%、自我實現 10%）。\n* **階層反轉與例外**：\n  * 天賦創作者在物質極度匱乏下仍全力創作；殉道者為社會理想犧牲生命。\n\n---\n\n## 3. 學術爭辯與批判 (Controversies)\n\n> [!warning] 跨文化研究與實證挑戰\n> 後續跨文化實證研究（如 Hofstede 文化維度研究、Wahba & Bridwell, 1976 元分析）指出：需求階層的先後順序帶有強烈西方個人主義色彩。在集體主義社會中，群體歸屬感與關係連結常優先於個人自尊與自我實現。詳見 [[hierarchy-universality-debate|需求階層普遍性爭辯]]。\n", "theories/information-processing-theory.md": "---\ntitle: \"Information Processing Theory\"\naliases: [\"人類訊息處理理論\", \"訊息處理模型\", \"資訊加工理論\"]\ntags: [\"theory\", \"cognitive-psychology\", \"memory\", \"attention\"]\nschools: [\"[[cognitive-psychology]]\"]\nrelated_constructs: [\"[[chunking]]\", \"[[channel-capacity]]\", \"[[short-term-memory-span]]\"]\n---\n\n# 人類訊息處理理論 (Information Processing Theory)\n\n> [!info] 理論定義\n> 人類訊息處理理論將人類心智類比為一部精密、多階段的資訊通訊與計算系統。該理論主張外在物理刺激必須依序經過**感覺登錄（Sensory Input）**、**注意選擇與容量過濾（Filtering & Channel Capacity）**、**工作/短期記憶編碼（Working Memory / Chunking）**，最終固化至**長時記憶儲存（Long-term Storage）**。\n\n---\n\n## 1. 核心架構流程圖 (Information Flow)\n\n```mermaid\ngraph LR\n    INPUT[外在環境刺激<br>聲音、光影、文字] --> SENSORY[感官登錄 Sensory Buffer<br>高容量 / 極短暫保留]\n    \n    SENSORY -->|注意力過濾 / 絕對判斷| CHANNEL[通道容量限制 Channel Capacity<br>單維極限約 2.6 bits]\n    \n    CHANNEL --> STM[短期/立即記憶 Immediate Memory<br>容量受限: 7±2 個 Chunks]\n    \n    STM -->|主動重新編碼 Recoding / 組塊化| CHUNK[訊息組塊 Chunking<br>結合長時知識擴增容量]\n    \n    CHUNK -->|複誦與固化 Consolidation| LTM[(長時記憶庫 LTM<br>無限容量 / 語意網絡)]\n    LTM -.->|由上而下提取脈絡| STM\n```\n\n---\n\n## 2. 實證證據演進 (Empirical Evidence Timeline)\n\n* **1956年**：[[miller-1956-magical-number-seven|Miller (1956)]]\n  * **里程碑發現**：首次將資訊理論數學模型（Bits、通道容量）引入心理學，嚴格區分出「絕對判斷的資訊位元限制」與「立即記憶的組塊數量限制（$7 \\pm 2$）」，奠定現代認知心理學的基石。\n\n---\n\n## 3. 理論瓶頸與後續演化\n\n> [!important] 現代修正：從靜態儲存到動態工作記憶\n> * 後續學者 Alan Baddeley (1974) 進一步將靜態的「短期記憶」升級為多組件的「工作記憶模型（Working Memory）」，包含中央執行系統（Central Executive）、語音迴路（Phonological Loop）與視覺空間素描板（Visuo-spatial Sketchpad）。\n> * Nelson Cowan (2001) 則進一步修正純組塊容量為 $4 \\pm 1$。詳見 [[chunking-capacity-cowan-debate|短期記憶容量爭端]]。\n", "theories/psychoanalytic-theory.md": "---\ntitle: \"Psychoanalytic Theory\"\naliases: [\"精神分析理論\", \"古典精神分析理論\"]\ntags: [\"theory\", \"psychoanalysis\", \"personality\", \"clinical\"]\nschools: [\"[[psychoanalysis]]\"]\nrelated_constructs: [\"[[unconscious]]\", \"[[repression]]\", \"[[transference]]\", \"[[infantile-sexuality]]\"]\n---\n\n# 精神分析理論 (Psychoanalytic Theory)\n\n> [!info] 理論定義\n> 精神分析理論是由 Sigmund Freud 創立的心理動力學架構。該理論主張人類的心智運作是由內在相互抗衡的心理力量（驅力、願望、防衛與超我道德）所驅動；個體的外顯行為、性格特質及病理症狀，本質上皆是深層潛意識衝突與防衛機制妥協後的產物。\n\n---\n\n## 1. 核心模型架構 (Core Model)\n\n```mermaid\ngraph TD\n    subgraph 冰山心智模型 [心智的三層結構]\n        CONSCIOUS[意識 Conscious<br>當前知覺到的感受與思維]\n        PRECONSCIOUS[前意識 Preconscious<br>稍加提醒即可提取的記憶]\n        UNCONSCIOUS[潛意識 Unconscious<br>被壓抑的創傷、原始慾望與衝動]\n    end\n\n    subgraph 人格動力互動 [人格三結構]\n        ID[本我 Id<br>享樂原則 / 原始本能驅力]\n        EGO[自我 Ego<br>現實原則 / 調解者 / 防衛機制]\n        SUPEREGO[超我 Superego<br>道德原則 / 內化的社會規範]\n    end\n\n    ID -->|本能慾望湧現| EGO\n    SUPEREGO -->|道德批判與罪惡感| EGO\n    EGO -->|啟動壓抑機制 Repression| UNCONSCIOUS\n    UNCONSCIOUS -.->|壓抑失敗 / 戴上面具突破| SYMPTOM[神經症症狀 / 夢境 / 口誤]\n```\n\n---\n\n## 2. 實證與臨床演進時間軸 (Timeline)\n\n* **1910年**：[[freud-1910-psychoanalysis-origin|Freud (1910)]]\n  * **關鍵主張**：總結自 1880 年代 Breuer 治療 Anna O. 以來的臨床洞察，確立「壓抑」為致病核心，提出幼兒性慾與伊底帕斯情結，並將自由聯想與夢的解析確立為精神分析標準技術。\n\n---\n\n## 3. 跨學派爭辯與理論交鋒\n\n* **成因論戰**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 質疑本理論過度泛性論，證明環境中的制約反射即可產生持續性情緒障礙。\n* **科學哲學檢驗**：Karl Popper 指出精神分析理論因為具備「事後諸葛式的無限解釋力」，缺乏可證偽性（Falsifiability）。\n"};
-    const graphNodes = [{"id": "index", "path": "index.md", "label": "index", "full_title": "心理學論文 LLM Wiki 總索引 (Index)", "cat": "root", "color": "#64748b"}, {"id": "log", "path": "log.md", "label": "log", "full_title": "知識庫操作日誌 (Wiki Operations Log)", "cat": "root", "color": "#64748b"}, {"id": "channel-capacity", "path": "constructs/channel-capacity.md", "label": "Channel Capacity", "full_title": "Channel Capacity", "cat": "constructs", "color": "#10b981"}, {"id": "chunking", "path": "constructs/chunking.md", "label": "Chunking", "full_title": "Chunking", "cat": "constructs", "color": "#10b981"}, {"id": "fear-conditioning", "path": "constructs/fear-conditioning.md", "label": "Fear Conditioning", "full_title": "Fear Conditioning", "cat": "constructs", "color": "#10b981"}, {"id": "repression", "path": "constructs/repression.md", "label": "Repression", "full_title": "Repression", "cat": "constructs", "color": "#10b981"}, {"id": "self-actualization", "path": "constructs/self-actualization.md", "label": "Self-Actualization", "full_title": "Self-Actualization", "cat": "constructs", "color": "#10b981"}, {"id": "stimulus-generalization", "path": "constructs/stimulus-generalization.md", "label": "stimulus-generalization", "full_title": "Stimulus Generalization", "cat": "constructs", "color": "#10b981"}, {"id": "transference", "path": "constructs/transference.md", "label": "Transference", "full_title": "Transference", "cat": "constructs", "color": "#10b981"}, {"id": "unconscious", "path": "constructs/unconscious.md", "label": "The Unconscious", "full_title": "The Unconscious", "cat": "constructs", "color": "#10b981"}, {"id": "amygdala-storage-vs-modulation", "path": "controversies/amygdala-storage-vs-modulation.md", "label": "amygdala-storage-vs-modulation", "full_title": "Amygdala: Memory Storage vs. Memory Modulation Debate", "cat": "controversies", "color": "#ef4444"}, {"id": "behaviorism-vs-psychoanalysis", "path": "controversies/behaviorism-vs-psychoanalysis.md", "label": "behaviorism-vs-psychoanalysis", "full_title": "Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate", "cat": "controversies", "color": "#ef4444"}, {"id": "chunking-capacity-cowan-debate", "path": "controversies/chunking-capacity-cowan-debate.md", "label": "chunking-capacity-cowan-debate", "full_title": "The Working Memory Capacity Debate: 7±2 vs 4±1", "cat": "controversies", "color": "#ef4444"}, {"id": "little-albert-replication-debate", "path": "controversies/little-albert-replication-debate.md", "label": "little-albert-replication-debate", "full_title": "Little Albert Replication & Ethics Debate", "cat": "controversies", "color": "#ef4444"}, {"id": "auditory-fear-conditioning-paradigm", "path": "paradigms-scales/auditory-fear-conditioning-paradigm.md", "label": "auditory-fear-conditioning-paradigm", "full_title": "Auditory Fear Conditioning Paradigm", "cat": "paradigms-scales", "color": "#f59e0b"}, {"id": "immediate-memory-span-task", "path": "paradigms-scales/immediate-memory-span-task.md", "label": "immediate-memory-span-task", "full_title": "Immediate Memory Span Task", "cat": "paradigms-scales", "color": "#f59e0b"}, {"id": "little-albert-paradigm", "path": "paradigms-scales/little-albert-paradigm.md", "label": "little-albert-paradigm", "full_title": "Little Albert Paradigm", "cat": "paradigms-scales", "color": "#f59e0b"}, {"id": "talking-cure-catharsis", "path": "paradigms-scales/talking-cure-catharsis.md", "label": "talking-cure-catharsis", "full_title": "Talking Cure and Cathartic Method", "cat": "paradigms-scales", "color": "#f59e0b"}, {"id": "behaviorism", "path": "schools/behaviorism.md", "label": "Behaviorism", "full_title": "Behaviorism", "cat": "schools", "color": "#a855f7"}, {"id": "cognitive-psychology", "path": "schools/cognitive-psychology.md", "label": "cognitive-psychology", "full_title": "Cognitive Psychology", "cat": "schools", "color": "#a855f7"}, {"id": "humanistic-psychology", "path": "schools/humanistic-psychology.md", "label": "humanistic-psychology", "full_title": "Humanistic Psychology", "cat": "schools", "color": "#a855f7"}, {"id": "neuroscience", "path": "schools/neuroscience.md", "label": "neuroscience", "full_title": "Neuroscience and Biological Psychology", "cat": "schools", "color": "#a855f7"}, {"id": "psychoanalysis", "path": "schools/psychoanalysis.md", "label": "Psychoanalysis", "full_title": "Psychoanalysis", "cat": "schools", "color": "#a855f7"}, {"id": "freud-1910-psychoanalysis-origin", "path": "sources/freud-1910-psychoanalysis-origin.md", "label": "freud-1910-psychoanalysis-origin", "full_title": "The Origin and Development of Psychoanalysis", "cat": "sources", "color": "#ec4899"}, {"id": "ledoux-2000-emotion-circuits", "path": "sources/ledoux-2000-emotion-circuits.md", "label": "ledoux-2000-emotion-circuits", "full_title": "Emotion Circuits in the Brain", "cat": "sources", "color": "#ec4899"}, {"id": "maslow-1943-human-motivation", "path": "sources/maslow-1943-human-motivation.md", "label": "maslow-1943-human-motivation", "full_title": "A Theory of Human Motivation", "cat": "sources", "color": "#ec4899"}, {"id": "miller-1956-magical-number-seven", "path": "sources/miller-1956-magical-number-seven.md", "label": "miller-1956-magical-number-seven", "full_title": "The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information", "cat": "sources", "color": "#ec4899"}, {"id": "watson-rayner-1920-conditioned-fear", "path": "sources/watson-rayner-1920-conditioned-fear.md", "label": "watson-rayner-1920-conditioned-fear", "full_title": "Conditioned Emotional Reactions", "cat": "sources", "color": "#ec4899"}, {"id": "classical-conditioning", "path": "theories/classical-conditioning.md", "label": "classical-conditioning", "full_title": "Classical Conditioning", "cat": "theories", "color": "#3b82f6"}, {"id": "dual-route-emotion-theory", "path": "theories/dual-route-emotion-theory.md", "label": "dual-route-emotion-theory", "full_title": "Dual-Route Theory of Emotion", "cat": "theories", "color": "#3b82f6"}, {"id": "hierarchy-of-needs", "path": "theories/hierarchy-of-needs.md", "label": "hierarchy-of-needs", "full_title": "Hierarchy of Needs Theory", "cat": "theories", "color": "#3b82f6"}, {"id": "information-processing-theory", "path": "theories/information-processing-theory.md", "label": "information-processing-theory", "full_title": "Information Processing Theory", "cat": "theories", "color": "#3b82f6"}, {"id": "psychoanalytic-theory", "path": "theories/psychoanalytic-theory.md", "label": "psychoanalytic-theory", "full_title": "Psychoanalytic Theory", "cat": "theories", "color": "#3b82f6"}];
-    const graphEdges = [{"source": "log", "target": "index"}, {"source": "log", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "log", "target": "behaviorism"}, {"source": "log", "target": "classical-conditioning"}, {"source": "log", "target": "fear-conditioning"}, {"source": "log", "target": "stimulus-generalization"}, {"source": "log", "target": "little-albert-paradigm"}, {"source": "log", "target": "little-albert-replication-debate"}, {"source": "log", "target": "index"}, {"source": "log", "target": "freud-1910-psychoanalysis-origin"}, {"source": "log", "target": "psychoanalysis"}, {"source": "log", "target": "psychoanalytic-theory"}, {"source": "log", "target": "unconscious"}, {"source": "log", "target": "repression"}, {"source": "log", "target": "transference"}, {"source": "log", "target": "talking-cure-catharsis"}, {"source": "log", "target": "behaviorism-vs-psychoanalysis"}, {"source": "log", "target": "miller-1956-magical-number-seven"}, {"source": "log", "target": "cognitive-psychology"}, {"source": "log", "target": "information-processing-theory"}, {"source": "log", "target": "chunking"}, {"source": "log", "target": "channel-capacity"}, {"source": "log", "target": "immediate-memory-span-task"}, {"source": "log", "target": "chunking-capacity-cowan-debate"}, {"source": "log", "target": "maslow-1943-human-motivation"}, {"source": "log", "target": "humanistic-psychology"}, {"source": "log", "target": "hierarchy-of-needs"}, {"source": "log", "target": "self-actualization"}, {"source": "log", "target": "ledoux-2000-emotion-circuits"}, {"source": "log", "target": "neuroscience"}, {"source": "log", "target": "dual-route-emotion-theory"}, {"source": "log", "target": "auditory-fear-conditioning-paradigm"}, {"source": "log", "target": "amygdala-storage-vs-modulation"}, {"source": "log", "target": "fear-conditioning"}, {"source": "log", "target": "behaviorism"}, {"source": "channel-capacity", "target": "cognitive-psychology"}, {"source": "channel-capacity", "target": "chunking"}, {"source": "channel-capacity", "target": "miller-1956-magical-number-seven"}, {"source": "channel-capacity", "target": "miller-1956-magical-number-seven"}, {"source": "chunking", "target": "cognitive-psychology"}, {"source": "chunking", "target": "channel-capacity"}, {"source": "chunking", "target": "miller-1956-magical-number-seven"}, {"source": "chunking", "target": "miller-1956-magical-number-seven"}, {"source": "fear-conditioning", "target": "behaviorism"}, {"source": "fear-conditioning", "target": "stimulus-generalization"}, {"source": "fear-conditioning", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "fear-conditioning", "target": "ledoux-2000-emotion-circuits"}, {"source": "fear-conditioning", "target": "dual-route-emotion-theory"}, {"source": "fear-conditioning", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "fear-conditioning", "target": "stimulus-generalization"}, {"source": "repression", "target": "psychoanalysis"}, {"source": "repression", "target": "unconscious"}, {"source": "repression", "target": "transference"}, {"source": "repression", "target": "freud-1910-psychoanalysis-origin"}, {"source": "repression", "target": "freud-1910-psychoanalysis-origin"}, {"source": "self-actualization", "target": "humanistic-psychology"}, {"source": "self-actualization", "target": "hierarchy-of-needs"}, {"source": "self-actualization", "target": "maslow-1943-human-motivation"}, {"source": "self-actualization", "target": "maslow-1943-human-motivation"}, {"source": "stimulus-generalization", "target": "behaviorism"}, {"source": "stimulus-generalization", "target": "fear-conditioning"}, {"source": "stimulus-generalization", "target": "classical-conditioning"}, {"source": "stimulus-generalization", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "transference", "target": "psychoanalysis"}, {"source": "transference", "target": "freud-1910-psychoanalysis-origin"}, {"source": "transference", "target": "freud-1910-psychoanalysis-origin"}, {"source": "unconscious", "target": "psychoanalysis"}, {"source": "unconscious", "target": "repression"}, {"source": "unconscious", "target": "transference"}, {"source": "unconscious", "target": "freud-1910-psychoanalysis-origin"}, {"source": "unconscious", "target": "freud-1910-psychoanalysis-origin"}, {"source": "amygdala-storage-vs-modulation", "target": "fear-conditioning"}, {"source": "amygdala-storage-vs-modulation", "target": "ledoux-2000-emotion-circuits"}, {"source": "behaviorism-vs-psychoanalysis", "target": "behaviorism"}, {"source": "behaviorism-vs-psychoanalysis", "target": "psychoanalysis"}, {"source": "behaviorism-vs-psychoanalysis", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "behaviorism-vs-psychoanalysis", "target": "freud-1910-psychoanalysis-origin"}, {"source": "behaviorism-vs-psychoanalysis", "target": "psychoanalysis"}, {"source": "behaviorism-vs-psychoanalysis", "target": "behaviorism"}, {"source": "behaviorism-vs-psychoanalysis", "target": "freud-1910-psychoanalysis-origin"}, {"source": "behaviorism-vs-psychoanalysis", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "behaviorism-vs-psychoanalysis", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "behaviorism-vs-psychoanalysis", "target": "ledoux-2000-emotion-circuits"}, {"source": "chunking-capacity-cowan-debate", "target": "chunking"}, {"source": "chunking-capacity-cowan-debate", "target": "miller-1956-magical-number-seven"}, {"source": "chunking-capacity-cowan-debate", "target": "miller-1956-magical-number-seven"}, {"source": "little-albert-replication-debate", "target": "classical-conditioning"}, {"source": "little-albert-replication-debate", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "little-albert-replication-debate", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "auditory-fear-conditioning-paradigm", "target": "neuroscience"}, {"source": "auditory-fear-conditioning-paradigm", "target": "behaviorism"}, {"source": "auditory-fear-conditioning-paradigm", "target": "ledoux-2000-emotion-circuits"}, {"source": "auditory-fear-conditioning-paradigm", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "immediate-memory-span-task", "target": "cognitive-psychology"}, {"source": "immediate-memory-span-task", "target": "miller-1956-magical-number-seven"}, {"source": "immediate-memory-span-task", "target": "miller-1956-magical-number-seven"}, {"source": "little-albert-paradigm", "target": "behaviorism"}, {"source": "little-albert-paradigm", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "talking-cure-catharsis", "target": "psychoanalysis"}, {"source": "talking-cure-catharsis", "target": "freud-1910-psychoanalysis-origin"}, {"source": "talking-cure-catharsis", "target": "transference"}, {"source": "behaviorism", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "behaviorism", "target": "psychoanalysis"}, {"source": "behaviorism", "target": "freud-1910-psychoanalysis-origin"}, {"source": "behaviorism", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "behaviorism", "target": "behaviorism-vs-psychoanalysis"}, {"source": "behaviorism", "target": "cognitive-psychology"}, {"source": "behaviorism", "target": "miller-1956-magical-number-seven"}, {"source": "behaviorism", "target": "humanistic-psychology"}, {"source": "behaviorism", "target": "maslow-1943-human-motivation"}, {"source": "behaviorism", "target": "neuroscience"}, {"source": "behaviorism", "target": "ledoux-2000-emotion-circuits"}, {"source": "cognitive-psychology", "target": "channel-capacity"}, {"source": "cognitive-psychology", "target": "chunking"}, {"source": "cognitive-psychology", "target": "behaviorism"}, {"source": "cognitive-psychology", "target": "neuroscience"}, {"source": "cognitive-psychology", "target": "ledoux-2000-emotion-circuits"}, {"source": "humanistic-psychology", "target": "hierarchy-of-needs"}, {"source": "humanistic-psychology", "target": "self-actualization"}, {"source": "humanistic-psychology", "target": "behaviorism"}, {"source": "humanistic-psychology", "target": "psychoanalysis"}, {"source": "neuroscience", "target": "dual-route-emotion-theory"}, {"source": "neuroscience", "target": "behaviorism"}, {"source": "neuroscience", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "psychoanalysis", "target": "repression"}, {"source": "psychoanalysis", "target": "talking-cure-catharsis"}, {"source": "psychoanalysis", "target": "transference"}, {"source": "psychoanalysis", "target": "behaviorism"}, {"source": "psychoanalysis", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "psychoanalysis", "target": "humanistic-psychology"}, {"source": "psychoanalysis", "target": "maslow-1943-human-motivation"}, {"source": "freud-1910-psychoanalysis-origin", "target": "psychoanalysis"}, {"source": "freud-1910-psychoanalysis-origin", "target": "psychoanalytic-theory"}, {"source": "freud-1910-psychoanalysis-origin", "target": "unconscious"}, {"source": "freud-1910-psychoanalysis-origin", "target": "repression"}, {"source": "freud-1910-psychoanalysis-origin", "target": "transference"}, {"source": "freud-1910-psychoanalysis-origin", "target": "talking-cure-catharsis"}, {"source": "freud-1910-psychoanalysis-origin", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "ledoux-2000-emotion-circuits", "target": "neuroscience"}, {"source": "ledoux-2000-emotion-circuits", "target": "dual-route-emotion-theory"}, {"source": "ledoux-2000-emotion-circuits", "target": "classical-conditioning"}, {"source": "ledoux-2000-emotion-circuits", "target": "fear-conditioning"}, {"source": "ledoux-2000-emotion-circuits", "target": "auditory-fear-conditioning-paradigm"}, {"source": "ledoux-2000-emotion-circuits", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "ledoux-2000-emotion-circuits", "target": "amygdala-storage-vs-modulation"}, {"source": "maslow-1943-human-motivation", "target": "humanistic-psychology"}, {"source": "maslow-1943-human-motivation", "target": "hierarchy-of-needs"}, {"source": "maslow-1943-human-motivation", "target": "self-actualization"}, {"source": "miller-1956-magical-number-seven", "target": "cognitive-psychology"}, {"source": "miller-1956-magical-number-seven", "target": "information-processing-theory"}, {"source": "miller-1956-magical-number-seven", "target": "chunking"}, {"source": "miller-1956-magical-number-seven", "target": "channel-capacity"}, {"source": "miller-1956-magical-number-seven", "target": "immediate-memory-span-task"}, {"source": "miller-1956-magical-number-seven", "target": "chunking-capacity-cowan-debate"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "behaviorism"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "classical-conditioning"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "fear-conditioning"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "stimulus-generalization"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "little-albert-paradigm"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "psychoanalysis"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "freud-1910-psychoanalysis-origin"}, {"source": "watson-rayner-1920-conditioned-fear", "target": "little-albert-replication-debate"}, {"source": "classical-conditioning", "target": "behaviorism"}, {"source": "classical-conditioning", "target": "fear-conditioning"}, {"source": "classical-conditioning", "target": "stimulus-generalization"}, {"source": "classical-conditioning", "target": "watson-rayner-1920-conditioned-fear"}, {"source": "classical-conditioning", "target": "stimulus-generalization"}, {"source": "dual-route-emotion-theory", "target": "neuroscience"}, {"source": "dual-route-emotion-theory", "target": "fear-conditioning"}, {"source": "dual-route-emotion-theory", "target": "ledoux-2000-emotion-circuits"}, {"source": "dual-route-emotion-theory", "target": "ledoux-2000-emotion-circuits"}, {"source": "hierarchy-of-needs", "target": "humanistic-psychology"}, {"source": "hierarchy-of-needs", "target": "self-actualization"}, {"source": "hierarchy-of-needs", "target": "maslow-1943-human-motivation"}, {"source": "information-processing-theory", "target": "cognitive-psychology"}, {"source": "information-processing-theory", "target": "chunking"}, {"source": "information-processing-theory", "target": "channel-capacity"}, {"source": "information-processing-theory", "target": "miller-1956-magical-number-seven"}, {"source": "information-processing-theory", "target": "chunking-capacity-cowan-debate"}, {"source": "psychoanalytic-theory", "target": "psychoanalysis"}, {"source": "psychoanalytic-theory", "target": "unconscious"}, {"source": "psychoanalytic-theory", "target": "repression"}, {"source": "psychoanalytic-theory", "target": "transference"}, {"source": "psychoanalytic-theory", "target": "freud-1910-psychoanalysis-origin"}, {"source": "psychoanalytic-theory", "target": "watson-rayner-1920-conditioned-fear"}];
-
-    let currentFile = 'index.md';
-    const navHistory = ['index.md'];
-    let historyIdx = 0;
-
-    // Build Folder Hierarchy for File Explorer
-    const folderStructure = {
-      'schools': { title: 'schools', icon: '📁', files: [] },
-      'theories': { title: 'theories', icon: '📁', files: [] },
-      'constructs': { title: 'constructs', icon: '📁', files: [] },
-      'paradigms-scales': { title: 'paradigms-scales', icon: '📁', files: [] },
-      'controversies': { title: 'controversies', icon: '📁', files: [] },
-      'sources': { title: 'sources', icon: '📁', files: [] },
-      'root': { title: '/', icon: '📄', files: [] }
-    };
-
-    for (const path in filesData) {
-      const parts = path.split('/');
-      if (parts.length === 2) {
-        if (folderStructure[parts[0]]) {
-          folderStructure[parts[0]].files.push({ path, name: parts[1] });
-        }
-      } else {
-        folderStructure['root'].files.push({ path, name: path });
-      }
-    }
-
-    function renderFileTree(filter = '') {
-      const tree = document.getElementById('file-tree');
-      tree.innerHTML = '';
-
-      for (const [key, folder] of Object.entries(folderStructure)) {
-        if (key === 'root') continue;
-
-        const matchingFiles = folder.files.filter(f => !filter || f.name.toLowerCase().includes(filter.toLowerCase()));
-        if (matchingFiles.length === 0) continue;
-
-        const folderDiv = document.createElement('div');
-        folderDiv.className = 'select-none';
-        
-        const folderHeader = document.createElement('div');
-        folderHeader.className = 'flex items-center gap-1.5 py-1 px-1.5 rounded hover:bg-obsidian-border/50 cursor-pointer text-obsidian-muted font-bold';
-        folderHeader.innerHTML = `
-          <svg class="w-3 h-3 transition transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          <span class="text-obsidian-text">${folder.title}</span>
-        `;
-        folderDiv.appendChild(folderHeader);
-
-        const filesContainer = document.createElement('div');
-        filesContainer.className = 'pl-4 space-y-0.5 mt-0.5';
-
-        matchingFiles.forEach(f => {
-          const item = document.createElement('div');
-          const isActive = f.path === currentFile;
-          item.className = `py-1 px-2 rounded cursor-pointer truncate transition flex items-center gap-1.5 ${isActive ? 'bg-obsidian-accent/20 text-obsidian-accent font-medium' : 'text-obsidian-muted hover:bg-obsidian-border/40 hover:text-obsidian-text'}`;
-          item.innerHTML = `<span class="opacity-60">📄</span> <span>${f.name}</span>`;
-          item.onclick = () => openFile(f.path);
-          filesContainer.appendChild(item);
-        });
-
-        folderHeader.onclick = () => {
-          filesContainer.classList.toggle('hidden');
-          folderHeader.querySelector('svg').classList.toggle('rotate-90');
-        };
-
-        folderDiv.appendChild(filesContainer);
-        tree.appendChild(folderDiv);
-      }
-
-      // Root files (index.md, log.md)
-      folderStructure['root'].files.forEach(f => {
-        if (filter && !f.name.toLowerCase().includes(filter.toLowerCase())) return;
-        const item = document.createElement('div');
-        const isActive = f.path === currentFile;
-        item.className = `py-1 px-2 rounded cursor-pointer truncate transition flex items-center gap-1.5 ${isActive ? 'bg-obsidian-accent/20 text-obsidian-accent font-medium' : 'text-obsidian-muted hover:bg-obsidian-border/40 hover:text-obsidian-text'}`;
-        item.innerHTML = `<span>📑</span> <span class="font-bold">${f.name}</span>`;
-        item.onclick = () => openFile(f.path);
-        tree.appendChild(item);
+    // Lightweight vanilla JS search filter (no framework)
+    function filterNav(q) {
+      q = q.toLowerCase().trim();
+      const items = document.querySelectorAll('.nav-item');
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = (!q || text.includes(q)) ? 'block' : 'none';
       });
     }
-
-    // Parse Wiki Links [[slug|title]] or [[slug]]
-    function parseWikilinks(md) {
-      return md.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
-        let target = p1;
-        let label = p1;
-        if (p1.includes('|')) {
-          const parts = p1.split('|');
-          target = parts[0].trim();
-          label = parts[1].trim();
-        }
-        const cleanSlug = target.split('/').pop().replace('.md', '').trim();
-        return `<span class="obsidian-link" onclick="jumpToSlug('${cleanSlug}')">${label}</span>`;
-      });
-    }
-
-    // Parse Callouts
-    function parseCallouts(html) {
-      return html
-        .replace(/<blockquote>\s*<p>\s*\[!abstract\]\s*(.*?)<\/p>/gi, '<div class="obsidian-callout callout-abstract"><div class="callout-title">📋 核心發現與摘要</div><p>$1</p>')
-        .replace(/<blockquote>\s*<p>\s*\[!info\]\s*(.*?)<\/p>/gi, '<div class="obsidian-callout callout-info"><div class="callout-title">💡 理論與構念定義</div><p>$1</p>')
-        .replace(/<blockquote>\s*<p>\s*\[!warning\]\s*(.*?)<\/p>/gi, '<div class="obsidian-callout callout-warning"><div class="callout-title">⚠️ 方法學評價與限制</div><p>$1</p>')
-        .replace(/<blockquote>\s*<p>\s*\[!important\]\s*(.*?)<\/p>/gi, '<div class="obsidian-callout callout-important"><div class="callout-title">⚖️ 核心學術爭端</div><p>$1</p>');
-    }
-
-    function openFile(path) {
-      if (!filesData[path]) return;
-      currentFile = path;
-      document.getElementById('top-title').textContent = path;
-      document.getElementById('tab-title').textContent = path.split('/').pop();
-      document.getElementById('stat-path').textContent = 'wiki/' + path;
-
-      const raw = filesData[path];
-      let content = raw;
-      
-      // Parse Frontmatter Properties
-      const propsBox = document.getElementById('obsidian-properties');
-      const propsList = document.getElementById('properties-list');
-      propsList.innerHTML = '';
-
-      if (raw.startsWith('---')) {
-        const endFm = raw.indexOf('---', 3);
-        if (endFm !== -1) {
-          const fm = raw.substring(3, endFm).trim();
-          content = raw.substring(endFm + 3).trim();
-          
-          propsBox.classList.remove('hidden');
-          fm.split('\n').forEach(line => {
-            const colon = line.indexOf(':');
-            if (colon !== -1) {
-              const k = line.substring(0, colon).trim();
-              const v = line.substring(colon + 1).trim();
-              if (v) {
-                const row = document.createElement('div');
-                row.className = 'flex items-start gap-2 py-0.5';
-                row.innerHTML = `<span class="text-obsidian-muted w-28 shrink-0 font-mono text-[11px]">${k}</span> <span class="text-obsidian-text font-medium text-[11px]">${v}</span>`;
-                propsList.appendChild(row);
-              }
-            }
-          });
-        } else {
-          propsBox.classList.add('hidden');
-        }
-      } else {
-        propsBox.classList.add('hidden');
-      }
-
-      // Step 1: Replace [[links]]
-      const linked = parseWikilinks(content);
-      // Step 2: Marked render
-      let html = marked.parse(linked);
-      // Step 3: Callouts
-      html = parseCallouts(html);
-
-      document.getElementById('markdown-viewer').innerHTML = html;
-      document.getElementById('stat-words').textContent = content.length + ' chars';
-
-      // Update Backlinks
-      const currentSlug = path.split('/').pop().replace('.md', '');
-      const backlinks = graphEdges.filter(e => e.target === currentSlug).map(e => e.source);
-      const blList = document.getElementById('backlinks-list');
-      blList.innerHTML = '';
-      if (backlinks.length > 0) {
-        backlinks.forEach(src => {
-          const badge = document.createElement('span');
-          badge.className = 'px-2 py-1 rounded bg-obsidian-card border border-obsidian-border text-obsidian-text cursor-pointer hover:border-obsidian-accent transition';
-          badge.textContent = src;
-          badge.onclick = () => jumpToSlug(src);
-          blList.appendChild(badge);
-        });
-      } else {
-        blList.innerHTML = '<span class="text-obsidian-muted">無反向引用</span>';
-      }
-
-      renderFileTree();
-      highlightGraphNode(currentSlug);
-    }
-
-    function jumpToSlug(slug) {
-      for (const path in filesData) {
-        if (path.split('/').pop().replace('.md', '') === slug) {
-          navHistory.push(path);
-          historyIdx = navHistory.length - 1;
-          openFile(path);
-          return;
-        }
-      }
-    }
-
-    function historyBack() {
-      if (historyIdx > 0) {
-        historyIdx--;
-        openFile(navHistory[historyIdx]);
-      }
-    }
-
-    function historyForward() {
-      if (historyIdx < navHistory.length - 1) {
-        historyIdx++;
-        openFile(navHistory[historyIdx]);
-      }
-    }
-
-    function switchLeftTab(tab) {
-      const searchBox = document.getElementById('search-container');
-      if (tab === 'search') {
-        searchBox.classList.toggle('hidden');
-        document.getElementById('file-search-input').focus();
-      } else {
-        searchBox.classList.add('hidden');
-      }
-    }
-
-    function toggleRightGraph() {
-      const pane = document.getElementById('graph-pane');
-      pane.classList.toggle('hidden');
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.classList.toggle('dark');
-      html.classList.toggle('light');
-    }
-
-    document.getElementById('file-search-input').addEventListener('input', (e) => {
-      renderFileTree(e.target.value);
-    });
-
-    // ==========================================
-    // Interactive Obsidian Canvas Graph View
-    // ==========================================
-    const canvas = document.getElementById('graph-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let zoom = 1.0;
-    let panX = 0, panY = 0;
-    let activeNodeId = 'index';
-
-    // Graph nodes with physics
-    const simNodes = graphNodes.map((n, i) => ({
-      ...n,
-      x: (Math.random() - 0.5) * 300,
-      y: (Math.random() - 0.5) * 300,
-      vx: 0,
-      vy: 0,
-      radius: n.id === 'index' ? 7 : (n.cat === 'schools' ? 6 : 4)
-    }));
-
-    const nodeMap = {};
-    simNodes.forEach(n => { nodeMap[n.id] = n; });
-
-    const simEdges = graphEdges.filter(e => nodeMap[e.source] && nodeMap[e.target]).map(e => ({
-      source: nodeMap[e.source],
-      target: nodeMap[e.target]
-    }));
-
-    function resizeCanvas() {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
-      width = rect.width;
-      height = rect.height;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-
-    // Physics Loop
-    function simulate() {
-      // Spring forces for edges
-      simEdges.forEach(e => {
-        const dx = e.target.x - e.source.x;
-        const dy = e.target.y - e.source.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = (dist - 50) * 0.002;
-        const fx = (dx / dist) * force;
-        const fy = (dy / dist) * force;
-        e.source.vx += fx;
-        e.source.vy += fy;
-        e.target.vx -= fx;
-        e.target.vy -= fy;
-      });
-
-      // Repulsion between nodes
-      for (let i = 0; i < simNodes.length; i++) {
-        for (let j = i + 1; j < simNodes.length; j++) {
-          const n1 = simNodes[i];
-          const n2 = simNodes[j];
-          const dx = n2.x - n1.x;
-          const dy = n2.y - n1.y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (dist < 120) {
-            const force = (120 - dist) * 0.015;
-            const fx = (dx / dist) * force;
-            const fy = (dy / dist) * force;
-            n1.vx -= fx;
-            n1.vy -= fy;
-            n2.vx += fx;
-            n2.vy += fy;
-          }
-        }
-      }
-
-      // Center gravity & damping
-      simNodes.forEach(n => {
-        n.vx -= n.x * 0.001;
-        n.vy -= n.y * 0.001;
-        n.vx *= 0.88;
-        n.vy *= 0.88;
-        n.x += n.vx;
-        n.y += n.vy;
-      });
-    }
-
-    function drawGraph() {
-      simulate();
-
-      ctx.clearRect(0, 0, width, height);
-      ctx.save();
-      ctx.translate(width / 2 + panX, height / 2 + panY);
-      ctx.scale(zoom, zoom);
-
-      // Draw Edges
-      simEdges.forEach(e => {
-        const isHighlight = e.source.id === activeNodeId || e.target.id === activeNodeId;
-        ctx.beginPath();
-        ctx.moveTo(e.source.x, e.source.y);
-        ctx.lineTo(e.target.x, e.target.y);
-        ctx.strokeStyle = isHighlight ? '#7b6cd9' : (document.documentElement.classList.contains('dark') ? '#333333' : '#e0e0e0');
-        ctx.lineWidth = isHighlight ? 1.5 : 0.7;
-        ctx.stroke();
-      });
-
-      // Draw Nodes
-      simNodes.forEach(n => {
-        const isActive = n.id === activeNodeId;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius + (isActive ? 3 : 0), 0, Math.PI * 2);
-        ctx.fillStyle = isActive ? '#ffffff' : n.color;
-        ctx.fill();
-        if (isActive) {
-          ctx.strokeStyle = '#7b6cd9';
-          ctx.lineWidth = 3;
-          ctx.stroke();
-        }
-
-        // Text label
-        if (zoom > 0.8 || isActive) {
-          ctx.font = `${isActive ? 'bold 11px' : '9px'} 'JetBrains Mono', sans-serif`;
-          ctx.fillStyle = isActive ? '#ffffff' : (document.documentElement.classList.contains('dark') ? '#999999' : '#666666');
-          ctx.fillText(n.label, n.x + n.radius + 4, n.y + 3);
-        }
-      });
-
-      ctx.restore();
-      requestAnimationFrame(drawGraph);
-    }
-
-    function highlightGraphNode(slug) {
-      activeNodeId = slug;
-      const target = nodeMap[slug];
-      if (target) {
-        // smoothly pan towards target
-        panX = -target.x * zoom;
-        panY = -target.y * zoom;
-      }
-    }
-
-    // Canvas click & drag
-    let isDragging = false;
-    let startX, startY;
-
-    canvas.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX - panX;
-      startY = e.clientY - panY;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        panX = e.clientX - startX;
-        panY = e.clientY - startY;
-      }
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    canvas.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
-      zoom = Math.max(0.4, Math.min(2.5, zoom * zoomFactor));
-    });
-
-    canvas.addEventListener('click', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = (e.clientX - rect.left - width / 2 - panX) / zoom;
-      const mouseY = (e.clientY - rect.top - height / 2 - panY) / zoom;
-
-      for (const n of simNodes) {
-        const dist = Math.sqrt((mouseX - n.x) ** 2 + (mouseY - n.y) ** 2);
-        if (dist <= n.radius + 5) {
-          jumpToSlug(n.id);
-          break;
-        }
-      }
-    });
-
-    // Initialize UI
-    resizeCanvas();
-    renderFileTree();
-    openFile('index.md');
-    requestAnimationFrame(drawGraph);
   </script>
 </body>
 </html>

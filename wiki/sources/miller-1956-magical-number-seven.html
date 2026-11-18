@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information — 心理學 LLM Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Pure Vanilla CSS - Zero Framework Dependencies */
+    :root {
+      --bg-cream: #faf7f5;
+      --bg-sidebar: #f5eeea;
+      --card-white: #ffffff;
+      --border-warm: #ebdcd5;
+      --border-rose: #edd5da;
+      --text-main: #332d30;
+      --text-sub: #786f73;
+      --rose-deep: #8c4b57;
+      --rose-accent: #c27685;
+      --rose-light: #f7ebeb;
+      --green-soft: #597864;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Shippori Mincho', 'Noto Serif TC', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Top Header */
+    .top-header {
+      background-color: rgba(250, 247, 245, 0.95);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8c7cd, #f7ebeb);
+      border: 1px solid #e5b9c1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rose-deep);
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .logo-text h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .logo-text span {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: block;
+      margin-top: -2px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-warm);
+    }
+    .btn-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+    }
+    .btn-rose:hover {
+      background-color: #f0dde0;
+    }
+    .btn-white {
+      background-color: #ffffff;
+      color: #554a4f;
+    }
+    .btn-white:hover {
+      background-color: #f7f2ef;
+    }
+
+    /* Main Dual Layout */
+    .wiki-container {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+    }
+    /* Sidebar */
+    .wiki-sidebar {
+      width: 290px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-warm);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 59px);
+      position: sticky;
+      top: 59px;
+      overflow-y: auto;
+    }
+    .nav-search {
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-warm);
+      background-color: #ffffff;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      outline: none;
+    }
+    .nav-search:focus {
+      border-color: var(--rose-accent);
+    }
+    .nav-section {
+      margin-bottom: 6px;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .nav-section-count {
+      font-size: 10px;
+      color: #a89fa4;
+    }
+    .nav-section-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 6px;
+      margin-top: 2px;
+    }
+    .nav-item {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #52474c;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s ease;
+    }
+    .nav-item:hover {
+      background-color: #ede2dd;
+      color: var(--rose-deep);
+    }
+    .nav-item-active {
+      background-color: var(--card-white);
+      color: var(--rose-deep);
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      border-left: 3px solid var(--rose-accent);
+    }
+
+    /* Main Reading Content */
+    .wiki-main {
+      flex: 1;
+      background-color: var(--card-white);
+      padding: 36px 48px;
+      max-width: 960px;
+      min-width: 0;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--rose-accent);
+    }
+    .meta-card {
+      background-color: #faf5f2;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12px;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
+    .badge-gray { background: #eee7e4; color: #5a5055; }
+    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
+
+    /* Markdown Styling */
+    .content h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 10px;
+      color: #2e292d;
+    }
+    .content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: #40363a;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #55484d;
+    }
+    .content p {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      color: #40383b;
+    }
+    .content ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #483f43;
+    }
+    .content li {
+      margin-bottom: 6px;
+    }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--border-warm);
+      margin: 28px 0;
+    }
+    .content code {
+      font-family: ui-monospace, Consolas, monospace;
+      background-color: #f2e9e6;
+      color: var(--rose-deep);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    /* Clickable Wiki Links */
+    a.wiki-link {
+      color: var(--rose-accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rose-accent);
+      padding-bottom: 1px;
+      transition: all 0.15s ease;
+    }
+    a.wiki-link:hover {
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      border-bottom-style: solid;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    .wiki-link-unresolved {
+      color: #a89fa4;
+      text-decoration: line-through;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .callout-abstract { background-color: #fdf5f6; border-left: 4px solid var(--rose-accent); color: #423237; }
+    .callout-info { background-color: #f3f8f5; border-left: 4px solid var(--green-soft); color: #2e3d33; }
+    .callout-warning { background-color: #faf5f0; border-left: 4px solid #b56b3e; color: #473325; }
+    .callout-important { background-color: #fbf0f2; border-left: 4px solid #8c4b57; color: #47262d; }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      padding: 10px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-warm);
+      color: #483f43;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: #faf5f2;
+    }
+
+    @media (max-width: 860px) {
+      .wiki-container { flex-direction: column; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-main { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <a href="../../index.html" class="header-logo" title="回總傳送門">
+      <div class="logo-badge">栞</div>
+      <div class="logo-text">
+        <h1>心理學論文 LLM Wiki</h1>
+        <span>純靜態直接部署 • 零框架</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="../../slides/psychology_schools_presentation.html" class="btn btn-rose"><span>📊</span> 簡報播放</a>
+      <a href="../index.html" class="btn btn-white"><span>📑</span> 總索引</a>
+      <a href="../log.html" class="btn btn-white"><span>📜</span> 日誌</a>
+    </div>
+  </header>
+
+  <!-- Dual Layout Container -->
+  <div class="wiki-container">
+
+    <!-- Left Sidebar -->
+    <aside class="wiki-sidebar">
+      <input type="text" id="navSearch" class="nav-search" placeholder="搜尋構念、流派..." oninput="filterNav(this.value)">
+      <div id="navGroupList">
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📚 各大心理學流派</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../schools/behaviorism.html" class="nav-item" title="Behaviorism">行為學派</a><a href="../schools/cognitive-psychology.html" class="nav-item" title="Cognitive Psychology">認知心理學派</a><a href="../schools/humanistic-psychology.html" class="nav-item" title="Humanistic Psychology">人本主義心理學派</a><a href="../schools/neuroscience.html" class="nav-item" title="Neuroscience and Biological Psychology">神經科學</a><a href="../schools/psychoanalysis.html" class="nav-item" title="Psychoanalysis">精神分析學派</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🏛️ 理論與心理模型</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../theories/classical-conditioning.html" class="nav-item" title="Classical Conditioning">古典制約</a><a href="../theories/dual-route-emotion-theory.html" class="nav-item" title="Dual-Route Theory of Emotion">情緒雙路徑理論</a><a href="../theories/hierarchy-of-needs.html" class="nav-item" title="Hierarchy of Needs Theory">需求階層理論</a><a href="../theories/information-processing-theory.html" class="nav-item" title="Information Processing Theory">人類訊息處理理論</a><a href="../theories/psychoanalytic-theory.html" class="nav-item" title="Psychoanalytic Theory">精神分析理論</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>💡 核心心理學構念</span>
+            <span class="nav-section-count">8</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../constructs/channel-capacity.html" class="nav-item" title="Channel Capacity">通道容量</a><a href="../constructs/chunking.html" class="nav-item" title="Chunking">訊息組塊</a><a href="../constructs/fear-conditioning.html" class="nav-item" title="Fear Conditioning">恐懼制約</a><a href="../constructs/repression.html" class="nav-item" title="Repression">壓抑</a><a href="../constructs/self-actualization.html" class="nav-item" title="Self-Actualization">自我實現</a><a href="../constructs/stimulus-generalization.html" class="nav-item" title="Stimulus Generalization">刺激類化</a><a href="../constructs/transference.html" class="nav-item" title="Transference">移情</a><a href="../constructs/unconscious.html" class="nav-item" title="The Unconscious">潛意識</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🔬 實驗典範與量表</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../paradigms-scales/auditory-fear-conditioning-paradigm.html" class="nav-item" title="Auditory Fear Conditioning Paradigm">聽覺恐懼制約實驗典範</a><a href="../paradigms-scales/immediate-memory-span-task.html" class="nav-item" title="Immediate Memory Span Task">立即記憶廣度作業</a><a href="../paradigms-scales/little-albert-paradigm.html" class="nav-item" title="Little Albert Paradigm">小阿爾伯特實驗典範</a><a href="../paradigms-scales/talking-cure-catharsis.html" class="nav-item" title="Talking Cure and Cathartic Method">談話療法</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>⚖️ 學術爭端與檢驗</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../controversies/amygdala-storage-vs-modulation.html" class="nav-item" title="Amygdala: Memory Storage vs. Memory Modulation Debate">杏仁核爭端：記憶儲存地還是調節器？</a><a href="../controversies/behaviorism-vs-psychoanalysis.html" class="nav-item" title="Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate">行為學派 vs 精神分析：恐懼症成因論戰</a><a href="../controversies/chunking-capacity-cowan-debate.html" class="nav-item" title="The Working Memory Capacity Debate: 7±2 vs 4±1">短期記憶容量爭辯：7±2 vs 4±1</a><a href="../controversies/little-albert-replication-debate.html" class="nav-item" title="Little Albert Replication & Ethics Debate">小阿爾伯特重複性檢驗與真實身分爭端</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📄 奠基論文文獻庫</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="freud-1910-psychoanalysis-origin.html" class="nav-item" title="The Origin and Development of Psychoanalysis">The Origin and Development of Psychoanalysis</a><a href="ledoux-2000-emotion-circuits.html" class="nav-item" title="Emotion Circuits in the Brain">Emotion Circuits in the Brain</a><a href="maslow-1943-human-motivation.html" class="nav-item" title="A Theory of Human Motivation">A Theory of Human Motivation</a><a href="miller-1956-magical-number-seven.html" class="nav-item nav-item-active" title="The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information">The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information</a><a href="watson-rayner-1920-conditioned-fear.html" class="nav-item" title="Conditioned Emotional Reactions">Conditioned Emotional Reactions</a>
+          </div>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- Main Article -->
+    <main class="wiki-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Wiki</a> <span>/</span>
+        <span>奠基論文文獻庫</span> <span>/</span>
+        <span style="color: var(--rose-deep); font-weight: 700;">The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information</span>
+      </div>
+
+      <div class="meta-card"><span class="badge badge-gray">年份：1956</span><span class="badge badge-gray">作者：["George A. Miller"]</span><span class="badge badge-warm">樣本量：彙整多項心理物理學實驗（Pollack, Garner, Hake, Hayes, Smith 等研究數據）</span><span class="badge badge-gray">效應值：單維通道容量平均 2.6 bits (SD = 0.6 bit)；立即記憶廣度約 7 個組塊</span><span class="badge badge-gray">複製狀態：mixed</span></div>
+
+      <article class="content">
+        <h1>The Magical Number Seven, Plus or Minus Two (Miller, 1956)</h1>
+<div class="callout callout-abstract"><div class="callout-title">📋 核心發現與摘要</div><div class="callout-body"><p>核心發現</p>
+<p>George Miller 將資訊理論（Information Theory）引進認知心理學，揭示了人類認知架構中兩項截然不同但極度關鍵的容量瓶頸：</p>
+<p>1. <strong>絕對判斷之通道容量 (Channel Capacity)</strong>：人類對單一維度刺激（音高、響度、味道、線段長度）的絕對辨識能力上限為 <strong>$2.6\text{ bits}$（約 5 到 9 個類別，平均 6.5 個）</strong>。增加刺激的維度能提升容量，但增長幅度遞減。</p>
+<p>2. <strong>立即記憶廣度 (Immediate Memory Span)</strong>：短期記憶容量受到 <strong>組塊數量（Chunks）</strong> 而非資訊位元（Bits）的嚴格限制，恆常維持在 <strong>$7 \pm 2$ 個組塊</strong>。</p>
+<p>3. <strong>重新編碼（Recoding / Chunking）</strong>：人類透過將分散的刺激組合成高層次、有意義的結構（如語詞、代碼），能大幅克服短期記憶的容量瓶頸。</p></div></div>
+<hr>
+<h2>1. 理論背景與資訊理論引入</h2>
+<p>1950 年代正值心理學從「行為主義 S-R 黑盒子」走向「認知革命」的轉折點。Miller 借鑒 Shannon 的資訊理論：</p>
+<ul>
+<li>將人類觀察者視為一個<strong>通訊通道（Communication Channel）</strong>。</li>
+<li>輸入刺激的變異（Variance）代表輸入資訊量；輸入與輸出反應的共變異（Covariance）即為<strong>傳遞資訊量（Transmitted Information）</strong>。</li>
+<li>隨輸入刺激數量增加，傳遞資訊量逐漸達到的漸近極限值，即為<strong>通道容量（Channel Capacity）</strong>。</li>
+</ul>
+<hr>
+<h2>2. 實證數據與核心分析 (Empirical Data)</h2>
+<h3>2.1 單維刺激的絕對判斷通道容量</h3>
+<p>Miller 統整了多項經典心理物理學實驗數據：</p>
+<ul>
+<li><strong>音高 (Pitch)</strong>（Pollack）：極限約為 <strong>$2.5\text{ bits}$</strong>（約 6 個無法混淆的音高）。</li>
+<li><strong>音量 (Loudness)</strong>（Garner）：極限約為 <strong>$2.3\text{ bits}$</strong>（約 5 個等級）。</li>
+<li><strong>味覺濃度 (Taste Intensity)</strong>（Beebe-Center et al.）：極限約為 <strong>$1.9\text{ bits}$</strong>（約 4 種鹽水濃度）。</li>
+<li><strong>視覺位置 (Visual Position)</strong>（Hake & Garner）：極限約為 <strong>$3.25\text{ bits}$</strong>（10～15 個位置）。</li>
+<li><strong>整體單維均值</strong>：$\mu = 2.6\text{ bits}, \sigma = 0.6\text{ bits}$。換算為可辨識類別數約為 $6.5$ 類（$4$ 到 $10$ 之間）。</li>
+</ul>
+<h3>2.2 關鍵理論突破：Bits vs. Chunks 的分野</h3>
+<p>當時學界普遍誤以為「絕對判斷容量」與「立即記憶廣度」（均約為 7）源自同一神經生理瓶頸。Miller 透過嚴密比對 Hayes (1952) 與 Pollack (1953) 的記憶廣度實驗予以推翻：</p>
+<ul>
+<li>若短期記憶受限於「資訊量（Bits）」，則二進位數字（1 bit/item）應能記住 23 個，單音節單字（10 bits/item）只能記住 2~3 個。</li>
+<li><strong>實驗事實</strong>：受試者能記住 9 個二進位數字、7 個十進位數字、5 個英文單字。</li>
+<li><strong>結論</strong>：<strong>立即記憶的上限不是 bits，而是 chunks！</strong></li>
+</ul>
+<h3>2.3 重新編碼（Recoding）實驗</h3>
+<ul>
+<li>Sidney Smith (1954) 實驗：將 18 個二進位數字（010001...）以 3:1 規則重新編碼為 6 個八進位數字（0~7）。</li>
+<li>受試者經過短暫訓練後，記憶廣度由 9 個二進位數字暴增至 <strong>40 個二進位數字</strong>！</li>
+<li>語言（Language）正是人類演化中最極致的重新編碼工具。</li>
+</ul>
+<hr>
+<h2>3. 理論意涵與貢獻 (Cognitive Revolution)</h2>
+<ul>
+<li>正式敲響了古典行為主義黑盒子論調的喪鐘，確立了人類心智為<strong>主動重新編碼、處理與儲存資訊的系統</strong>。</li>
+<li>奠定了後續短期記憶、工作記憶（Baddeley Working Memory）與注意力心理學的研究典範。</li>
+</ul>
+<hr>
+<div class="callout callout-warning"><div class="callout-title">⚠️ 方法學評價與研究限制</div><div class="callout-body"><p>後續爭議與重複檢驗修正</p>
+<ul>
+<li><strong>Cowan (2001) 的 4±1 修正</strong>：現代認知心理學指出，Miller 的 $7\pm 2$ 包含了語音複誦（Subvocal Rehearsal）與長時記憶輔助。在嚴格排除複誦與組塊策略的純純粹短期記憶容量，其實只有 <strong>$4 \pm 1$ 個組塊</strong>。詳見 <a href="../controversies/chunking-capacity-cowan-debate.html" class="wiki-link" title="短期記憶容量 7±2 vs. 4±1 爭辯">短期記憶容量 7±2 vs. 4±1 爭辯</a>。</li>
+</ul></div></div>
+      </article>
+    </main>
+
+  </div>
+
+  <script>
+    // Lightweight vanilla JS search filter (no framework)
+    function filterNav(q) {
+      q = q.toLowerCase().trim();
+      const items = document.querySelectorAll('.nav-item');
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = (!q || text.includes(q)) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

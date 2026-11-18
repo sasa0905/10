@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Origin and Development of Psychoanalysis — 心理學 LLM Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Pure Vanilla CSS - Zero Framework Dependencies */
+    :root {
+      --bg-cream: #faf7f5;
+      --bg-sidebar: #f5eeea;
+      --card-white: #ffffff;
+      --border-warm: #ebdcd5;
+      --border-rose: #edd5da;
+      --text-main: #332d30;
+      --text-sub: #786f73;
+      --rose-deep: #8c4b57;
+      --rose-accent: #c27685;
+      --rose-light: #f7ebeb;
+      --green-soft: #597864;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Shippori Mincho', 'Noto Serif TC', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Top Header */
+    .top-header {
+      background-color: rgba(250, 247, 245, 0.95);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8c7cd, #f7ebeb);
+      border: 1px solid #e5b9c1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rose-deep);
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .logo-text h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .logo-text span {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: block;
+      margin-top: -2px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-warm);
+    }
+    .btn-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+    }
+    .btn-rose:hover {
+      background-color: #f0dde0;
+    }
+    .btn-white {
+      background-color: #ffffff;
+      color: #554a4f;
+    }
+    .btn-white:hover {
+      background-color: #f7f2ef;
+    }
+
+    /* Main Dual Layout */
+    .wiki-container {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+    }
+    /* Sidebar */
+    .wiki-sidebar {
+      width: 290px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-warm);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 59px);
+      position: sticky;
+      top: 59px;
+      overflow-y: auto;
+    }
+    .nav-search {
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-warm);
+      background-color: #ffffff;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      outline: none;
+    }
+    .nav-search:focus {
+      border-color: var(--rose-accent);
+    }
+    .nav-section {
+      margin-bottom: 6px;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .nav-section-count {
+      font-size: 10px;
+      color: #a89fa4;
+    }
+    .nav-section-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 6px;
+      margin-top: 2px;
+    }
+    .nav-item {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #52474c;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s ease;
+    }
+    .nav-item:hover {
+      background-color: #ede2dd;
+      color: var(--rose-deep);
+    }
+    .nav-item-active {
+      background-color: var(--card-white);
+      color: var(--rose-deep);
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      border-left: 3px solid var(--rose-accent);
+    }
+
+    /* Main Reading Content */
+    .wiki-main {
+      flex: 1;
+      background-color: var(--card-white);
+      padding: 36px 48px;
+      max-width: 960px;
+      min-width: 0;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--rose-accent);
+    }
+    .meta-card {
+      background-color: #faf5f2;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12px;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
+    .badge-gray { background: #eee7e4; color: #5a5055; }
+    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
+
+    /* Markdown Styling */
+    .content h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 10px;
+      color: #2e292d;
+    }
+    .content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: #40363a;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #55484d;
+    }
+    .content p {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      color: #40383b;
+    }
+    .content ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #483f43;
+    }
+    .content li {
+      margin-bottom: 6px;
+    }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--border-warm);
+      margin: 28px 0;
+    }
+    .content code {
+      font-family: ui-monospace, Consolas, monospace;
+      background-color: #f2e9e6;
+      color: var(--rose-deep);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    /* Clickable Wiki Links */
+    a.wiki-link {
+      color: var(--rose-accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rose-accent);
+      padding-bottom: 1px;
+      transition: all 0.15s ease;
+    }
+    a.wiki-link:hover {
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      border-bottom-style: solid;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    .wiki-link-unresolved {
+      color: #a89fa4;
+      text-decoration: line-through;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .callout-abstract { background-color: #fdf5f6; border-left: 4px solid var(--rose-accent); color: #423237; }
+    .callout-info { background-color: #f3f8f5; border-left: 4px solid var(--green-soft); color: #2e3d33; }
+    .callout-warning { background-color: #faf5f0; border-left: 4px solid #b56b3e; color: #473325; }
+    .callout-important { background-color: #fbf0f2; border-left: 4px solid #8c4b57; color: #47262d; }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      padding: 10px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-warm);
+      color: #483f43;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: #faf5f2;
+    }
+
+    @media (max-width: 860px) {
+      .wiki-container { flex-direction: column; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-main { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <a href="../../index.html" class="header-logo" title="回總傳送門">
+      <div class="logo-badge">栞</div>
+      <div class="logo-text">
+        <h1>心理學論文 LLM Wiki</h1>
+        <span>純靜態直接部署 • 零框架</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="../../slides/psychology_schools_presentation.html" class="btn btn-rose"><span>📊</span> 簡報播放</a>
+      <a href="../index.html" class="btn btn-white"><span>📑</span> 總索引</a>
+      <a href="../log.html" class="btn btn-white"><span>📜</span> 日誌</a>
+    </div>
+  </header>
+
+  <!-- Dual Layout Container -->
+  <div class="wiki-container">
+
+    <!-- Left Sidebar -->
+    <aside class="wiki-sidebar">
+      <input type="text" id="navSearch" class="nav-search" placeholder="搜尋構念、流派..." oninput="filterNav(this.value)">
+      <div id="navGroupList">
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📚 各大心理學流派</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../schools/behaviorism.html" class="nav-item" title="Behaviorism">行為學派</a><a href="../schools/cognitive-psychology.html" class="nav-item" title="Cognitive Psychology">認知心理學派</a><a href="../schools/humanistic-psychology.html" class="nav-item" title="Humanistic Psychology">人本主義心理學派</a><a href="../schools/neuroscience.html" class="nav-item" title="Neuroscience and Biological Psychology">神經科學</a><a href="../schools/psychoanalysis.html" class="nav-item" title="Psychoanalysis">精神分析學派</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🏛️ 理論與心理模型</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../theories/classical-conditioning.html" class="nav-item" title="Classical Conditioning">古典制約</a><a href="../theories/dual-route-emotion-theory.html" class="nav-item" title="Dual-Route Theory of Emotion">情緒雙路徑理論</a><a href="../theories/hierarchy-of-needs.html" class="nav-item" title="Hierarchy of Needs Theory">需求階層理論</a><a href="../theories/information-processing-theory.html" class="nav-item" title="Information Processing Theory">人類訊息處理理論</a><a href="../theories/psychoanalytic-theory.html" class="nav-item" title="Psychoanalytic Theory">精神分析理論</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>💡 核心心理學構念</span>
+            <span class="nav-section-count">8</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../constructs/channel-capacity.html" class="nav-item" title="Channel Capacity">通道容量</a><a href="../constructs/chunking.html" class="nav-item" title="Chunking">訊息組塊</a><a href="../constructs/fear-conditioning.html" class="nav-item" title="Fear Conditioning">恐懼制約</a><a href="../constructs/repression.html" class="nav-item" title="Repression">壓抑</a><a href="../constructs/self-actualization.html" class="nav-item" title="Self-Actualization">自我實現</a><a href="../constructs/stimulus-generalization.html" class="nav-item" title="Stimulus Generalization">刺激類化</a><a href="../constructs/transference.html" class="nav-item" title="Transference">移情</a><a href="../constructs/unconscious.html" class="nav-item" title="The Unconscious">潛意識</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🔬 實驗典範與量表</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../paradigms-scales/auditory-fear-conditioning-paradigm.html" class="nav-item" title="Auditory Fear Conditioning Paradigm">聽覺恐懼制約實驗典範</a><a href="../paradigms-scales/immediate-memory-span-task.html" class="nav-item" title="Immediate Memory Span Task">立即記憶廣度作業</a><a href="../paradigms-scales/little-albert-paradigm.html" class="nav-item" title="Little Albert Paradigm">小阿爾伯特實驗典範</a><a href="../paradigms-scales/talking-cure-catharsis.html" class="nav-item" title="Talking Cure and Cathartic Method">談話療法</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>⚖️ 學術爭端與檢驗</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="../controversies/amygdala-storage-vs-modulation.html" class="nav-item" title="Amygdala: Memory Storage vs. Memory Modulation Debate">杏仁核爭端：記憶儲存地還是調節器？</a><a href="../controversies/behaviorism-vs-psychoanalysis.html" class="nav-item" title="Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate">行為學派 vs 精神分析：恐懼症成因論戰</a><a href="../controversies/chunking-capacity-cowan-debate.html" class="nav-item" title="The Working Memory Capacity Debate: 7±2 vs 4±1">短期記憶容量爭辯：7±2 vs 4±1</a><a href="../controversies/little-albert-replication-debate.html" class="nav-item" title="Little Albert Replication & Ethics Debate">小阿爾伯特重複性檢驗與真實身分爭端</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📄 奠基論文文獻庫</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="freud-1910-psychoanalysis-origin.html" class="nav-item nav-item-active" title="The Origin and Development of Psychoanalysis">The Origin and Development of Psychoanalysis</a><a href="ledoux-2000-emotion-circuits.html" class="nav-item" title="Emotion Circuits in the Brain">Emotion Circuits in the Brain</a><a href="maslow-1943-human-motivation.html" class="nav-item" title="A Theory of Human Motivation">A Theory of Human Motivation</a><a href="miller-1956-magical-number-seven.html" class="nav-item" title="The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information">The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information</a><a href="watson-rayner-1920-conditioned-fear.html" class="nav-item" title="Conditioned Emotional Reactions">Conditioned Emotional Reactions</a>
+          </div>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- Main Article -->
+    <main class="wiki-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Wiki</a> <span>/</span>
+        <span>奠基論文文獻庫</span> <span>/</span>
+        <span style="color: var(--rose-deep); font-weight: 700;">The Origin and Development of Psychoanalysis</span>
+      </div>
+
+      <div class="meta-card"><span class="badge badge-gray">年份：1910</span><span class="badge badge-gray">作者：["Sigmund Freud"]</span><span class="badge badge-warm">樣本量：臨床個別病例觀察 (如 Anna O. 與臨床歇斯底里病患)</span><span class="badge badge-gray">效應值：N/A (臨床個案質性分析)</span><span class="badge badge-gray">複製狀態：contested</span></div>
+
+      <article class="content">
+        <h1>The Origin and Development of Psychoanalysis (Freud, 1910)</h1>
+<div class="callout callout-abstract"><div class="callout-title">📋 核心發現與摘要</div><div class="callout-body"><p>核心發現</p>
+<p>佛洛伊德於美國克拉克大學 20 週年校慶發表的五場歷史性演講，系統闡述精神分析的起源與核心機制：</p>
+<p>1. 歇斯底里症（Hysteria）源於過去創傷回憶的積壓，病患「深受回憶所苦（suffer from reminiscences）」，情緒能量轉化為軀體症狀（身體化轉換 Conversion）。</p>
+<p>2. 創傷記憶被自我的道德防衛機制「壓抑（Repression）」至潛意識，但壓抑失敗產生症狀替代（Ersatzbildung）。</p>
+<p>3. 自由聯想與「夢的解析（Traumdeutung）」是通往潛意識的康莊大道（via regia）。</p>
+<p>4. 神經症的病因追溯至童年期的「幼兒性慾（Infantile Sexuality）」與伊底帕斯情結（Oedipus Complex）。</p>
+<p>5. 治療的關鍵在於引導「移情（Transference）」並將本能驅力轉化為「昇華（Sublimation）」。</p></div></div>
+<hr>
+<h2>1. 理論背景與核心假說</h2>
+<p>19 世紀末期，醫學界對歇斯底里等神經症多歸因於神經系統器質性病變或先天體質退化（如 Pierre Janet 提出的心理綜合能力先天缺陷）。佛洛伊德則主張純粹的<strong>心理動力學模型（Psychodynamic Model）</strong>：</p>
+<ul>
+<li>心靈內部存在相互衝突的動力力量。當某種願望（Wish）與個人的道德、美學或自我標準無法相容時，引發高度痛苦，自我便啟動壓抑機制將其驅逐出意識。</li>
+<li>壓抑後的願望並未消失，而是在潛意識中持續蓄積能量，最終戴上面具以「症狀」形式突破防線。</li>
+</ul>
+<hr>
+<h2>2. 臨床方法與技術演進 (Methodology & Clinical Practice)</h2>
+<h3>2.1 從催眠到宣洩（Breuer 的 Anna O. 案例）</h3>
+<ul>
+<li>由 Joseph Breuer (1880–1882) 治療 21 歲女病患 Anna O.（右側癱瘓、失語、拒水厭惡）。</li>
+<li>在催眠狀態下讓病患重新回憶創傷場景（如看見討厭的女管家讓小狗從水杯喝水而壓抑憤怒），並將積累的情緒藉由語言宣洩（Ab-reaction），症狀即永久消失。Anna O. 戲稱此為「談話療法（Talking Cure）」或「掃煙囪（Chimney Sweeping）」。</li>
+</ul>
+<h3>2.2 自由聯想與夢的解析</h3>
+<ul>
+<li>佛洛伊德因催眠無法普遍適用且會掩蓋病患內在阻抗（Resistance），改用「自由聯想（Free Association）」，要求病患不加批判地說出腦中湧現的一切想法。</li>
+<li>確立「夢是通往潛意識的康莊大道」：</li>
+<li><strong>顯意（Manifest Content）</strong>：清晨醒來混亂破碎的表面夢境。</li>
+<li><strong>隱意（Latent Thoughts）</strong>：潛意識底層真實的被壓抑願望。</li>
+<li><strong>夢的工作（Dream-work）</strong>：透過「凝縮（Condensation）」與「置換（Displacement）」將禁忌願望偽裝呈現。</li>
+</ul>
+<hr>
+<h2>3. 理論意涵與跨學派爭辯</h2>
+<ul>
+<li><strong>挑戰醫學界唯器質論</strong>：證明無身體器質性損傷的心理動力衝突足以引發實體癱瘓與失明。</li>
+<li><strong>遭遇行為主義的猛烈抨擊</strong>：</li>
+<li><a href="watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="Watson & Rayner (1920)">Watson & Rayner (1920)</a> 嚴正反駁佛洛伊德將恐懼症完全歸因於幼兒性慾與伊底帕斯情結，證明外在環境的 S-R 古典制約才是恐懼症的直接成因。</li>
+</ul>
+<hr>
+<div class="callout callout-warning"><div class="callout-title">⚠️ 方法學評價與研究限制</div><div class="callout-body"><p>方法學評價與科學地位限制</p>
+<ul>
+<li><strong>樣本與驗證限制</strong>：全數基於回溯性臨床個案觀察，缺乏客觀控制組與定量數據。</li>
+<li><strong>可證偽性危機 (Unfalsifiability)</strong>：將反對者對理論的質疑直接解釋為反對者自身的「內心阻抗與壓抑」，導致理論結構封閉，在後續科學哲學（Karl Popper）中引發長期非科學性質疑。</li>
+</ul></div></div>
+      </article>
+    </main>
+
+  </div>
+
+  <script>
+    // Lightweight vanilla JS search filter (no framework)
+    function filterNav(q) {
+      q = q.toLowerCase().trim();
+      const items = document.querySelectorAll('.nav-item');
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = (!q || text.includes(q)) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

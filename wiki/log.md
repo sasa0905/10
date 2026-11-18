@@ -93,15 +93,14 @@
   - 在 [[AGENTS.md]] 第 5 章增加「圖示完整度專項檢查點」，明訂：零脆弱 Emoji 原則、零外部 CDN 依賴、SVG 格式合法性檢查與安全幾何底座規範。
   - 將實務反思的三大防線（Node 3/4 規格前移、Node 7 數值硬斷言、Node 9 靜態代碼掃描閥門）固化入正式 Graph Schema。
 
-## [2026-11-18] presentation | 各流派介紹（全面套用三大防線之正式交付）
-- **操作類型**：Graph 工作流正式執行 (Graph Execution)
-- **大綱審查**：`slides/drafts/psychology_schools_outline.md`（經使用者核准）
-- **逐頁腳本**：`slides/drafts/psychology_schools_script.md`
-- **正式交付檔**：`slides/psychology_schools_presentation.html`
-- **防線檢核紀錄**：
-  - 防線 1（規格前移）：卡片字數 $\le 25$ 字，內置 5 大純向量 SVG 圖標，排版無溢出。
-  - 防線 2（數值硬斷言）：樣本 $N=1$、7 次配對、2.6 bits、$7\pm 2$ vs $4\pm 1$、<20ms 低路徑等數值 100% 吻合 Wiki。
-  - 防線 3（代碼靜態掃描）：字級 $\ge 14\text{px}$、零高位 Emoji、所有 SVG 標籤閉合且合規。
+## [2026-11-19] web | 靜態純 HTML 知識庫生成（零前端框架直接部署）
+- **操作類型**：Web 發布層架構升級 (Zero-Framework Static Export)
+- **完成項目**：
+  - 將 31 篇 Markdown 筆記全面預先轉譯為純靜態 HTML 頁面（共 33 篇獨立網頁，無 React/Vue/Node.js 等前端框架依賴）。
+  - 所有 `[[雙向鏈接]]` 轉化為原生相對路徑 HTML 超連結，點擊即流暢跳轉，瀏覽器上一頁/下一頁原生支援。
+  - 保留春櫻豆沙系日系明朝體、Zen Maru Gothic、Washi 質感與四大高亮引言盒排版。
+  - 支援直接部署至 GitHub Pages 即開即看。
+
 
 
 

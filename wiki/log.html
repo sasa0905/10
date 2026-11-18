@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知識庫操作日誌 (Wiki Operations Log) — 心理學 LLM Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Pure Vanilla CSS - Zero Framework Dependencies */
+    :root {
+      --bg-cream: #faf7f5;
+      --bg-sidebar: #f5eeea;
+      --card-white: #ffffff;
+      --border-warm: #ebdcd5;
+      --border-rose: #edd5da;
+      --text-main: #332d30;
+      --text-sub: #786f73;
+      --rose-deep: #8c4b57;
+      --rose-accent: #c27685;
+      --rose-light: #f7ebeb;
+      --green-soft: #597864;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Shippori Mincho', 'Noto Serif TC', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Top Header */
+    .top-header {
+      background-color: rgba(250, 247, 245, 0.95);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8c7cd, #f7ebeb);
+      border: 1px solid #e5b9c1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rose-deep);
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .logo-text h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .logo-text span {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: block;
+      margin-top: -2px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-warm);
+    }
+    .btn-rose {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+    }
+    .btn-rose:hover {
+      background-color: #f0dde0;
+    }
+    .btn-white {
+      background-color: #ffffff;
+      color: #554a4f;
+    }
+    .btn-white:hover {
+      background-color: #f7f2ef;
+    }
+
+    /* Main Dual Layout */
+    .wiki-container {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+    }
+    /* Sidebar */
+    .wiki-sidebar {
+      width: 290px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-warm);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 59px);
+      position: sticky;
+      top: 59px;
+      overflow-y: auto;
+    }
+    .nav-search {
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-warm);
+      background-color: #ffffff;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      outline: none;
+    }
+    .nav-search:focus {
+      border-color: var(--rose-accent);
+    }
+    .nav-section {
+      margin-bottom: 6px;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .nav-section-count {
+      font-size: 10px;
+      color: #a89fa4;
+    }
+    .nav-section-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 6px;
+      margin-top: 2px;
+    }
+    .nav-item {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #52474c;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s ease;
+    }
+    .nav-item:hover {
+      background-color: #ede2dd;
+      color: var(--rose-deep);
+    }
+    .nav-item-active {
+      background-color: var(--card-white);
+      color: var(--rose-deep);
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(140, 75, 87, 0.08);
+      border-left: 3px solid var(--rose-accent);
+    }
+
+    /* Main Reading Content */
+    .wiki-main {
+      flex: 1;
+      background-color: var(--card-white);
+      padding: 36px 48px;
+      max-width: 960px;
+      min-width: 0;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--rose-accent);
+    }
+    .meta-card {
+      background-color: #faf5f2;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12px;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .badge-rose { background: #ffffff; border: 1px solid var(--border-rose); color: var(--rose-deep); }
+    .badge-gray { background: #eee7e4; color: #5a5055; }
+    .badge-warm { background: #fcefe8; color: #a05a30; border: 1px solid #ebd4c6; }
+
+    /* Markdown Styling */
+    .content h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 10px;
+      color: #2e292d;
+    }
+    .content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: #40363a;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #55484d;
+    }
+    .content p {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      color: #40383b;
+    }
+    .content ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #483f43;
+    }
+    .content li {
+      margin-bottom: 6px;
+    }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--border-warm);
+      margin: 28px 0;
+    }
+    .content code {
+      font-family: ui-monospace, Consolas, monospace;
+      background-color: #f2e9e6;
+      color: var(--rose-deep);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    /* Clickable Wiki Links */
+    a.wiki-link {
+      color: var(--rose-accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rose-accent);
+      padding-bottom: 1px;
+      transition: all 0.15s ease;
+    }
+    a.wiki-link:hover {
+      color: var(--rose-deep);
+      background-color: var(--rose-light);
+      border-bottom-style: solid;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    .wiki-link-unresolved {
+      color: #a89fa4;
+      text-decoration: line-through;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .callout-abstract { background-color: #fdf5f6; border-left: 4px solid var(--rose-accent); color: #423237; }
+    .callout-info { background-color: #f3f8f5; border-left: 4px solid var(--green-soft); color: #2e3d33; }
+    .callout-warning { background-color: #faf5f0; border-left: 4px solid #b56b3e; color: #473325; }
+    .callout-important { background-color: #fbf0f2; border-left: 4px solid #8c4b57; color: #47262d; }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--rose-light);
+      color: var(--rose-deep);
+      padding: 10px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-warm);
+      color: #483f43;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: #faf5f2;
+    }
+
+    @media (max-width: 860px) {
+      .wiki-container { flex-direction: column; }
+      .wiki-sidebar { width: 100%; max-height: none; position: static; }
+      .wiki-main { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <a href="../index.html" class="header-logo" title="回總傳送門">
+      <div class="logo-badge">栞</div>
+      <div class="logo-text">
+        <h1>心理學論文 LLM Wiki</h1>
+        <span>純靜態直接部署 • 零框架</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="../slides/psychology_schools_presentation.html" class="btn btn-rose"><span>📊</span> 簡報播放</a>
+      <a href="index.html" class="btn btn-white"><span>📑</span> 總索引</a>
+      <a href="log.html" class="btn btn-white"><span>📜</span> 日誌</a>
+    </div>
+  </header>
+
+  <!-- Dual Layout Container -->
+  <div class="wiki-container">
+
+    <!-- Left Sidebar -->
+    <aside class="wiki-sidebar">
+      <input type="text" id="navSearch" class="nav-search" placeholder="搜尋構念、流派..." oninput="filterNav(this.value)">
+      <div id="navGroupList">
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📚 各大心理學流派</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="schools/behaviorism.html" class="nav-item" title="Behaviorism">行為學派</a><a href="schools/cognitive-psychology.html" class="nav-item" title="Cognitive Psychology">認知心理學派</a><a href="schools/humanistic-psychology.html" class="nav-item" title="Humanistic Psychology">人本主義心理學派</a><a href="schools/neuroscience.html" class="nav-item" title="Neuroscience and Biological Psychology">神經科學</a><a href="schools/psychoanalysis.html" class="nav-item" title="Psychoanalysis">精神分析學派</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🏛️ 理論與心理模型</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="theories/classical-conditioning.html" class="nav-item" title="Classical Conditioning">古典制約</a><a href="theories/dual-route-emotion-theory.html" class="nav-item" title="Dual-Route Theory of Emotion">情緒雙路徑理論</a><a href="theories/hierarchy-of-needs.html" class="nav-item" title="Hierarchy of Needs Theory">需求階層理論</a><a href="theories/information-processing-theory.html" class="nav-item" title="Information Processing Theory">人類訊息處理理論</a><a href="theories/psychoanalytic-theory.html" class="nav-item" title="Psychoanalytic Theory">精神分析理論</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>💡 核心心理學構念</span>
+            <span class="nav-section-count">8</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="constructs/channel-capacity.html" class="nav-item" title="Channel Capacity">通道容量</a><a href="constructs/chunking.html" class="nav-item" title="Chunking">訊息組塊</a><a href="constructs/fear-conditioning.html" class="nav-item" title="Fear Conditioning">恐懼制約</a><a href="constructs/repression.html" class="nav-item" title="Repression">壓抑</a><a href="constructs/self-actualization.html" class="nav-item" title="Self-Actualization">自我實現</a><a href="constructs/stimulus-generalization.html" class="nav-item" title="Stimulus Generalization">刺激類化</a><a href="constructs/transference.html" class="nav-item" title="Transference">移情</a><a href="constructs/unconscious.html" class="nav-item" title="The Unconscious">潛意識</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>🔬 實驗典範與量表</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="paradigms-scales/auditory-fear-conditioning-paradigm.html" class="nav-item" title="Auditory Fear Conditioning Paradigm">聽覺恐懼制約實驗典範</a><a href="paradigms-scales/immediate-memory-span-task.html" class="nav-item" title="Immediate Memory Span Task">立即記憶廣度作業</a><a href="paradigms-scales/little-albert-paradigm.html" class="nav-item" title="Little Albert Paradigm">小阿爾伯特實驗典範</a><a href="paradigms-scales/talking-cure-catharsis.html" class="nav-item" title="Talking Cure and Cathartic Method">談話療法</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>⚖️ 學術爭端與檢驗</span>
+            <span class="nav-section-count">4</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="controversies/amygdala-storage-vs-modulation.html" class="nav-item" title="Amygdala: Memory Storage vs. Memory Modulation Debate">杏仁核爭端：記憶儲存地還是調節器？</a><a href="controversies/behaviorism-vs-psychoanalysis.html" class="nav-item" title="Behaviorism vs Psychoanalysis: The Etiology of Phobias Debate">行為學派 vs 精神分析：恐懼症成因論戰</a><a href="controversies/chunking-capacity-cowan-debate.html" class="nav-item" title="The Working Memory Capacity Debate: 7±2 vs 4±1">短期記憶容量爭辯：7±2 vs 4±1</a><a href="controversies/little-albert-replication-debate.html" class="nav-item" title="Little Albert Replication & Ethics Debate">小阿爾伯特重複性檢驗與真實身分爭端</a>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">
+            <span>📄 奠基論文文獻庫</span>
+            <span class="nav-section-count">5</span>
+          </div>
+          <div class="nav-section-items">
+            <a href="sources/freud-1910-psychoanalysis-origin.html" class="nav-item" title="The Origin and Development of Psychoanalysis">The Origin and Development of Psychoanalysis</a><a href="sources/ledoux-2000-emotion-circuits.html" class="nav-item" title="Emotion Circuits in the Brain">Emotion Circuits in the Brain</a><a href="sources/maslow-1943-human-motivation.html" class="nav-item" title="A Theory of Human Motivation">A Theory of Human Motivation</a><a href="sources/miller-1956-magical-number-seven.html" class="nav-item" title="The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information">The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information</a><a href="sources/watson-rayner-1920-conditioned-fear.html" class="nav-item" title="Conditioned Emotional Reactions">Conditioned Emotional Reactions</a>
+          </div>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- Main Article -->
+    <main class="wiki-main">
+      <div class="breadcrumb">
+        <a href="index.html">Wiki</a> <span>/</span>
+        <span>root</span> <span>/</span>
+        <span style="color: var(--rose-deep); font-weight: 700;">知識庫操作日誌 (Wiki Operations Log)</span>
+      </div>
+
+      
+
+      <article class="content">
+        <h1>知識庫操作日誌 (Wiki Operations Log)</h1>
+<p>本檔案為時間軸單向追加日誌（Append-only）。記錄所有文獻攝取（Ingest）、綜合查詢回填（Query Backfill）與健康檢查（Lint）之歷程。</p>
+<hr>
+<h2>[2026-11-18] init | 建立心理學論文 LLM Wiki 知識庫規範與骨架</h2>
+<ul>
+<li><strong>操作類型</strong>：系統初始化 (System Init)</li>
+<li><strong>完成項目</strong>：</li>
+<li>建立規範手冊 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span>，確立三層架構與 Ingest / Query / Lint 運作流程。</li>
+<li>確立採用「由下而上 (Bottom-up)」策略與 APA 7th 證據溯源規範。</li>
+<li>建立全域目錄 <a href="index.html" class="wiki-link" title="index.md">index.md</a> 與日誌 <a href="log.html" class="wiki-link" title="log.md">log.md</a>。</li>
+<li>建立資料夾結構：<code>raw/</code>、<code>wiki/schools/</code>、<code>wiki/theories/</code>、<code>wiki/constructs/</code>、<code>wiki/paradigms-scales/</code>、<code>wiki/controversies/</code>、<code>wiki/sources/</code>。</li>
+</ul>
+<h2>[2026-11-18] ingest | Conditioned Emotional Reactions (Watson & Rayner, 1920)</h2>
+<ul>
+<li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
+<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/watson-rayner-1920.md</span></li>
+<li><strong>新建文獻摘要頁</strong>：</li>
+<li><a href="sources/watson-rayner-1920-conditioned-fear.html" class="wiki-link" title="watson-rayner-1920-conditioned-fear">watson-rayner-1920-conditioned-fear</a> (N = 1, 7 次 CS-US 配對, 刺激類化至兔/狗/毛皮大衣/面具, 持續 31 天)</li>
+<li><strong>衍生與更新實體頁面</strong>：</li>
+<li>流派頁：<a href="schools/behaviorism.html" class="wiki-link" title="behaviorism">behaviorism</a>（動態建立古典行為主義頁面與 S-R 主張）</li>
+<li>理論頁：<a href="theories/classical-conditioning.html" class="wiki-link" title="classical-conditioning">classical-conditioning</a>（建立古典制約情緒機制與流程圖）</li>
+<li>構念頁：<a href="constructs/fear-conditioning.html" class="wiki-link" title="fear-conditioning">fear-conditioning</a>（建立恐懼制約定義與吸吮拇指補償反應）</li>
+<li>構念頁：<a href="constructs/stimulus-generalization.html" class="wiki-link" title="stimulus-generalization">stimulus-generalization</a>（建立刺激類化概念與 Albert 類化梯度圖）</li>
+<li>典範頁：<a href="paradigms-scales/little-albert-paradigm.html" class="wiki-link" title="little-albert-paradigm">little-albert-paradigm</a>（整理四階段實驗程序與倫理檢討）</li>
+<li>爭端頁：<a href="controversies/little-albert-replication-debate.html" class="wiki-link" title="little-albert-replication-debate">little-albert-replication-debate</a>（記錄 Bregman 1934 複製失敗、Douglas Merritte 腦積水爭端與對抗精神分析之病因論戰）</li>
+<li><strong>目錄更新</strong>：同步登記於 <a href="index.html" class="wiki-link" title="index.md">index.md</a></li>
+</ul>
+<h2>[2026-11-18] ingest | The Origin and Development of Psychoanalysis (Freud, 1910)</h2>
+<ul>
+<li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
+<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/freud-1910.md</span></li>
+<li><strong>新建文獻摘要頁</strong>：<a href="sources/freud-1910-psychoanalysis-origin.html" class="wiki-link" title="freud-1910-psychoanalysis-origin">freud-1910-psychoanalysis-origin</a> (Anna O. 案例, 壓抑, 夢的工作, 幼兒性慾, 移情)</li>
+<li><strong>衍生實體頁面</strong>：</li>
+<li>流派頁：<a href="schools/psychoanalysis.html" class="wiki-link" title="psychoanalysis">psychoanalysis</a>（建立精神分析學派與潛意識假設）</li>
+<li>理論頁：<a href="theories/psychoanalytic-theory.html" class="wiki-link" title="psychoanalytic-theory">psychoanalytic-theory</a>（心智三結構與人格動力模型）</li>
+<li>構念頁：<a href="constructs/unconscious.html" class="wiki-link" title="unconscious">unconscious</a>（潛意識定義）、<a href="constructs/repression.html" class="wiki-link" title="repression">repression</a>（壓抑與阻抗機制）、<a href="constructs/transference.html" class="wiki-link" title="transference">transference</a>（移情作用）</li>
+<li>典範頁：<a href="paradigms-scales/talking-cure-catharsis.html" class="wiki-link" title="talking-cure-catharsis">talking-cure-catharsis</a>（談話療法與情緒宣洩）</li>
+<li>爭端頁：<a href="controversies/behaviorism-vs-psychoanalysis.html" class="wiki-link" title="behaviorism-vs-psychoanalysis">behaviorism-vs-psychoanalysis</a>（行為學派 vs 精神分析在恐懼成因的世紀論戰）</li>
+</ul>
+<h2>[2026-11-18] ingest | The Magical Number Seven, Plus or Minus Two (Miller, 1956)</h2>
+<ul>
+<li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
+<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/miller-1956.md</span></li>
+<li><strong>新建文獻摘要頁</strong>：<a href="sources/miller-1956-magical-number-seven.html" class="wiki-link" title="miller-1956-magical-number-seven">miller-1956-magical-number-seven</a> (單維通道容量 2.6 bits, 立即記憶廣度 7±2, 重新編碼)</li>
+<li><strong>衍生實體頁面</strong>：</li>
+<li>流派頁：<a href="schools/cognitive-psychology.html" class="wiki-link" title="cognitive-psychology">cognitive-psychology</a>（建立認知心理學派與資訊處理觀）</li>
+<li>理論頁：<a href="theories/information-processing-theory.html" class="wiki-link" title="information-processing-theory">information-processing-theory</a>（心智通訊與計算流程圖）</li>
+<li>構念頁：<a href="constructs/chunking.html" class="wiki-link" title="chunking">chunking</a>（訊息組塊化）、<a href="constructs/channel-capacity.html" class="wiki-link" title="channel-capacity">channel-capacity</a>（單維與多維通道容量）</li>
+<li>典範頁：<a href="paradigms-scales/immediate-memory-span-task.html" class="wiki-link" title="immediate-memory-span-task">immediate-memory-span-task</a>（立即記憶廣度作業）</li>
+<li>爭端頁：<a href="controversies/chunking-capacity-cowan-debate.html" class="wiki-link" title="chunking-capacity-cowan-debate">chunking-capacity-cowan-debate</a>（記憶容量 7±2 vs. Cowan 4±1 爭辯）</li>
+</ul>
+<h2>[2026-11-18] ingest | A Theory of Human Motivation (Maslow, 1943)</h2>
+<ul>
+<li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
+<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/maslow-1943.md</span></li>
+<li><strong>新建文獻摘要頁</strong>：<a href="sources/maslow-1943-human-motivation.html" class="wiki-link" title="maslow-1943-human-motivation">maslow-1943-human-motivation</a> (五大基本需求, 相對優勢性, 階層反轉例外)</li>
+<li><strong>衍生實體頁面</strong>：</li>
+<li>流派頁：<a href="schools/humanistic-psychology.html" class="wiki-link" title="humanistic-psychology">humanistic-psychology</a>（建立人本主義學派「第三勢力」）</li>
+<li>理論頁：<a href="theories/hierarchy-of-needs.html" class="wiki-link" title="hierarchy-of-needs">hierarchy-of-needs</a>（五層需求階層金字塔與動態特徵）</li>
+<li>構念頁：<a href="constructs/self-actualization.html" class="wiki-link" title="self-actualization">self-actualization</a>（自我實現構念定義與正向心理學延伸）</li>
+</ul>
+<h2>[2026-11-18] ingest | Emotion Circuits in the Brain (LeDoux, 2000)</h2>
+<ul>
+<li><strong>操作類型</strong>：論文攝取與網絡編織 (Ingest & Compounding)</li>
+<li><strong>原始來源</strong>：<span class="wiki-link-unresolved" title="未建立頁面">raw/ledoux-2000.md</span></li>
+<li><strong>新建文獻摘要頁</strong>：<a href="sources/ledoux-2000-emotion-circuits.html" class="wiki-link" title="ledoux-2000-emotion-circuits">ledoux-2000-emotion-circuits</a> (側杏仁核感覺介面, 丘腦低路徑/高路徑, LTP 突觸可塑性, 邊緣系統批判)</li>
+<li><strong>衍生實體頁面</strong>：</li>
+<li>流派頁：<a href="schools/neuroscience.html" class="wiki-link" title="neuroscience">neuroscience</a>（建立神經科學與生物心理學派）</li>
+<li>理論頁：<a href="theories/dual-route-emotion-theory.html" class="wiki-link" title="dual-route-emotion-theory">dual-route-emotion-theory</a>（情緒雙路徑低路徑/高路徑神經迴路圖）</li>
+<li>典範頁：<a href="paradigms-scales/auditory-fear-conditioning-paradigm.html" class="wiki-link" title="auditory-fear-conditioning-paradigm">auditory-fear-conditioning-paradigm</a>（聽覺恐懼制約神經實驗典範）</li>
+<li>爭端頁：<a href="controversies/amygdala-storage-vs-modulation.html" class="wiki-link" title="amygdala-storage-vs-modulation">amygdala-storage-vs-modulation</a>（杏仁核是直接突觸儲存中樞還是調節器之論戰）</li>
+<li>實體多點更新：同步更新 <a href="constructs/fear-conditioning.html" class="wiki-link" title="fear-conditioning">fear-conditioning</a> 補充細胞與神經迴路層次機制；更新 <a href="schools/behaviorism.html" class="wiki-link" title="behaviorism">behaviorism</a> 增列神經機制還原。</li>
+</ul>
+<h2>[2026-11-18] schema | 建立簡報生成 Graph 工作流規範</h2>
+<ul>
+<li><strong>操作類型</strong>：系統規範升級 (Schema Update)</li>
+<li><strong>更新項目</strong>：</li>
+<li>在 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span> 正式增訂「第 5 章：簡報生成工作流規範 (Presentation Generation Workflow — Graph Schema)」。</li>
+<li>確立 10 節點 Graph 架構（含覆蓋率關卡、忠實度檢查、渲染相容性檢查、大綱階段人工確認與單頁局部退回修復）。</li>
+<li>確立簡報目錄架構：<code>slides/</code> 與 <code>slides/drafts/</code>。</li>
+<li>固化春櫻豆沙系日系明朝體、大字級與內聯向量 SVG 圖標設計規範。</li>
+</ul>
+<h2>[2026-11-18] presentation | 各流派介紹（五大流派全景解析重點複習講義）</h2>
+<ul>
+<li><strong>操作類型</strong>：Graph 工作流簡報生成 (Presentation Generation)</li>
+<li><strong>依據大綱</strong>：<code>slides/drafts/psychology_schools_outline.md</code>（經使用者人工審查核准）</li>
+<li><strong>逐頁腳本</strong>：<code>slides/drafts/psychology_schools_script.md</code></li>
+<li><strong>生成檔案</strong>：<code>slides/psychology_schools_presentation.html</code> (9 頁互動簡報)</li>
+<li><strong>關卡檢驗</strong>：</li>
+<li>覆蓋率關卡：Pass（涵蓋 5 篇奠基論文、5 大流派、5 個核心模型、4 項爭端）</li>
+<li>忠實度檢查：Pass（數據與 Wiki 實體 100% 吻合，零外推）</li>
+<li>渲染相容性：Pass（向量 SVG 圖標、字體放大至 15px+、無文字溢出、全螢幕與鍵盤導航正常）</li>
+</ul>
+<h2>[2026-11-18] schema | 固化圖示相容性檢查點與簡報流程定案</h2>
+<ul>
+<li><strong>操作類型</strong>：工作流強化升級 (Workflow Enhancement)</li>
+<li><strong>完成項目</strong>：</li>
+<li>簡報檔案結構定案：最新正式檔存放於 <code>slides/<主題>_presentation.html</code>，草稿存於 <code>slides/drafts/</code>（不保留多餘歷史備份）。</li>
+<li>在 <span class="wiki-link-unresolved" title="未建立頁面">AGENTS.md</span> 第 5 章增加「圖示完整度專項檢查點」，明訂：零脆弱 Emoji 原則、零外部 CDN 依賴、SVG 格式合法性檢查與安全幾何底座規範。</li>
+<li>將實務反思的三大防線（Node 3/4 規格前移、Node 7 數值硬斷言、Node 9 靜態代碼掃描閥門）固化入正式 Graph Schema。</li>
+</ul>
+<h2>[2026-11-18] presentation | 各流派介紹（全面套用三大防線之正式交付）</h2>
+<ul>
+<li><strong>操作類型</strong>：Graph 工作流正式執行 (Graph Execution)</li>
+<li><strong>大綱審查</strong>：<code>slides/drafts/psychology_schools_outline.md</code>（經使用者核准）</li>
+<li><strong>逐頁腳本</strong>：<code>slides/drafts/psychology_schools_script.md</code></li>
+<li><strong>正式交付檔</strong>：<code>slides/psychology_schools_presentation.html</code></li>
+<li><strong>防線檢核紀錄</strong>：</li>
+<li>防線 1（規格前移）：卡片字數 $\le 25$ 字，內置 5 大純向量 SVG 圖標，排版無溢出。</li>
+<li>防線 2（數值硬斷言）：樣本 $N=1$、7 次配對、2.6 bits、$7\pm 2$ vs $4\pm 1$、<20ms 低路徑等數值 100% 吻合 Wiki。</li>
+<li>防線 3（代碼靜態掃描）：字級 $\ge 14\text{px}$、零高位 Emoji、所有 SVG 標籤閉合且合規。</li>
+</ul>
+      </article>
+    </main>
+
+  </div>
+
+  <script>
+    // Lightweight vanilla JS search filter (no framework)
+    function filterNav(q) {
+      q = q.toLowerCase().trim();
+      const items = document.querySelectorAll('.nav-item');
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = (!q || text.includes(q)) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
