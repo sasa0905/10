@@ -8,6 +8,26 @@
 
 ---
 
+## 【節點 3 規格前移】：標準向量 SVG 圖示綁定與卡片字符上限 (Shift-Left Binding)
+
+依據 `AGENTS.md` 規範，在此階段全面鎖定標準向量 SVG 圖標與版面容量，杜絕在渲染階段隨機生成或引發溢出：
+* **字級下限**：正文強制 $\ge 14\text{px}$（`text-sm` 起跳），正文區塊禁止 `text-xs`。
+* **卡片容量約束**：每張速記卡**嚴格 $\le 3$ 條重點**，每條重點**嚴格 $\le 25$ 字**（含標點）。
+* **零脆弱 Emoji 原則**：排查並全面禁用任何 Unicode 11.0+ Emoji，一律綁定純向量內聯 SVG + 安全造型底座（`w-6 h-6 rounded-md bg-[#fbf0f2] border border-[#f5dade] inline-flex items-center justify-center text-[#8c4b57]`）。
+* **標準向量圖示綁定清單**：
+  1. `icon-sakura`：封面標籤徽章（`path d="M12 2a4 4 0 0 1 4 4..."`）
+  2. `icon-chart-bar`：核心圖解標題（`line x1="18" y1="20"...`）
+  3. `icon-target-pin`：必考核心主張 / 核心動力機制 / 理論貢獻（`circle cx="12" cy="12" r="3"...`）
+  4. `icon-search`：經典數據速記 / 雙重解離重要證據（`circle cx="11" cy="11" r="7"...`）
+  5. `icon-alert`：批判與爭端點 / 跨文化實證挑戰（`path d="M10.29 3.86L1.82 18..."`）
+  6. `icon-document`：奠基文獻臨床成果（`path d="M14 2H6a2 2 0 0 0-2 2v16..."`）
+  7. `icon-swords`：重大論戰焦點辨析（`polyline points="14.5 17.5 3 6..."`）
+  8. `icon-scale`：核心爭端與道德審查（`path d="M16 16l3-8 3 8..."`）
+  9. `icon-eye` / `icon-water`：佛洛伊德意識自我 / 潛意識深海本我
+  10. `icon-zap` / `icon-brain` / `icon-target`：神經雙路徑低路徑極速警報 / 高路徑皮質分析 / 中央核輸出
+
+---
+
 ## 頁面結構規劃
 
 ### 第 1 頁：封面與五大學派時空全景 (Cover & Timeline Overview)
