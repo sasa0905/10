@@ -25,7 +25,7 @@
 ### 1. 線上瀏覽與學習 (Online Wiki & Presentation)
 * **主頁入口**：直接開啟 `index.html` 即可瀏覽線上簡報與 Wiki 知識庫。
 * **知識庫首頁**：進入 `wiki/index.html`，具備全文即時搜尋、跨學派雙向連結跳轉與論文實證結構化摘要。
-* **重點簡報**：進入 `slides/psychology_schools_presentation.html`，可按鍵盤方向鍵或左右按鈕切換圖文重點講義。
+* **重點簡報**：進入 `slides/psychology_schools_presentation.html`，可按鍵盤方向鍵或左右按鈕切換圖文重點簡報。
 
 ### 2. 攝取新論文 (Ingest)
 1. 將下載好的論文 PDF 放入 `raw/` 資料夾（例如 `raw/watson-rayner-1920.pdf`）。

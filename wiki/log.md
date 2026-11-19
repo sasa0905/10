@@ -125,19 +125,15 @@
   - 檢索全專案所有 Markdown 實體與互動簡報，將所有樣本數（$N = 1$、$N = 15$）、容量限制常數（$7 \pm 2$、$4 \pm 1$）、資訊理論數值（$\mu = 2.6\text{ bits}$、$\sigma \approx 0.6\text{ bits}$、$2.5\text{ bits}$、$2.3\text{ bits}$、$1.9\text{ bits}$、$3.25\text{ bits}$、$4.6\text{ bits}$、$7.2\text{ bits}$）、指數運算（$2^{2.6} \approx 6.5$）、反應延遲（$< 20\text{ ms}$）、顯著性（$p < .01$）及離散位元單位（$1\text{ bit/item}$、$3.3\text{ bits/item}$、$4.7\text{ bits/item}$、$\approx 10\text{ bits/item}$）全面統一改採標準 LaTeX 數學語法。
   - 在全站與簡報中強化 KaTeX 載入生命週期與多重喚醒機制（`onload`、`DOMContentLoaded`、定時重掃），確保公式 100% 準確轉換為向量級數學排版。
 
-## [2026-11-19] cleanup & format | 刪除 GitHub Pages 無關檔案資料夾，並全面重構清單排版為「小標加圓點、說明內聯不另加圓點」
-- **操作類型**：專案輕量化與列表格式重構 (Project Cleanup & Inline List Normalization)
+## [2026-11-19] deliver | 心理學五大流派全景解析（各流派介紹圖文簡報）通過 Graph 流程正式交件
+- **操作類型**：簡報工作流正式交件 (Presentation Graph Delivery)
 - **完成項目**：
-  - **刪除部署無關資料夾與檔案**：
-    - 徹底移除專案根目錄之 `.obsidian/` 與 `wiki/.obsidian/`（編輯器快取與本機工作區設定，非 GitHub Pages 必要資產）。
-    - 徹底移除 `slides/drafts/`（中間大綱與逐頁草稿檔案，GitHub Pages 僅需最終發布之 `slides/psychology_schools_presentation.html`）。
-    - 更新 `.gitignore` 完整忽略 `.obsidian/` 與 `slides/drafts/`，維持乾淨簡潔的儲存庫結構。
-  - **清單排版重構（小標加圓點、說明內聯不另起圓點）**：
-    - 針對 `wiki/controversies/little-albert-replication-debate.md` 中「Douglas Merritte 假說、震撼發現、學術震盪、William Barger 假說」等條目，解決原本因折行縮排導致的「孤立標題圓點 + 說明文字單獨成點」排版問題，統一改為單層獨立項目清單：小標加粗帶圓點，說明緊接其後不另單獨成點。
-    - 全面檢索並修正全庫中所有類似結構（涵蓋學派頁、理論頁、構念頁、典範頁及論文摘要頁共 40 餘處），確保所有列表項目前後一致、層級分明。
-  - **靜態編譯更新**：
-    - 修訂 `build_static_wiki.py` 中 `wiki_dir` 路徑為動態相對於腳本路徑，確保跨環境皆能順暢編譯。
-    - 重新編譯生成全庫 33 篇靜態 HTML 網頁，驗證排版正常。
+  - **節點 5 人工審查確認通過**：使用者審查並正式核准 9 頁簡報大綱（涵蓋 5 大流派、橫評矩陣與歷史論戰）。
+  - **節點 6 逐頁稿校準**：嚴格落實防線 1（每張卡片 $\le 3$ 條重點，每條 $\le 25$ 字），留存於 `slides/drafts/psychology_schools_script.md`。
+  - **節點 7 忠實度硬斷言檢驗通過**：比對樣本數 $N=1$（Albert B.）、7 次配對、音高 $2.5\text{ bits}$、$7 \pm 2$ 與 $4 \pm 1$ 組塊、LeDoux 低路徑延遲 $< 20\text{ ms}$、Maslow 需求滿足百分比及 Douglas Merritte 早夭病歷，100% 忠實對齊 Wiki 原始文獻。
+  - **節點 8 & 9 代碼渲染與靜態掃描通過**：全面移除 Emoji 改採 38 處純向量 SVG 搭配安全底座，字級嚴格保證 $\ge 14\text{px}$，KaTeX 數學公式與按鍵換頁邏輯驗證無誤。
+  - **節點 10 正式交付**：交付成品檔 `slides/psychology_schools_presentation.html` 並同步更新首頁入口與遠端儲存庫。
+
 
 
 
