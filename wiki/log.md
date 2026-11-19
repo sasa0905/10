@@ -125,12 +125,20 @@
   - 檢索全專案所有 Markdown 實體與互動簡報，將所有樣本數（$N = 1$、$N = 15$）、容量限制常數（$7 \pm 2$、$4 \pm 1$）、資訊理論數值（$\mu = 2.6\text{ bits}$、$\sigma \approx 0.6\text{ bits}$、$2.5\text{ bits}$、$2.3\text{ bits}$、$1.9\text{ bits}$、$3.25\text{ bits}$、$4.6\text{ bits}$、$7.2\text{ bits}$）、指數運算（$2^{2.6} \approx 6.5$）、反應延遲（$< 20\text{ ms}$）、顯著性（$p < .01$）及離散位元單位（$1\text{ bit/item}$、$3.3\text{ bits/item}$、$4.7\text{ bits/item}$、$\approx 10\text{ bits/item}$）全面統一改採標準 LaTeX 數學語法。
   - 在全站與簡報中強化 KaTeX 載入生命週期與多重喚醒機制（`onload`、`DOMContentLoaded`、定時重掃），確保公式 100% 準確轉換為向量級數學排版。
 
-## [2026-11-19] refactor | 需求階層精簡為純金字塔架構，並貫徹「僅小標加標號、底下內文不加標號」排版規範
-- **操作類型**：視覺與列表排版層級規範重構 (Layout Simplification & Numbering Hierarchy Normalization)
+## [2026-11-19] cleanup & format | 刪除 GitHub Pages 無關檔案資料夾，並全面重構清單排版為「小標加圓點、說明內聯不另加圓點」
+- **操作類型**：專案輕量化與列表格式重構 (Project Cleanup & Inline List Normalization)
 - **完成項目**：
-  - **需求階層理論精簡**：在 `theories/hierarchy-of-needs.md` 與 `sources/maslow-1943-human-motivation.md` 中，依使用者需求徹底移除上方多餘的 Mermaid 流程圖，僅保留核心階層金字塔圖形，並移除金字塔內各層級項目前綴之數字標號（5~1）。
-  - **貫徹標號層級規範**：全站貫徹「只有小標題（`## 1.`、`## 2.`、`### 2.1`、`【階段 1】` 等）加標號，底下項目內容、引言盒列舉與子節清單一律不加標號（統一改為圓點項目清單 `*`）」的視覺原則，遍歷並重構 18 個 Markdown 實體頁面（含 5 大學派、5 大來源文獻、構念、爭端與實驗典範）。
-  - **靜態編譯與重構**：執行編譯器重新生成全庫 33 篇靜態 HTML 頁面，確保金字塔圖形、KaTeX 數學排版與雙向導覽無縫運作。
+  - **刪除部署無關資料夾與檔案**：
+    - 徹底移除專案根目錄之 `.obsidian/` 與 `wiki/.obsidian/`（Obsidian 編輯器快取與本機工作區設定，非 GitHub Pages 必要資產）。
+    - 徹底移除 `slides/drafts/`（中間大綱與逐頁草稿檔案，GitHub Pages 僅需最終發布之 `slides/psychology_schools_presentation.html`）。
+    - 更新 `.gitignore` 完整忽略 `.obsidian/` 與 `slides/drafts/`，維持乾淨簡潔的儲存庫結構。
+  - **清單排版重構（小標加圓點、說明內聯不另起圓點）**：
+    - 針對 `wiki/controversies/little-albert-replication-debate.md` 中「Douglas Merritte 假說、震撼發現、學術震盪、William Barger 假說」等條目，解決原本因折行縮排導致的「孤立標題圓點 + 說明文字單獨成點」排版問題，統一改為單層獨立項目清單：小標加粗帶圓點，說明緊接其後不另單獨成點。
+    - 全面檢索並修正全庫中所有類似結構（涵蓋學派頁、理論頁、構念頁、典範頁及論文摘要頁共 40 餘處），確保所有列表項目前後一致、層級分明。
+  - **靜態編譯更新**：
+    - 修訂 `build_static_wiki.py` 中 `wiki_dir` 路徑為動態相對於腳本路徑，確保跨環境皆能順暢編譯。
+    - 重新編譯生成全庫 33 篇靜態 HTML 網頁，驗證排版正常。
+
 
 
 

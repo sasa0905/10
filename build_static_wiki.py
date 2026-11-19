@@ -2,7 +2,7 @@ import os
 import re
 import html
 
-wiki_dir = r"c:\Users\sasa\作業10\wiki"
+wiki_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wiki")
 
 cat_info = {
     "schools": {"title": "各大心理學流派", "icon": "📚"},

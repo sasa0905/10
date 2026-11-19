@@ -28,12 +28,9 @@ graph LR
     CE ==> DEFENSE["自主神經 / 僵直行為 (Freezing)"]
 ```
 
-* **情緒迴路解剖學 (Emotion Circuits)**：
-   * 突破傳統模糊的「邊緣系統」假設，精確解析以杏仁核為核心的威脅偵測與防衛系統（[[dual-route-emotion-theory|情緒雙路徑理論]]）。
-* **學習與記憶的分子機制**：
-   * 突觸長時程增益（[[synaptic-plasticity-ltp|LTP]]）、受體機制（NMDA、L-型鈣離子通道）與基因轉錄（CREB）所介導的蛋白質合成。
-* **記憶系統的多重解離 (Multiple Memory Systems)**：
-   * 內隱情緒記憶（杏仁核管轄）與外顯陳述性記憶（海馬迴管轄）的解剖解離。
+* **情緒迴路解剖學 (Emotion Circuits)**：突破傳統模糊的「邊緣系統」假設，精確解析以杏仁核為核心的威脅偵測與防衛系統（[[dual-route-emotion-theory|情緒雙路徑理論]]）。
+* **學習與記憶的分子機制**：突觸長時程增益（[[synaptic-plasticity-ltp|LTP]]）、受體機制（NMDA、L-型鈣離子通道）與基因轉錄（CREB）所介導的蛋白質合成。
+* **記憶系統的多重解離 (Multiple Memory Systems)**：內隱情緒記憶（杏仁核管轄）與外顯陳述性記憶（海馬迴管轄）的解剖解離。
 
 ---
 
@@ -47,7 +44,5 @@ graph LR
 
 ## 3. 學派衝突與對抗論點 (School Conflicts)
 
-* **神經生物學派 vs. 古典 [[behaviorism|行為學派]]**：
-  * **黑盒子的破解**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 只能記錄外在行為制約與類化；LeDoux 則證明了外顯行為背後具備精確的丘腦-杏仁核突觸強化機制。
-* **神經生物學派 vs. 傳統「邊緣系統 (Limbic System)」學說**：
-  * LeDoux 批判 MacLean 的邊緣系統理論缺乏精確解剖標準，並以海馬迴掌管認知記憶而非情緒的實證證據，顛覆了舊有大腦架構觀念。
+* **神經生物學派 vs. 古典 [[behaviorism|行為學派]]**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 只能記錄外在行為制約與類化；LeDoux 則證明了外顯行為背後具備精確的丘腦-杏仁核突觸強化機制。
+* **神經生物學派 vs. 傳統「邊緣系統 (Limbic System)」學說**：LeDoux 批判 MacLean 的邊緣系統理論缺乏精確解剖標準，並以海馬迴掌管認知記憶而非情緒的實證證據，顛覆了舊有大腦架構觀念。

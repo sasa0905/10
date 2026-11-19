@@ -30,15 +30,10 @@ graph TD
     U -.->|壓抑突破| SYMPTOM["神經症症狀 / 夢境象徵 / 口誤"]
 ```
 
-* **意識三層次與心理結構**：
-   * 意識（Conscious）、前意識（Preconscious）、潛意識（Unconscious）。
-   * 本我（Id，遵循享樂原則）、自我（Ego，遵循現實原則）、超我（Superego，遵循道德原則）。
-* **壓抑與心理防衛機制 (Defense Mechanisms)**：
-   * 當衝突過於痛苦，自我發動「[[repression|壓抑]]」封鎖記憶；當壓抑失效，則藉由身體化轉換（Conversion）、置換或投影形成症狀。
-* **性動力與發展階段**：
-   * 心理性慾能量（Libido）自嬰兒期即存在（[[infantile-sexuality|幼兒性慾]]），經歷口腔期、肛門期、性器期（伊底帕斯情結），並可能發生固著（Fixation）與退行（Regression）。
-* **精神分析治療核心**：
-   * [[talking-cure-catharsis|談話療法與情緒宣洩]]、自由聯想、夢的解析、[[transference|移情作用]] 之解析與修通。
+* **意識三層次與心理結構**：包含意識、前意識與潛意識，由本我（享樂原則）、自我（現實原則）與超我（道德原則）構成動態人格系統。
+* **壓抑與心理防衛機制 (Defense Mechanisms)**：當衝突過於痛苦，自我發動「[[repression|壓抑]]」封鎖記憶；當壓抑失效，則藉由身體化轉換、置換或投影形成病理症狀。
+* **性動力與發展階段**：心理性慾能量（Libido）自嬰兒期即存在（[[infantile-sexuality|幼兒性慾]]），經歷口腔期、肛門期、性器期（伊底帕斯情結），並可能發生固著與退行。
+* **精神分析治療核心**：包含 [[talking-cure-catharsis|談話療法與情緒宣洩]]、自由聯想、夢的解析，以及 [[transference|移情作用]] 之解析與修通。
 
 ---
 
@@ -52,9 +47,6 @@ graph TD
 
 ## 3. 學派衝突與對抗論點 (School Conflicts)
 
-* **精神分析 vs. [[behaviorism|行為主義學派]]**：
-  * **病因爭議**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 質疑佛洛伊德將恐懼症全數歸結於童年性壓抑，以小阿爾伯特實驗證明環境制約刺激（S-R）才是恐懼症的直接成因。
-* **精神分析 vs. [[humanistic-psychology|人本主義學派]]**：
-  * [[maslow-1943-human-motivation|Maslow (1943)]] 批評精神分析「只研究病態個體與本能衝動」，忽略了健康人類追求潛能發揮的自我實現傾向。
-* **科學哲學質疑**：
-  * Karl Popper 批評精神分析「無法被證偽（Unfalsifiable）」；任何臨床反例皆能被精神分析以防衛機制予以事後解釋。
+* **精神分析 vs. [[behaviorism|行為主義學派]]**：[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 質疑佛洛伊德將恐懼症全數歸結於童年性壓抑，以小阿爾伯特實驗證明環境制約刺激（S-R）才是恐懼症的直接成因。
+* **精神分析 vs. [[humanistic-psychology|人本主義學派]]**：[[maslow-1943-human-motivation|Maslow (1943)]] 批評精神分析「只研究病態個體與本能衝動」，忽略了健康人類追求潛能發揮的自我實現傾向。
+* **科學哲學質疑**：Karl Popper 批評精神分析「無法被證偽（Unfalsifiable）」；任何臨床反例皆能被精神分析以防衛機制予以事後解釋。

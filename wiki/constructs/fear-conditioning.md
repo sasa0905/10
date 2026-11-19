@@ -25,9 +25,7 @@ related_constructs: ["[[stimulus-generalization]]", "[[extinction]]"]
 ### 1.2 神經生物與細胞層次解析 (Neural Circuit Level)
 * **神經迴路權威模型**：[[ledoux-2000-emotion-circuits|LeDoux (2000)]]
   * **側杏仁核 (LA)**：確立側杏仁核為 CS 與 US 匯聚的「感覺閘門（Sensory Gateway）」，單元放電延遲小於 20 ms。
-  * **[[dual-route-emotion-theory|雙路徑傳導]]**：
-    * 低路徑：丘腦 $\rightarrow$ LA（極速粗糙無意識警報）。
-    * 高路徑：丘腦 $\rightarrow$ 聽覺皮質 $\rightarrow$ LA（複雜精細刺激分析）。
+  * **[[dual-route-emotion-theory|雙路徑傳導]]**：包含低路徑（丘腦直達側杏仁核，$< 20\text{ ms}$ 極速粗糙警報）與高路徑（經感覺皮質精細分析後傳入側杏仁核）。
   * **中央杏仁核 (CE)**：總輸出中樞，直通腦幹（PAG 僵直、LH 血壓心跳、BNST 壓力荷爾蒙）。
   * **突觸可塑性**：恐懼制約促發側杏仁核的長時程增益（LTP），仰賴鈣離子湧入與蛋白質合成。
 
@@ -35,10 +33,8 @@ related_constructs: ["[[stimulus-generalization]]", "[[extinction]]"]
 
 ## 2. 相關機制與伴隨反應 (Mechanisms & Reactions)
 
-* **防衛性補償行為 (Compensatory Device)**：
-   * 在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 中觀察到，受試嬰兒在面臨高度恐懼威脅時，會自發進行「吸吮拇指（Thumb-sucking）」，一旦手指放入口中，恐懼反應即被顯著抑制與阻斷。這顯示自發性的愉悅刺激接觸可作為對抗負向情緒的補償通道。
-* **刺激擴散性**：
-   * 恐懼制約一旦成形，極易沿著物體表面特徵（如白毛、柔軟質地）自發擴散，形成 [[stimulus-generalization|刺激類化]]。
+* **防衛性補償行為 (Compensatory Device)**：在 [[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]] 中觀察到，受試嬰兒在面臨高度恐懼威脅時會自發「吸吮拇指（Thumb-sucking）」，一旦手指放入口中恐懼反應即被顯著抑制與阻斷，顯示自發性愉悅刺激接觸可作為對抗負向情緒的補償通道。
+* **刺激擴散性**：恐懼制約一旦成形，極易沿著物體表面特徵（如白毛、柔軟質地）自發擴散，形成 [[stimulus-generalization|刺激類化]]。
 
 ---
 

@@ -1,8 +1,9 @@
-# Obsidian workspace states
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-wiki/.obsidian/workspace.json
-wiki/.obsidian/workspace-mobile.json
+# Obsidian workspace & metadata
+.obsidian/
+wiki/.obsidian/
+
+# Intermediate drafts & scratch
+slides/drafts/
 
 # OS metadata
 Thumbs.db
