@@ -134,6 +134,18 @@
   - **節點 8 & 9 代碼渲染與靜態掃描通過**：全面移除 Emoji 改採 38 處純向量 SVG 搭配安全底座，字級嚴格保證 $\ge 14\text{px}$，KaTeX 數學公式與按鍵換頁邏輯驗證無誤。
   - **節點 10 正式交付**：交付成品檔 `slides/psychology_schools_presentation.html` 並同步更新首頁入口與遠端儲存庫。
 
+## [2026-11-19] presentation | 五大流派全景解析（11 頁零基礎教學型簡報）
+- **操作類型**：教學型 Graph 工作流簡報正式生成 (Pedagogical Presentation Delivery)
+- **依據大綱**：`slides/drafts/psychology_schools_outline.md`（經節點 5 人機協同審查核准）
+- **逐頁腳本**：`slides/drafts/psychology_schools_script.md`
+- **生成檔案**：`slides/psychology_schools_presentation.html` (11 頁零基礎教學互動簡報)
+- **關卡檢驗**：
+  - **覆蓋率關卡（Node 2）**：Pass（涵蓋 5 篇奠基論文、5 大流派、5 個核心模型、3 大世紀論戰）。
+  - **圖示預綁定防線（Node 3）**：Pass（全面預綁定 16 組純向量內聯 SVG 與逐頁映射表，杜絕隨機生成）。
+  - **忠實度與易讀性雙重關卡（Node 7）**：Pass（數據比對 100% 吻合；每頁配備日常情境、生活常見誤區破解與名詞降維小辭典，經零背景初學者理解度檢驗無阻礙）。
+  - **代碼靜態掃描閥門（Node 9）**：Pass（11 頁完整閉合、44 組向量內聯 SVG 經白名單 100% 比對通過、零 Unicode 豆腐塊 Emoji、字體嚴格 $\ge 14\text{px}$、鍵盤導航與動態進度點無誤）。
+
+
 
 
 
