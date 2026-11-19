@@ -129,7 +129,7 @@
 - **操作類型**：專案輕量化與列表格式重構 (Project Cleanup & Inline List Normalization)
 - **完成項目**：
   - **刪除部署無關資料夾與檔案**：
-    - 徹底移除專案根目錄之 `.obsidian/` 與 `wiki/.obsidian/`（Obsidian 編輯器快取與本機工作區設定，非 GitHub Pages 必要資產）。
+    - 徹底移除專案根目錄之 `.obsidian/` 與 `wiki/.obsidian/`（編輯器快取與本機工作區設定，非 GitHub Pages 必要資產）。
     - 徹底移除 `slides/drafts/`（中間大綱與逐頁草稿檔案，GitHub Pages 僅需最終發布之 `slides/psychology_schools_presentation.html`）。
     - 更新 `.gitignore` 完整忽略 `.obsidian/` 與 `slides/drafts/`，維持乾淨簡潔的儲存庫結構。
   - **清單排版重構（小標加圓點、說明內聯不另起圓點）**：

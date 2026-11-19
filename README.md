@@ -22,11 +22,10 @@
 
 ## 🚀 如何開始使用？
 
-### 1. 使用 Obsidian 開啟
-1. 開啟 **Obsidian** 軟體。
-2. 點選「開啟資料夾作為儲存庫 (Open folder as vault)」。
-3. 選擇 **`wiki`** 資料夾：`c:\Users\sasa\作業10\wiki`。
-4. 在左側欄即可看到最純粹的知識庫結構：各大流派、理論、構念、論文摘要，以及總目錄 `index.md` 與日誌 `log.md`。原始文獻與設定則乾淨地存放在外層。
+### 1. 線上瀏覽與學習 (Online Wiki & Presentation)
+* **主頁入口**：直接開啟 `index.html` 即可瀏覽線上簡報與 Wiki 知識庫。
+* **知識庫首頁**：進入 `wiki/index.html`，具備全文即時搜尋、跨學派雙向連結跳轉與論文實證結構化摘要。
+* **重點簡報**：進入 `slides/psychology_schools_presentation.html`，可按鍵盤方向鍵或左右按鈕切換圖文重點講義。
 
 ### 2. 攝取新論文 (Ingest)
 1. 將下載好的論文 PDF 放入 `raw/` 資料夾（例如 `raw/watson-rayner-1920.pdf`）。

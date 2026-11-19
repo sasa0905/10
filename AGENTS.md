@@ -17,7 +17,7 @@
 ```text
 /
 ├── raw/                      # 【第 1 層：原始文獻】不可修改的真實來源（PDF 等）
-├── wiki/                     # 【第 2 層：Wiki 知識庫】Obsidian 儲存庫根目錄 (Vault Root)
+├── wiki/                     # 【第 2 層：Wiki 知識庫】知識庫根目錄 (Wiki Root)
 │   ├── index.md              # 全域主題目錄索引 (Wiki 總目錄)
 │   ├── log.md                # 時間軸操作紀錄（Append-only 日誌）
 │   ├── schools/              # 各大心理學流派（如 behaviorism.md）
@@ -32,14 +32,14 @@
 
 ---
 
-## 2. 格式規範與 Obsidian 整合慣例
+## 2. 格式規範與雙向鏈接整合慣例
 
-為確保在 **Obsidian** 中具備最佳視覺效果、圖譜關聯（Graph View）與屬性檢索（Dataview）：
+為確保在網頁知識庫中具備最佳視覺效果、圖譜關聯（Graph View）與結構化檢索：
 
 1. **檔案命名**：
    * 檔名一律使用英文小寫與連字號（kebab-case），例如 `constructs/cognitive-load.md`、`sources/ledoux-2000-emotion-circuits.md`。
 2. **別名機制 (Aliases)**：
-   * 每個 Markdown 檔案頂部必須具備 YAML Frontmatter，並在 `aliases` 中填入繁體中文名稱，方便在 Obsidian 中以中/英文雙向補全。
+   * 每個 Markdown 檔案頂部必須具備 YAML Frontmatter，並在 `aliases` 中填入繁體中文名稱，方便以中/英文雙向索引與關聯。
 3. **雙向鏈接 (Wikilinks)**：
    * 內文引用頁面時一律使用 `[[檔案名稱|顯示文字]]` 格式，例如 `[[behaviorism|古典行為學派]]`、`[[watson-rayner-1920-conditioned-fear|Watson & Rayner (1920)]]`。
 4. **高亮引言盒 (Callout Boxes)**：
